@@ -3,11 +3,6 @@ import meter1 from "../assets/img/meter1.svg";
 import java from "../assets/img/java.svg"
 import javascript from "../assets/img/javascript.svg"
 import python from "../assets/img/python.svg"
-
-
-
-
-
 import ui from "../assets/img/meter2.svg";
 import meter3 from "../assets/img/meter3.svg";
 import Carousel from 'react-multi-carousel';
@@ -16,14 +11,12 @@ import arrow1 from "../assets/img/arrow1.svg";
 import arrow2 from "../assets/img/arrow2.svg";
 import colorSharp from "../assets/img/color-sharp.png"
 
-
-
 export const Skills = () => {
    
    const BubbleText = ({ text }) => {
         return (
          <h2 >
-            {"Skills".split("").map((child, idx) => (
+            {"Technical~Skills".split("").map((child, idx) => (
               <span className="hoverText" key={idx}>
                 {child}
               </span>
@@ -33,7 +26,7 @@ export const Skills = () => {
       };
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
+
       breakpoint: { max: 4000, min: 3000 },
       items: 5
     },
@@ -57,8 +50,8 @@ export const Skills = () => {
             <div className="row">
                 <div className="col-12">
                     <div className="skill-bx wow zoomIn">
-                        <BubbleText>Skills</BubbleText>
-                        <p>Skills I bring to the table and also keep learning</p>
+                        <BubbleText> </BubbleText>
+                        <p></p>
                         <Carousel responsive={responsive} infinite={true} className="owl-carousel owl-theme skill-slider">
                             
                             <div className="item">
