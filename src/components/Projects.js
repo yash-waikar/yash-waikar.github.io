@@ -27,6 +27,7 @@ export const Projects = () => {
       description: "Designed and Developed this website using React, React-boot-strap, javascript, and css",
       imgUrl: projImg3,
     },
+  
    
   
   ];

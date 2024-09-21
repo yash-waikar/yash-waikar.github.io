@@ -69,7 +69,7 @@ export const Banner = () => {
             <TrackVisibility>
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                <span className="tagline">Welcome</span>
+            
                 <h1>{'Hi! I am Yash Waikar'} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Software Engineer", "Cloud Engineer", "Musician" ]'><span className="wrap">{text}</span></span></h1>
                   <p>Upcoming graduate from George Mason University studying Computer Science. I am passionate about Front-End Development and Frameworks and currently intrested in learning about cloud computing. I am also make music on the side, listen <a href = "https://linktr.ee/yashwaikar"target="_blank" rel="noopener noreferrer">here</a> as you scroll.</p>
                   <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>

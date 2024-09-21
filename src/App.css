@@ -552,6 +552,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   background: rgba(255, 255, 255, 1);
   color: #121212;
 }
+
 .contact form input::placeholder, .contact form textarea::placeholder {
   font-size: 16px;
   font-weight: 400;
@@ -593,7 +594,93 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .contact form button:hover::before {
   width: 100%;
 }
+/*******Experience css ************/
 
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Add some space between buttons if desired */
+  margin-bottom: 20px; /* Adjust this value for spacing between the tabs and the timeline */
+}
+.draw-outline-button {
+  position: relative;
+  padding: 10px 20px;
+  font-weight: 500;
+  color: #f1f5f9;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.4s;
+}
+
+.draw-outline-button:hover {
+  color: #ffffff;
+}
+
+/* Positioning and animation of the outline */
+.draw-outline-button .outline {
+  position: absolute;
+  background: #a9aae1;
+  transition: all 0.1s;
+}
+
+/* TOP */
+.draw-outline-button .outline.top {
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: 0;
+}
+
+.draw-outline-button:hover .outline.top {
+  width: 100%;
+}
+
+/* RIGHT */
+.draw-outline-button .outline.right {
+  right: 0;
+  top: 0;
+  width: 2px;
+  height: 0;
+  transition-delay: 0.1s;
+}
+
+.draw-outline-button:hover .outline.right {
+  height: 100%;
+}
+
+/* BOTTOM */
+.draw-outline-button .outline.bottom {
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  transition-delay: 0.2s;
+}
+
+.draw-outline-button:hover .outline.bottom {
+  width: 100%;
+}
+
+/* LEFT */
+.draw-outline-button .outline.left {
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  height: 0;
+  transition-delay: 0.3s;
+}
+
+.draw-outline-button:hover .outline.left {
+  height: 100%;
+}
+
+/* Active state for the button */
+.draw-outline-button.active {
+  background-color: #6366f1;
+  color: white;
+}
 /************ Footer Css ************/
 .footer {
   padding: 0 0 50px 0;
