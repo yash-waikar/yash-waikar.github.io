@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.4fa073f2.css",
-    "main.js": "/static/js/main.5528fb34.js",
+    "main.css": "/static/css/main.edf1f148.css",
+    "main.js": "/static/js/main.f08289ba.js",
     "static/js/453.298f5782.chunk.js": "/static/js/453.298f5782.chunk.js",
-    "static/media/banner-bg.png": "/static/media/banner-bg.9af3ca02f1aed5f4cf8b.png",
     "static/media/color-sharp.png": "/static/media/color-sharp.bea361cfef80fefc2d1e.png",
+    "static/media/banner-bg.png": "/static/media/banner-bg.c87586c6c2f549cb4aa6.png",
     "static/media/color-sharp2.png": "/static/media/color-sharp2.c87586c6c2f549cb4aa6.png",
     "static/media/logo.png": "/static/media/logo.8b5340c96b71970cbb10.png",
     "static/media/react-logo.png": "/static/media/react-logo.582cbc784710a3dbe704.png",
-    "static/media/Yash-Waikar-Resume.pdf": "/static/media/Yash-Waikar-Resume.53c7fca3e0eaf08e0fe3.pdf",
+    "static/media/Yash-Waikar-Resume.pdf": "/static/media/Yash-Waikar-Resume.fb9c54672e7ca7b325d6.pdf",
     "static/media/CentraNo2-Bold.ttf": "/static/media/CentraNo2-Bold.2faff7f7d3fc92a2fcd9.ttf",
     "static/media/CentraNo2-Medium.ttf": "/static/media/CentraNo2-Medium.f94be5b326d78bb32b95.ttf",
     "static/media/CentraNo2-Book.ttf": "/static/media/CentraNo2-Book.2b143fa4b734a3584043.ttf",
@@ -33,12 +33,12 @@
     "index.html": "/index.html",
     "static/media/arrow2.svg": "/static/media/arrow2.3d9522b6fd8f2464b7200ebf2c1bb09a.svg",
     "static/media/arrow1.svg": "/static/media/arrow1.0c89b5b635adf255c2822c630aaa6ccf.svg",
-    "main.4fa073f2.css.map": "/static/css/main.4fa073f2.css.map",
-    "main.5528fb34.js.map": "/static/js/main.5528fb34.js.map",
+    "main.edf1f148.css.map": "/static/css/main.edf1f148.css.map",
+    "main.f08289ba.js.map": "/static/js/main.f08289ba.js.map",
     "453.298f5782.chunk.js.map": "/static/js/453.298f5782.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4fa073f2.css",
-    "static/js/main.5528fb34.js"
+    "static/css/main.edf1f148.css",
+    "static/js/main.f08289ba.js"
   ]
 }
