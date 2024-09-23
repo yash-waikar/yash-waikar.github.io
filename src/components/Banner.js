@@ -13,7 +13,7 @@ export const Banner = () => {
   const [text, setText] = useState('');
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
-  const toRotate = [ "Software Engineer" ];
+  const toRotate = [ "Software Engineer", "CS Student" ];
   const period = 2000;
 
   useEffect(() => {
@@ -70,10 +70,19 @@ export const Banner = () => {
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
             
-                <h1>{'Hi! I am Yash Waikar'} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Software Engineer", "Cloud Engineer", "Musician" ]'><span className="wrap">{text}</span></span></h1>
-                  <p>Upcoming graduate from George Mason University studying Computer Science. I am passionate about Front-End Development and Frameworks and currently intrested in learning about cloud computing. I am also make music on the side, listen <a href = "https://linktr.ee/yashwaikar"target="_blank" rel="noopener noreferrer">here</a> as you scroll.</p>
-                  <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
-                   
+                <h1>{'Hey! I am Yash Waikar. A'} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Software Engineer" ]'><span className="wrap">{text}</span></span></h1>
+                  <p>Upcoming graduate from George Mason University studying Computer Science. I am passionate about Front-End Development and Frameworks and currently intrested in learning about cloud computing.</p>
+                  <p> I also write and make indie music on the side, listen as you scroll!</p>
+                  <iframe
+                  src="https://open.spotify.com/embed/track/369Q8J2tgFH3GCFFneH8CK?utm_source=generator&theme=0"
+                  style={{ borderRadius: "12px", width: "100%", height: "300px", border: "none" }}
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  allowFullScreen
+                    loading="lazy"
+                  ></iframe>
+                  
+                 
               </div>}
             </TrackVisibility>
           </Col>

@@ -25,7 +25,7 @@ const DrawOutlineButton = ({ children, className, ...rest }) => {
 export const Qualification = () => {
   const [activeTab, setActiveTab] = useState("education");
   return (
-    <div className="qualification">
+    <div className="qualification" id = "experience">
       {/* Tab Navigation */}
       <div className="tab-buttons">
         <DrawOutlineButton
@@ -42,7 +42,7 @@ export const Qualification = () => {
         </DrawOutlineButton>
       </div>
 
-      {/* Render the selected timeline based on the active tab */}
+     
       {activeTab === "education" && (
         <div className="experience">
           <VerticalTimeline lineColor="#3e497a">
@@ -58,7 +58,7 @@ export const Qualification = () => {
                 George Mason Univeristy
               </h3>
               <h2 className="vertical-timeline-element-subtitle">
-                Bachelors in Computer Science
+                B.S in Computer Science
               </h2> <p> Relevant Coursework: Algorithms, Operating Systems, Data Structures, Object Formal Methods, 
 Computer Systems, Database Concepts, Object-Oriented Programming, Web App Development
 </p>
@@ -76,7 +76,7 @@ Computer Systems, Database Concepts, Object-Oriented Programming, Web App Develo
                 NOVA Community College
               </h3>
               <h2 className="vertical-timeline-element-subtitle">
-                Associates Degree in Computer Science
+                A.S in Computer Science
               </h2>
              
             </VerticalTimelineElement>

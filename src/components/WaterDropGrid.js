@@ -3,7 +3,7 @@ import React from "react";
 
 
 const GRID_WIDTH = 20;
-const GRID_HEIGHT = 15;
+const GRID_HEIGHT = 22;
 
 export const WaterDropGrid = () => {
   const handleDotClick = (e) => {

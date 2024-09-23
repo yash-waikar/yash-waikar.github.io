@@ -306,14 +306,14 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   position: relative;
 }
 .skill-bx {
-  background: #151515;
-  border-radius: 64px;
+  background: #000000;
+  border-radius: 30px;
   text-align: center;
   padding: 60px 50px;
   margin-top: -60px;
 }
 .skill h2 {
-	font-size: 45px;
+	font-size: 45px; 
 	font-weight: 700;
 }
 .skill p {
@@ -351,13 +351,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: #303030;
 }
 
-/* Container holding the waterdrop grid */
+
 .relative-grid-center {
   position: relative;
   display: grid;
   place-content: center;
-  background-color: #1e293b; /* Replace bg-slate-900 */
-  padding: 3rem 2rem; /* Equivalent to px-8 py-12 in Tailwind */
+  background-color: #304c78; 
+  padding: 3rem 2rem; 
 }
 
 /* The dot grid layout */
@@ -621,7 +621,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /* Positioning and animation of the outline */
 .draw-outline-button .outline {
   position: absolute;
-  background: #a9aae1;
+  background: #ffffff;
   transition: all 0.1s;
 }
 
@@ -678,7 +678,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /* Active state for the button */
 .draw-outline-button.active {
-  background-color: #6366f1;
+  background-color: #0e1168;
   color: white;
 }
 /************ Footer Css ************/

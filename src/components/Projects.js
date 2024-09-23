@@ -26,6 +26,7 @@ export const Projects = () => {
       title: "Personal Portofolio",
       description: "Designed and Developed this website using React, React-boot-strap, javascript, and css",
       imgUrl: projImg3,
+      url: "https://github.com/yash-waikar/personal-website"
     },
   
    
