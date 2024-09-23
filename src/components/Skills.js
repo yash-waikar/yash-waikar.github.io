@@ -16,7 +16,7 @@ export const Skills = () => {
    const BubbleText = ({ text }) => {
         return (
          <h2 >
-            {"Technical~Skills".split("").map((child, idx) => (
+            {"Technical-Skills".split("").map((child, idx) => (
               <span className="hoverText" key={idx}>
                 {child}
               </span>
@@ -73,8 +73,6 @@ export const Skills = () => {
                                 <img src={react} alt="Image" />
                                 <h5>React.js & Node.js</h5>
                             </div>
-
-
                             <div className="item">
                                 <img src={meter1} alt="Image" />
                                 <h5>Test Automation</h5>
