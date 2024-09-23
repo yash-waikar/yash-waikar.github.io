@@ -98,8 +98,8 @@ export const NavBar = () => {
               <a href="https://github.com/yash-waikar"><img src={navIcon2} alt="" /></a>
               
             </div>
-            <DrawOutlineButton  onClick={() => console.log('connect')}>
-            Contact Me
+            <DrawOutlineButton onClick={() => window.location.href = 'mailto: yashpwaikar@gmail.com'}>
+             Contact Me
             </DrawOutlineButton>
           </span>
         </Navbar.Collapse>
