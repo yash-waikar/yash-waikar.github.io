@@ -16,7 +16,7 @@ export const Footer = () => {
           </Col>
           <Col size={6} sm={6} className="text-right text-sm-end">
             
-            <p>Website created using React by Yash Waikar. </p>
+            <p>s </p>
                 <p>Copyright 2024. All Rights Reserved</p>
           </Col>
         </Row>
