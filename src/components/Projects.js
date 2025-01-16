@@ -26,7 +26,7 @@ export const Projects = () => {
     {
       title: "Cloud Mart",
       description: "Developed an Inventory Management Android App using Java, integrating Firebase Cloud Authentication for secure access. Implemented Firestore for real-time inventory updates and offline data synchronization, enhancing operational efficiency. Designed secure data interactions and scalable cloud management using Firebase",
-      imgUrl: projImg2,
+      imgUrl: projImg4,
     },
     {
       title: "Personal Portofolio",

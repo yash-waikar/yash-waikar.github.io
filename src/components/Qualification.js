@@ -101,7 +101,7 @@ Computer Systems, Database Concepts, Object-Oriented Programming, Web App Develo
               <h2 className="vertical-timeline-element-subtitle">
                 Ampcus Inc. 
               </h2>
-              <p>Currently on the front-end team, developing a third party risk management application SaaS product using TypeScript, JavaScript, React, and Tailwind CSS. </p>
+              <p>As part of the front-end team, I developed dynamic pages and integrated components on a third party risk management application SaaS product using TypeScript, JavaScript, React, and Tailwind CSS. Integrated backend APIs for web application pages using React Query, improving data retrieval efficiency  </p>
             </VerticalTimelineElement>
 
             
