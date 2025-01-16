@@ -3,6 +3,7 @@ import { ProjectCard } from "./ProjectCard";
 import projImg1 from "../assets/img/project-img1.png";
 import projImg2 from "../assets/img/project-img2.png";
 import projImg3 from "../assets/img/personalwb-logo.png";
+import projImg4 from "../assets/img/Project-img4.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 //import 'animate.css';
 import TrackVisibility from 'react-on-screen';
@@ -21,6 +22,11 @@ export const Projects = () => {
       description: "Analyzes your pitch desk presentaiton and give you a summary and key points. Uses the OpenAI API. ",
       imgUrl: projImg2,
       url: "https://github.com/yash-waikar/AI-Pitch-Deck-Analyzer"
+    },
+    {
+      title: "Cloud Mart",
+      description: "Developed an Inventory Management Android App using Java, integrating Firebase Cloud Authentication for secure access. Implemented Firestore for real-time inventory updates and offline data synchronization, enhancing operational efficiency. Designed secure data interactions and scalable cloud management using Firebase",
+      imgUrl: projImg2,
     },
     {
       title: "Personal Portofolio",
