@@ -129,21 +129,15 @@ span.navbar-text {
     line-height: 1;
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
-/* Add this to your CSS file */
-.txt-rotate .wrap {
-  display: inline-block;
-  position: relative;
-  font-size:  20px;
+
+
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
 }
 
-.txt-rotate .wrap::after {
-  content: '|';
-  position: absolute;
-  right: -5px;  /* Adjust the position to align the cursor */
-  animation: blink 0.75s step-end infinite;
-}
-
-@keyframes blink {
+@keyframes blink-caret {
   50% {
     opacity: 0;
   }
