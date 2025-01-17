@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import headerImg from "../assets/img/brain.svg";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import { WaterDropGrid } from "./WaterDropGrid";
-import TrackVisibility from 'react-on-screen';
+
 
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
