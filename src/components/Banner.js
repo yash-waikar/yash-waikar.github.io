@@ -51,7 +51,7 @@ export const Banner = () => {
               {({ isVisible }) => (
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                   <h1>
-                    Hi! I am Yash Waikar. A{' '}
+                    Hey! I am Yash Waikar. A{' '}
                     <span className="txt-rotate">
                       <span className="wrap">{text}</span>
                     </span>{' '}
