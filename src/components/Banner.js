@@ -1,10 +1,7 @@
-import TrackVisibility from 'react-on-screen';
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import headerImg from "../assets/img/brain.svg";
-import { ArrowRightCircle } from 'react-bootstrap-icons';
 import { WaterDropGrid } from "./WaterDropGrid";
-
+import TrackVisibility from "react-on-screen";
 
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
@@ -24,10 +21,10 @@ export const Banner = () => {
 
   const tick = () => {
     const i = loopNum % toRotate.length;
-    const fullText = `${toRotate[i]} Engineer`;
+    const currentWord = toRotate[i];
     const updatedText = isDeleting
-      ? fullText.substring(0, text.length - 1)
-      : fullText.substring(0, text.length + 1);
+      ? currentWord.substring(0, text.length - 1)
+      : currentWord.substring(0, text.length + 1);
 
     setText(updatedText);
 
@@ -35,7 +32,7 @@ export const Banner = () => {
       setDelta((prevDelta) => prevDelta / 2);
     }
 
-    if (!isDeleting && updatedText === fullText) {
+    if (!isDeleting && updatedText === currentWord) {
       setIsDeleting(true);
       setDelta(period);
     } else if (isDeleting && updatedText === '') {
@@ -54,15 +51,16 @@ export const Banner = () => {
               {({ isVisible }) => (
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                   <h1>
-                    {'Hi! I am Yash Waikar. A '}
+                    Hi! I am Yash Waikar. A{' '}
                     <span className="txt-rotate">
                       <span className="wrap">{text}</span>
-                    </span>
+                    </span>{' '}
+                    Engineer
                   </h1>
                   <p>
                     Recent Computer Science Graduate from George Mason University. I am passionate about
                     designing and building web applications and adapting to new frameworks. Currently, I am
-                    interested in learning about cloud computing.
+                     learning about AI/ML cloud services on AWS.
                   </p>
                   <p>In my free time, you can find me singing and composing music. Listen as you scroll!</p>
                   <iframe
