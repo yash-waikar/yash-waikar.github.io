@@ -27,6 +27,7 @@ export const Projects = () => {
       title: "Cloud Mart",
       description: "Developed an Inventory Management Android App using Java, integrating Firebase Cloud Authentication for secure access. Implemented Firestore for real-time inventory updates and offline data synchronization, enhancing operational efficiency. Designed secure data interactions and scalable cloud management using Firebase",
       imgUrl: projImg4,
+      url: "https://github.com/yash-waikar/Cloud-Mart"
     },
     {
       title: "Personal Portofolio",
