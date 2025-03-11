@@ -623,7 +623,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: #f1f5f9;
   background: none;
   border: none;
-  cursor: pointer;
+   : pointer;
   transition: color 0.4s;
 }
 

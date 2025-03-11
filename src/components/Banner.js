@@ -62,20 +62,8 @@ export const Banner = () => {
                     designing and building web applications and adapting to new frameworks. Currently, I am
                      learning about AI/ML cloud services on AWS.
                   </p>
-                  <p>In my free time, you can find me singing and composing music. Listen as you scroll!</p>
-                  <iframe
-                    src="https://open.spotify.com/embed/track/369Q8J2tgFH3GCFFneH8CK?utm_source=generator&theme=0"
-                    style={{
-                      borderRadius: "12px",
-                      width: "100%",
-                      height: "300px",
-                      border: "none",
-                    }}
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                  ></iframe>
+                  <p>In my free time, you can find me singing and composing music.</p>
+                  
                 </div>
               )}
             </TrackVisibility>
