@@ -623,7 +623,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: #f1f5f9;
   background: none;
   border: none;
-   : pointer;
+  cursor: pointer;
+  font-size: 18px;
   transition: color 0.4s;
 }
 
@@ -771,4 +772,349 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: #B8B8B8;
   letter-spacing: 0.5px;
   margin-top: 20px;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Custom font */
+@font-face {
+  font-family: "Centra";
+  src: url("/src/assets/font/CentraNo2-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Centra";
+  src: url("/src/assets/font/CentraNo2-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Centra";
+  src: url("/src/assets/font/CentraNo2-Book.ttf") format("truetype");
+  font-weight: 400;
+}
+
+/* Animated background */
+.animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 25%,
+    rgba(255, 255, 255, 0.01) 50%,
+    rgba(255, 255, 255, 0.02) 75%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.light .animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.03) 0%,
+    rgba(0, 0, 0, 0.01) 25%,
+    rgba(0, 0, 0, 0.005) 50%,
+    rgba(0, 0, 0, 0.01) 75%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Subtle dot pattern */
+.dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.light .dot-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.light .glow {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.light .glow:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Card glow effect */
+.card-glow {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.light .card-glow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.light .card-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D perspective effect */
+.perspective {
+  perspective: 1000px;
+}
+
+/* Text gradient animation */
+@keyframes textGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-gradient {
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGradient 4s linear infinite;
+}
+
+/* 3D text effect */
+.text-3d {
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2), 0px 2px 0px rgba(255, 255, 255, 0.1), 0px 3px 0px
+    rgba(255, 255, 255, 0.05);
+}
+
+.light .text-3d {
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2), 0px 2px 0px rgba(0, 0, 0, 0.1), 0px 3px 0px rgba(0, 0, 0, 0.05);
+}
+
+/* Shooting stars/comets animation */
+.shooting-stars {
+  z-index: 0;
+}
+
+.comet {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 100px;
+  transform: rotate(-45deg);
+  animation: comet-animation 6s linear infinite;
+  opacity: 0;
+}
+
+.light .comet {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.comet::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.6);
+}
+
+.light .comet::before {
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
+}
+
+.comet-1 {
+  top: 20%;
+  left: 10%;
+  width: 100px;
+  animation-delay: 0s;
+}
+
+.comet-2 {
+  top: 15%;
+  left: 70%;
+  width: 150px;
+  animation-delay: 2s;
+}
+
+.comet-3 {
+  top: 40%;
+  left: 25%;
+  width: 120px;
+  animation-delay: 4s;
+}
+
+.comet-4 {
+  top: 60%;
+  left: 80%;
+  width: 80px;
+  animation-delay: 6s;
+}
+
+.comet-5 {
+  top: 75%;
+  left: 30%;
+  width: 110px;
+  animation-delay: 8s;
+}
+
+@keyframes comet-animation {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(500px) translateY(500px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+/* Skill tag hover effect */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.skill-tag:hover {
+  animation: pulse 0.6s ease-in-out;
+}
+
+/* Line clamp for text */
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
