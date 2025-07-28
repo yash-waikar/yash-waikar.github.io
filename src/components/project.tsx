@@ -12,25 +12,35 @@ import {
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ExternalLink } from "lucide-react";
+import { GlowingEffect } from "./ui/glowing-effect";
 
 export function Projects() {
   const projects = [
+    {
+      title: "Wave Tune",
+      description:
+        "Built a hand gesture-controlled music player using Python libraries Mediapipe, OpenCV, and Librosa. Developed live video feed overlays enabling real-time control of pitch, volume, and tempo.",
+      image: "/assets/img/wave-tune.png",
+      tags: ["Python", "Mediapipe", "OpenCV", "Librosa"],
+      github: "", 
+      demo: null,
+    },
     {
       title: "Patriot Pop",
       description:
         "Collaboratively designed a web-based radio management system facilitating role-specific functionalities. Implemented effective data management and real-time synchronization across profiles/roles.",
       image: "/assets/img/project-img1.png",
-      tags: ["React", "Node.js", "Firebase"],
+      tags: ["Javascript", "EJS", "Express", "MongoDB"],
       github: "https://github.com/yash-waikar/patriot-pop",
       demo: null,
     },
     {
       title: "Pitch Desk AI",
       description:
-        "Analyzes your pitch desk presentation and gives you a summary and key points. Uses the OpenAI API.",
+        "Analyzes your pitch desk presentation and gives you a summary and key points. Built with React, Node.js, and OpenAI API.",
       image: "/assets/img/project-img2.png",
       tags: ["OpenAI API", "React", "Node.js"],
-      github: "https://github.com/yash-waikar/AI-Pitch-Deck-Analyzer",
+      github: "https://github.com/yashwaikar/AI-Pitch-Deck-Analyzer",
       demo: null,
     },
     {
@@ -48,7 +58,15 @@ export function Projects() {
         "InThrift is an in-progress cross-platform thrift store app for Indian ethnic wear, built with React Native, Expo Router, and Lucide React Native, featuring photo uploads, search and filters, user profiles, and a vibrant pink-accented UI.",
       image: "/assets/img/project-img5.png",
       tags: ["React Native", "Expo", "Expo Router", "UI/UX"],
-     
+      demo: null,
+    },
+    {
+      title: "Chore Mate",
+      description:
+        "A very simple Android app built in Java using Android Studio to help organize and track daily chore tasks. Just needed something me to track my daily tasks",
+      image: "/assets/img/choremate.png",
+      tags: ["Java", "Android Studio", "Task Management", "Android"],
+      github: "https://github.com/yash-waikar/Chore-Task-App", 
       demo: null,
     },
   ];
@@ -68,7 +86,8 @@ export function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="max-w-sm mx-auto overflow-hidden border border-muted bg-background hover:border-primary/20 transition-colors">
+              <Card className="max-w-sm mx-auto flex h-full flex-col overflow-hidden border border-muted bg-background hover:border-primary/20 transition-colors relative">
+                <GlowingEffect blur={160} spread={500} glow disabled={false} className="z-0" />
                 <div className="h-40 w-full overflow-hidden bg-muted">
                   <img
                     src={project.image}
@@ -86,12 +105,12 @@ export function Projects() {
                     ))}
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1">
                   <CardDescription className="text-sm text-muted-foreground text-center">
                     {project.description}
                   </CardDescription>
                 </CardContent>
-                <CardFooter className="flex justify-center gap-4">
+                <CardFooter className="mt-auto flex justify-center gap-4">
                   <Button variant="outline" size="sm" asChild>
                     <a
                       href={project.github}

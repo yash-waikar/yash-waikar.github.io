@@ -1,39 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { MotionProps } from "framer-motion";
+
 import { Card, CardContent } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 export function Skills() {
   const technicalSkills = [
-    { name: "Java", level: 90 },
+    { name: "TypeScript", level: 90 },
     { name: "JavaScript", level: 85 },
-    { name: "Python", level: 80 },
     { name: "React.js", level: 85 },
     { name: "Node.js", level: 80 },
-    { name: "TypeScript", level: 90 },
-    { name: "HTML/CSS", level: 90 },
+     { name: "Tailwind CSS", level: 90 },
+    { name: "Zustand", level: 90 },
+    { name: "Python", level: 80 },
     { name: "SQL", level: 60 },
   ];
 
   const otherSkills = [
     { name: "UI/UX Design", level: 70 },
-    { name: "Test Automation", level: 60 },
-    { name: "Cloud Computing (Azure & AWS)", level: 60 },
+    { name: "Figma", level: 70 },
     { name: "Git", level: 85 },
     { name: "Agile Methodologies", level: 80 },
     { name: "AI Automation", level: 65 },
     { name: "CI/CD", level: 70 },
     { name: "Docker", level: 60 },
-    { name: "Figma", level: 70 },
-    { name: "Postman", level: 75 },
     { name: "Agile/Scrum", level: 80 },
     { name: "RESTful APIs", level: 85 },
   ];
-  const MotionDiv = motion.div as React.ComponentType<
-    React.HTMLAttributes<HTMLDivElement> & MotionProps
-  >;
 
   return (
     <section id="skills" className="py-20">
@@ -59,8 +53,8 @@ export function Skills() {
           className="mt-12 w-full max-w-3xl mx-auto"
         >
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="technical">Programming</TabsTrigger>
-            <TabsTrigger value="other">Technologies</TabsTrigger>
+            <TabsTrigger value="technical">Frontend</TabsTrigger>
+            <TabsTrigger value="other">Other</TabsTrigger>
           </TabsList>
           <TabsContent value="technical" className="mt-6">
             <Card>
@@ -79,15 +73,7 @@ export function Skills() {
                           {skill.name}
                         </span>
                       </div>
-                      <div className="h-2 bg-muted rounded-full overflow-hidden">
-                        <MotionDiv
-                          className="h-full bg-primary"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                          viewport={{ once: true }}
-                        />
-                      </div>
+                      <div className="h-2 bg-muted rounded-full overflow-hidden"></div>
                     </motion.div>
                   ))}
                 </div>
@@ -111,15 +97,7 @@ export function Skills() {
                           {skill.name}
                         </span>
                       </div>
-                      <div className="h-2 bg-muted rounded-full overflow-hidden">
-                        <MotionDiv
-                          className="h-full bg-primary"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                          viewport={{ once: true }}
-                        />
-                      </div>
+                      <div className="h-2 bg-muted rounded-full overflow-hidden"></div>
                     </motion.div>
                   ))}
                 </div>

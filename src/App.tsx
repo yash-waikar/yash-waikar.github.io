@@ -11,15 +11,15 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark">
       <main className="min-h-screen bg-background text-foreground">
-        <Navbar />
         <Hero />
+        <Experience />
         <Projects />
         <Skills />
-        <Experience />
+
         <Footer />
       </main>
     </ThemeProvider>
-  )
+  );
 }
 
 export default App

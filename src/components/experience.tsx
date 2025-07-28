@@ -1,14 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
-import { Badge } from "./ui/badge"
-import { CalendarDays, GraduationCap, Briefcase } from "lucide-react"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Badge } from "./ui/badge";
+import { CalendarDays, GraduationCap, Briefcase } from "lucide-react";
 
 export function Experience() {
-  const [activeTab, setActiveTab] = useState("education")
+  const [activeTab, setActiveTab] = useState("education");
 
   const education = [
     {
@@ -24,7 +30,7 @@ export function Experience() {
       period: "2020 - 2022",
       description: "",
     },
-  ]
+  ];
 
   const work = [
     {
@@ -33,9 +39,18 @@ export function Experience() {
       period: "January 2025 - Present",
       description:
         "Spearheading the development and integration of key AI and location based features for a TPRM SaaS platform. Download my resume to learn more about my work.",
-      skills: ["TypeScript", "React", "Tailwind CSS", "React Query", "Node.js"],
+      
+      skills: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Tailwind CSS",
+        "Zustand",
+        "React Query",
+        "Node.js",
+      ],
     },
-  ]
+  ];
 
   return (
     <section id="experience" className="py-20 bg-muted/30">
@@ -47,14 +62,20 @@ export function Experience() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Experience</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Experience
+            </h2>
             <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground text-center">
               My educational background and professional experience.
             </p>
           </motion.div>
         </div>
 
-        <Tabs defaultValue="education" className="mt-12 w-full max-w-3xl mx-auto" onValueChange={setActiveTab}>
+        <Tabs
+          defaultValue="education"
+          className="mt-12 w-full max-w-3xl mx-auto"
+          onValueChange={setActiveTab}
+        >
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="education">Education</TabsTrigger>
             <TabsTrigger value="work">Experience</TabsTrigger>
@@ -69,7 +90,9 @@ export function Experience() {
               >
                 <Card>
                   <CardHeader className="pb-2 text-center">
-                    <CardTitle className="text-xl">{item.institution}</CardTitle>
+                    <CardTitle className="text-xl">
+                      {item.institution}
+                    </CardTitle>
                     <CardDescription className="flex items-center justify-center">
                       <GraduationCap className="mr-2 h-4 w-4" />
                       {item.degree}
@@ -81,7 +104,9 @@ export function Experience() {
                   </CardHeader>
                   {item.description && (
                     <CardContent>
-                      <p className="text-sm text-muted-foreground text-center">{item.description}</p>
+                      <p className="text-sm text-muted-foreground text-center">
+                        {item.description}
+                      </p>
                     </CardContent>
                   )}
                 </Card>
@@ -109,7 +134,9 @@ export function Experience() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground mb-4 text-center">{item.description}</p>
+                    <p className="text-sm text-muted-foreground mb-4 text-center">
+                      {item.description}
+                    </p>
                     {item.skills && (
                       <div className="flex flex-wrap justify-center gap-2">
                         {item.skills.map((skill, i) => (
@@ -127,5 +154,5 @@ export function Experience() {
         </Tabs>
       </div>
     </section>
-  )
+  );
 }

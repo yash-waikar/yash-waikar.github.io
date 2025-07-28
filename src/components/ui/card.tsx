@@ -1,5 +1,5 @@
 import * as React from "react"
-
+import { GlowingEffect } from "./glowing-effect"
 import { cn } from "../../lib/utils"
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
@@ -7,12 +7,15 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        "relative bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm overflow-hidden", // Added 'relative' and 'overflow-hidden'
         className
       )}
       {...props}
-    />
-  )
+    >
+      <GlowingEffect blur={16} spread={30} glow className="z-0" /> {/* Add this line */}
+      {props.children}
+    </div>
+  );
 }
 
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
