@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { ArrowRight, Home, Folder, Code, Briefcase, Github, Linkedin } from "lucide-react";
 import { StarsBackground } from "./ui/stars";
 import { ShootingStars } from "./ui/shooting-stars";
-import { LimelightNav } from "./ui/limelite-dock";
+import { LimelightNavVertical } from "./ui/limelite-dock";
 import { TextShimmer } from "./ui/shimmer-text"; 
 
 export function Hero() {
@@ -83,8 +83,8 @@ export function Hero() {
       />
       <ShootingStars className="absolute inset-0 pointer-events-none z-0" />
 
-      <div className="fixed left-1/2 top-2 z-50 -translate-x-1/2">
-        <LimelightNav items={navItems} />
+      <div className="fixed left-0 top-1/2 z-50 -translate-y-1/2">
+        <LimelightNavVertical items={navItems} />
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">

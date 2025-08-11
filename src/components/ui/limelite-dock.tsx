@@ -1,10 +1,22 @@
 import React, { useState, useRef, useLayoutEffect, cloneElement } from 'react';
 
-// --- Internal Types and Defaults ---
-
-const DefaultHomeIcon = (props: React.SVGProps<SVGSVGElement>) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>;
-const DefaultCompassIcon = (props: React.SVGProps<SVGSVGElement>) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" /></svg>;
-const DefaultBellIcon = (props: React.SVGProps<SVGSVGElement>) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /></svg>;
+const DefaultHomeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+  </svg>
+);
+const DefaultCompassIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" />
+  </svg>
+);
+const DefaultBellIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+  </svg>
+);
 
 type NavItem = {
   id: string | number;
@@ -17,7 +29,6 @@ const defaultNavItems: NavItem[] = [
   { id: 'default-home', icon: <DefaultHomeIcon />, label: 'Home' },
   { id: 'default-explore', icon: <DefaultCompassIcon />, label: 'Explore' },
   { id: 'default-notifications', icon: <DefaultBellIcon />, label: 'Notifications' },
-  
 ];
 
 type LimelightNavProps = {
@@ -30,10 +41,7 @@ type LimelightNavProps = {
   iconClassName?: string;
 };
 
-/**
- * An adaptive-width navigation bar with a "limelight" effect that highlights the active item.
- */
-export const LimelightNav = ({
+export const LimelightNavVertical = ({
   items = defaultNavItems,
   defaultActiveIndex = 0,
   onTabChange,
@@ -52,10 +60,10 @@ export const LimelightNav = ({
 
     const limelight = limelightRef.current;
     const activeItem = navItemRefs.current[activeIndex];
-    
+
     if (limelight && activeItem) {
-      const newLeft = activeItem.offsetLeft + activeItem.offsetWidth / 2 - limelight.offsetWidth / 2;
-      limelight.style.left = `${newLeft}px`;
+      const newTop = activeItem.offsetTop + activeItem.offsetHeight / 2 - limelight.offsetHeight / 2;
+      limelight.style.top = `${newTop}px`;
 
       if (!isReady) {
         setTimeout(() => setIsReady(true), 50);
@@ -64,7 +72,7 @@ export const LimelightNav = ({
   }, [activeIndex, isReady, items]);
 
   if (items.length === 0) {
-    return null; 
+    return null;
   }
 
   const handleItemClick = (index: number, itemOnClick?: () => void) => {
@@ -74,48 +82,35 @@ export const LimelightNav = ({
   };
 
   return (
-    <nav className={`relative inline-flex items-center h-16 rounded-lg bg-neutral-900 text-white border border-neutral-700 px-2 shadow-lg ${className}`}>
+    <nav className={`relative flex flex-col items-center w-16 rounded-lg bg-neutral-900 text-white border border-neutral-700 py-2 shadow-lg ${className}`}>
       {items.map(({ id, icon, label, onClick }, index) => (
-          <a
-            key={id}
-            ref={el => { navItemRefs.current[index] = el; }}
-            className={`relative z-20 flex h-full cursor-pointer items-center justify-center p-5 ${iconContainerClassName}`}
-            onClick={() => handleItemClick(index, onClick)}
-            aria-label={label}
-          >
-            {cloneElement(
-              icon as React.ReactElement<React.SVGProps<SVGSVGElement>>,
-              {
-                className: `w-6 h-6 transition-opacity duration-100 ease-in-out ${
-                  activeIndex === index ? 'opacity-100' : 'opacity-40'
-                } text-primary drop-shadow-lg ${((icon as React.ReactElement<{ className?: string }>).props?.className || '')} ${iconClassName || ''}`,
-              }
-            )}
-          </a>
+        <a
+          key={id}
+          ref={el => { navItemRefs.current[index] = el; }}
+          className={`relative z-20 flex w-full cursor-pointer items-center justify-center py-5 ${iconContainerClassName}`}
+          onClick={() => handleItemClick(index, onClick)}
+          aria-label={label}
+        >
+          {cloneElement(
+            icon as React.ReactElement<React.SVGProps<SVGSVGElement>>,
+            {
+              className: `w-6 h-6 transition-opacity duration-100 ease-in-out ${
+                activeIndex === index ? 'opacity-100' : 'opacity-40'
+              } text-primary drop-shadow-lg ${((icon as React.ReactElement<{ className?: string }>).props?.className || '')} ${iconClassName || ''}`,
+            }
+          )}
+        </a>
       ))}
 
-      <div 
+      <div
         ref={limelightRef}
-        className={`absolute top-0 z-10 w-11 h-[5px] rounded-full bg-primary shadow-[0_50px_15px_var(--primary)] ${
-          isReady ? 'transition-[left] duration-400 ease-in-out' : ''
+        className={`absolute left-0 z-10 h-11 w-[5px] rounded-full bg-primary shadow-[50px_0_15px_var(--primary)] ${
+          isReady ? 'transition-[top] duration-400 ease-in-out' : ''
         } ${limelightClassName}`}
-        style={{ left: '-999px' }}
+        style={{ top: '-999px' }}
       >
-        <div className="absolute left-[-30%] top-[5px] w-[160%] h-14 [clip-path:polygon(5%_100%,25%_0,75%_0,95%_100%)] bg-gradient-to-b from-primary/60 to-transparent pointer-events-none" />
+        <div className="absolute top-[-30%] left-[5px] h-[160%] w-14 [clip-path:polygon(100%_5%,0_25%,0_75%,100%_95%)] bg-gradient-to-r from-primary/60 to-transparent pointer-events-none" />
       </div>
-    </nav>
-  );
-};
-
-export const LimelightNavSimple = ({ items }: { items: any[] }) => {
-  return (
-    <nav>
-      {items.map((item) => (
-        <button key={item.id} onClick={item.onClick}>
-          {item.icon}
-          <span>{item.label}</span>
-        </button>
-      ))}
     </nav>
   );
 };
