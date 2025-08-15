@@ -17,9 +17,18 @@ import { GlowingEffect } from "./ui/glowing-effect";
 export function Projects() {
   const projects = [
     {
+      title: "Resume IT",
+      description:
+        "A web application for creating professional resumes. Uses Gemini AI for generative resume content and ATS (Applicant Tracking System) analysis to optimize resumes. Deployed on Vercel. ",
+      image: "/assets/img/resume-it.png",
+      tags: ["Next.js", "JavaScript", "TailwindCSS", "Gemini AI", "Google AI Studio", "Vercel"],
+      github: "https://github.com/yash-waikar/resume-it",
+      demo: "https://resume-it-xi.vercel.app/",
+    },
+    {
       title: "Wave Tune",
       description:
-        "Built a hand gesture-controlled music player using Python libraries Mediapipe, OpenCV, and Librosa. Developed live video feed overlays enabling real-time control of pitch, volume, and tempo.",
+        "Hand gesture-controlled music player using Python libraries Mediapipe, OpenCV, and Librosa. Real-time control of pitch, volume, and tempo via live video feed overlays.",
       image: "/assets/img/wave-tune.png",
       tags: ["Python", "Mediapipe", "OpenCV", "Librosa"],
       github: "", 
@@ -28,25 +37,25 @@ export function Projects() {
     {
       title: "Patriot Pop",
       description:
-        "Collaboratively designed a web-based radio management system facilitating role-specific functionalities. Implemented effective data management and real-time synchronization across profiles/roles.",
+        "Web-based radio management system with role-specific functionalities, effective data management, and real-time synchronization. Deployed on Vercel.",
       image: "/assets/img/project-img1.png",
-      tags: ["Javascript", "EJS", "Express", "MongoDB"],
+      tags: ["Javascript", "EJS", "Express", "MongoDB", "Vercel"],
       github: "https://github.com/yash-waikar/patriot-pop",
       demo: null,
     },
     {
       title: "Pitch Desk AI",
       description:
-        "Analyzes your pitch desk presentation and gives you a summary and key points. Built with React, Node.js, and OpenAI API.",
+        "Analyzes pitch deck presentations using AI and provides summaries and key points. Uses ATS techniques for evaluation. Built with React, Node.js, OpenAI API, and deployed on Vercel.",
       image: "/assets/img/project-img2.png",
-      tags: ["OpenAI API", "React", "Node.js"],
+      tags: ["OpenAI API", "React", "Node.js", "ATS", "Vercel"],
       github: "https://github.com/yashwaikar/AI-Pitch-Deck-Analyzer",
       demo: null,
     },
     {
       title: "Cloud Mart",
       description:
-        "Developed an Inventory Management Android App using Java, integrating Firebase Cloud Authentication for secure access. Implemented Firestore for real-time inventory updates and offline data synchronization.",
+        "Inventory Management Android App using Java, with Firebase Cloud Authentication for secure access. Real-time inventory updates and offline data sync via Firestore.",
       image: "/assets/img/project-img4.png",
       tags: ["Java", "Firebase", "Android"],
       github: "https://github.com/yash-waikar/Cloud-Mart",
@@ -55,18 +64,9 @@ export function Projects() {
     {
       title: "InThrift",
       description:
-        "InThrift is an in-progress cross-platform thrift store app for Indian ethnic wear, built with React Native, Expo Router, and Lucide React Native, featuring photo uploads, search and filters, user profiles, and a vibrant pink-accented UI.",
+        "Cross-platform thrift store app for Indian ethnic wear, built with React Native, Expo Router, and Lucide React Native. Features photo uploads, search, filters, user profiles, and a vibrant UI.",
       image: "/assets/img/project-img5.png",
       tags: ["React Native", "Expo", "Expo Router", "UI/UX"],
-      demo: null,
-    },
-    {
-      title: "Chore Mate",
-      description:
-        "A very simple Android app built in Java using Android Studio to help organize and track daily chore tasks. Just needed something me to track my daily tasks",
-      image: "/assets/img/choremate.png",
-      tags: ["Java", "Android Studio", "Task Management", "Android"],
-      github: "https://github.com/yash-waikar/Chore-Task-App", 
       demo: null,
     },
   ];
