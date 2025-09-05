@@ -2,11 +2,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
-import { ArrowRight, Home, Folder, Code, Briefcase, Github, Linkedin } from "lucide-react";
+import { Home, Folder, Code, Briefcase, Github, Linkedin } from "lucide-react";
 import { StarsBackground } from "./ui/stars";
 import { ShootingStars } from "./ui/shooting-stars";
 import { LimelightNavVertical } from "./ui/limelite-dock";
-import { TextShimmer } from "./ui/shimmer-text"; 
+import { TextShimmer } from "./ui/shimmer-text";
+import { CometCard } from "./ui/comet-card";
+import { Chatbot } from "./chatbot";
 
 export function Hero() {
   const [currentWord, setCurrentWord] = useState(0);
@@ -68,14 +70,12 @@ export function Hero() {
           "noopener"
         ),
     },
-    
-
   ];
 
   return (
     <section
       id="home"
-      className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden dot-pattern animated-gradient"
+      className="relative mt-16 min-h-[calc(100vh-4rem)] flex items-center overflow-hidden dot-pattern animated-gradient"
     >
       <StarsBackground
         starDensity={0.00003}
@@ -83,40 +83,42 @@ export function Hero() {
       />
       <ShootingStars className="absolute inset-0 pointer-events-none z-0" />
 
-      <div className="fixed left-0 top-1/2 z-50 -translate-y-1/2">
+      <div className="fixed left-0 top-1/2 z-50 -translate-y-1/2 hidden lg:block">
         <LimelightNavVertical items={navItems} />
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
-          <div className="relative inline-block mb-4">
-            <div className="absolute inset-0 bg-primary/10 blur-xl rounded-full transform scale-150" />
-          </div>
+          <CometCard className="bg-background/80 backdrop-blur-sm rounded-2xl shadow-2xl">
+            <div className="p-8">
+              <div className="relative inline-block mb-4">
+                <div className="absolute inset-0 bg-primary/10 blur-xl rounded-full transform scale-150" />
+              </div>
 
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl max-w-3xl">
-            I am Yash Waikar.
-            <br />
-            <div className="flex justify-center items-baseline">
-              <span className="mr-2">A</span>
-              <span className="relative inline-flex w-48 justify-center">
-                <TextShimmer>{words[currentWord]}</TextShimmer>
-              </span>
-              <span className="ml-2">Engineer.</span>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl max-w-3xl">
+                I am Yash Waikar.
+                <br />
+                <div className="flex justify-center items-baseline flex-wrap gap-x-2">
+                  <span>A</span>
+                  <span className="relative inline-flex min-w-[120px] sm:min-w-[150px] md:min-w-[180px] justify-center">
+                    <TextShimmer>{words[currentWord]}</TextShimmer>
+                  </span>
+                  <span>Engineer.</span>
+                </div>
+              </h1>
+              <p className="mt-4 text-muted-foreground max-w-[600px] text-center">
+                Recent Computer Science graduate from George Mason University
+                with a passion for building scalable, user-focused applications.
+                Currently exploring AI automation workflows and building
+                solutions in that space.
+              </p>
+              <p className="mt-2 text-muted-foreground text-center">
+                In my free time, you can find me singing and composing music.
+              </p>
             </div>
-          </h1>
-          <p className="mt-4 text-muted-foreground max-w-[600px] text-center backdrop-blur-sm">
-            Recent Computer Science graduate from George Mason University with a
-            passion for building scalable, user-focused applications. Currently
-            exploring AI automation workflows and building solutions in that
-            space.
-          </p>
-          <p className="mt-2 text-muted-foreground text-center backdrop-blur-sm">
-            In my free time, you can find me singing and composing music.
-          </p>
-
-          <Button variant={"outline"} className="mt-6">
-            <a href="mailto:yashpwaikar@gmail.com">Contact Me</a>
-          </Button>
+          </CometCard>
+         <Chatbot/>
+         
         </div>
       </div>
     </section>

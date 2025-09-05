@@ -2,60 +2,190 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Timeline } from "./ui/timeline";
 import { Badge } from "./ui/badge";
-import { CalendarDays, GraduationCap, Briefcase } from "lucide-react";
+import { GraduationCap, Briefcase } from "lucide-react";
+import { LinkPreview } from "./ui/link-preview";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
 
 export function Experience() {
-  const [activeTab, setActiveTab] = useState("education");
-
-  const education = [
+  const timelineData = [
     {
-      institution: "George Mason University",
-      degree: "B.S in Computer Science",
-      period: "2022 - December 2024",
-      description:
-        "Relevant Coursework: Algorithms, Operating Systems, Data Structures, Object Formal Methods, Computer Systems, Database Concepts, Object-Oriented Programming, Web App Development",
+      title: "January 2025",
+      content: (
+        <div className="space-y-4">
+          <HoverBorderGradient
+            containerClassName="rounded-lg w-full"
+            className="w-full"
+            as="div"
+            bluePurple={true}
+            disableAnimation={true}
+          >
+            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg">
+              <div className="mb-3">
+                <div className="flex items-center mb-2">
+                  <Briefcase className="mr-2 h-5 w-5 text-gray-600" />
+                  <h3 className="text-xl font-bold">
+                    Junior Software Engineer
+                  </h3>
+                </div>
+                <Badge variant="secondary" className="ml-7">
+                  Ampcus Inc.
+                </Badge>
+              </div>
+              <p className="text-muted-foreground mb-4">
+                Architected and led the frontend for a pharma serialization web
+                app, managing a team of three and ensuring DSCSA-standard
+                scalability.
+                <p>
+                  Shipped key AI and location based features for{" "}
+                  <LinkPreview
+                    url="https://ampcuscomplyx.com"
+                    className="font-bold"
+                  >
+                    ComplyX
+                  </LinkPreview>{" "}
+                  a TPRM/PCI-DSS compliance SaaS platform using Next.js,
+                  TypeScript, React, and Tailwind CSS.
+                </p>
+              </p>
+              <p className="text-muted-foreground mb-4">
+                Developed an AI chatbot with LLM orchestration using the Model
+                Context Protocol (MCP), integrated with Salesforce to automate
+                case generation from supplier queries, reducing manual workload
+                by 30% for enterprise clients including Amazon.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Next.js",
+                  "TypeScript",
+                  "React",
+                  "Tailwind CSS",
+                  "Zustand",
+                  "React Query",
+                  "Node.js",
+                  "Salesforce",
+                ].map((skill) => (
+                  <Badge key={skill} variant="outline">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </HoverBorderGradient>
+        </div>
+      ),
     },
     {
-      institution: "NOVA Community College",
-      degree: "A.S in Computer Science",
-      period: "2020 - 2022",
-      description: "",
+      title: "December 2024",
+      content: (
+        <div className="space-y-4">
+          <HoverBorderGradient
+            containerClassName="rounded-lg w-full"
+            className="w-full"
+            as="div"
+            bluePurple={true}
+            disableAnimation={true}
+          >
+            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg">
+              <div className="flex items-center mb-3">
+                <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
+                <h3 className="text-xl font-bold">B.S in Computer Science</h3>
+              </div>
+              <p className="text-lg font-semibold text-muted-foreground mb-2">
+                George Mason University
+              </p>
+              <p className="text-muted-foreground">
+                Relevant Coursework: Algorithms, Operating Systems, Data
+                Structures, Formal Methods, Computer Systems, Database Concepts,
+                Object-Oriented Programming, Web App Development
+              </p>
+            </div>
+          </HoverBorderGradient>
+        </div>
+      ),
     },
-  ];
-
-  const work = [
     {
-      company: "Ampcus Inc.",
-      position: "Junior Engineer ",
-      period: "January 2025 - Present",
-      description:
-        "Spearheading the development and integration of key AI and location based features for a TPRM SaaS platform. Download my resume to learn more about my work.",
-      
-      skills: [
-        "Next.js",
-        "TypeScript",
-        "React",
-        "Tailwind CSS",
-        "Zustand",
-        "React Query",
-        "Node.js",
-      ],
+      title: "September 2024",
+      content: (
+        <div className="space-y-4">
+          <HoverBorderGradient
+            containerClassName="rounded-lg w-full"
+            className="w-full"
+            as="div"
+            bluePurple={true}
+            disableAnimation={true}
+          >
+            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg">
+              <div className="mb-3">
+                <div className="flex items-center mb-2">
+                  <Briefcase className="mr-2 h-5 w-5 text-gray-600" />
+                  <h3 className="text-xl font-bold">
+                    Software Engineer Intern
+                  </h3>
+                </div>
+                <Badge variant="secondary" className="ml-7">
+                  Ampcus Inc.
+                </Badge>
+              </div>
+              <p className="text-muted-foreground mb-4">
+                Refactored old codebases to use client‑side state management using Zustand, optimizing user state handling and overall application performance.
+                Utilized Git version control and Azure DevOps for branch management, bug tracking, and work item management
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Next.js",
+                  "TypeScript",
+                  "React",
+                  "Tailwind CSS",
+                  "Zustand",
+                  "React Query",
+                  "Node.js",
+                  "Salesforce",
+                ].map((skill) => (
+                  <Badge key={skill} variant="outline">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </HoverBorderGradient>
+        </div>
+      ),
+    },
+    // Education
+
+    {
+      title: "May 2022",
+      content: (
+        <div className="space-y-4">
+          <HoverBorderGradient
+            containerClassName="rounded-lg w-full"
+            className="w-full"
+            as="div"
+            bluePurple={true}
+            disableAnimation={true}
+          >
+            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg">
+              <div className="flex items-center mb-3">
+                <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
+                <h3 className="text-xl font-bold">A.S in Computer Science</h3>
+              </div>
+              <p className="text-lg font-semibold text-muted-foreground">
+                NOVA Community College
+              </p>
+            </div>
+          </HoverBorderGradient>
+        </div>
+      ),
     },
   ];
 
   return (
-    <section id="experience" className="py-20 bg-muted/30">
+    <section id="experience" className="py-20">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,95 +193,15 @@ export function Experience() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Experience
+              Experience & Education
             </h2>
             <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground text-center">
-              My educational background and professional experience.
+              13 months of professional experience in the software industry
             </p>
           </motion.div>
         </div>
 
-        <Tabs
-          defaultValue="education"
-          className="mt-12 w-full max-w-3xl mx-auto"
-          onValueChange={setActiveTab}
-        >
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="education">Education</TabsTrigger>
-            <TabsTrigger value="work">Experience</TabsTrigger>
-          </TabsList>
-          <TabsContent value="education" className="mt-6 space-y-6">
-            {education.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card>
-                  <CardHeader className="pb-2 text-center">
-                    <CardTitle className="text-xl">
-                      {item.institution}
-                    </CardTitle>
-                    <CardDescription className="flex items-center justify-center">
-                      <GraduationCap className="mr-2 h-4 w-4" />
-                      {item.degree}
-                    </CardDescription>
-                    <div className="flex items-center justify-center text-sm text-muted-foreground mt-1">
-                      <CalendarDays className="mr-1 h-3 w-3" />
-                      {item.period}
-                    </div>
-                  </CardHeader>
-                  {item.description && (
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground text-center">
-                        {item.description}
-                      </p>
-                    </CardContent>
-                  )}
-                </Card>
-              </motion.div>
-            ))}
-          </TabsContent>
-          <TabsContent value="work" className="mt-6 space-y-6">
-            {work.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card>
-                  <CardHeader className="pb-2 text-center">
-                    <CardTitle className="text-xl">{item.company}</CardTitle>
-                    <CardDescription className="flex items-center justify-center">
-                      <Briefcase className="mr-2 h-4 w-4" />
-                      {item.position}
-                    </CardDescription>
-                    <div className="flex items-center justify-center text-sm text-muted-foreground mt-1">
-                      <CalendarDays className="mr-1 h-3 w-3" />
-                      {item.period}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-4 text-center">
-                      {item.description}
-                    </p>
-                    {item.skills && (
-                      <div className="flex flex-wrap justify-center gap-2">
-                        {item.skills.map((skill, i) => (
-                          <Badge key={i} variant="outline">
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </TabsContent>
-        </Tabs>
+        <Timeline data={timelineData} />
       </div>
     </section>
   );

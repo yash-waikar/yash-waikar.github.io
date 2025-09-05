@@ -1,11 +1,12 @@
-import { ThemeProvider } from "./components/theme-provider"
-import { Navbar } from "./components/navbar"
-import { Hero } from "./components/hero"
-import { Projects } from "./components/project"
-import { Skills } from "./components/skills"
-import { Experience } from "./components/experience"
-import { Footer } from "./components/footer"
-import "./index.css"
+import { ThemeProvider } from "./components/theme-provider";
+import { Navbar } from "./components/navbar";
+import { Hero } from "./components/hero";
+import { Projects } from "./components/project";
+import { Skills } from "./components/skills";
+import { Experience } from "./components/experience";
+import { Footer } from "./components/footer";
+import { Chatbot } from "./components/chatbot";
+import "./index.css";
 
 function App() {
   return (
@@ -15,11 +16,11 @@ function App() {
         <Experience />
         <Projects />
         <Skills />
-
+       
         <Footer />
       </main>
     </ThemeProvider>
   );
 }
 
-export default App
+export default App;

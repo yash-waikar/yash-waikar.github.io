@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { Card, CardContent } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Chatbot } from "../components/chatbot"
 
 export function Skills() {
   const technicalSkills = [
@@ -40,8 +41,9 @@ export function Skills() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Technical Skills
+             What I Am Good At
             </h2>
+           
             <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground text-center">
               I know some things, always learning more.
             </p>
