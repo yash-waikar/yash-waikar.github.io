@@ -47,3 +47,4 @@ Even with this setup, remember that client-side API keys will be visible in the 
 1. Set usage limits on your API key
 2. Restrict the API key to specific domains if possible
 3. Monitor usage regularly
+Triggering deployment workflow
