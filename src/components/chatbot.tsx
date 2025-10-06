@@ -63,7 +63,6 @@ export function Chatbot() {
       return "resume";
     }
 
-    // Contact-related keywords
     if (
       input.includes("email me") ||
       input.includes("send me") ||
@@ -124,122 +123,6 @@ export function Chatbot() {
     }
   };
 
-  const getOfflineResponse = (userInput: string): string => {
-    const input = userInput.toLowerCase();
-
-    if (input.includes("resume") || input.includes("cv")) {
-      if (input.includes("download")) {
-        return "You can download my resume directly from this link: [Download Resume](/assets/Yash-Waikar-Resume.pdf). Alternatively, I can email it to you if you prefer!";
-      }
-      return "I'd be happy to share my resume! You can either download it directly or I can email it to you. Just let me know your preference!";
-    }
-
-    if (
-      input.includes("experience") ||
-      input.includes("work") ||
-      input.includes("job") ||
-      input.includes("company") ||
-      input.includes("ampcus")
-    ) {
-      return "Yash is currently a Junior Software Engineer at Ampcus Inc. since January 2025, working on pharma serialization apps and AI features for ComplyX. He previously interned at the same company from September 2024, where he developed React components, implemented CI/CD pipelines, and worked with various technologies.";
-    }
-
-    if (
-      input.includes("education") ||
-      input.includes("school") ||
-      input.includes("degree") ||
-      input.includes("university") ||
-      input.includes("college") ||
-      input.includes("gmu") ||
-      input.includes("george mason") ||
-      input.includes("nova")
-    ) {
-      return "Yash graduated with a B.S. in Computer Science from George Mason University in December 2024 with a 3.7 GPA. He also has an A.S. in Computer Science from NOVA Community College (2022) with a 3.9 GPA.";
-    }
-
-    if (input.includes("salesforce")) {
-      return "Yes, **Yash has experience with Salesforce!** He's worked with:\n* Salesforce development\n* System integration\n* Custom solutions\n\nHe's comfortable working in the Salesforce ecosystem.";
-    }
-
-    if (input.includes("typescript") || input.includes("ts")) {
-      return "**Yash is highly proficient in TypeScript** (90% proficiency). He uses it extensively for:\n* React projects\n* Type-safe development\n* Large-scale applications\n* Better code maintainability";
-    }
-
-    if (input.includes("react")) {
-      return "**Yash has strong React.js skills** (85% proficiency) and uses it for:\n* Modern web applications\n* Component architecture\n* React hooks and context\n* State management\n* UI/UX development";
-    }
-
-    if (input.includes("python")) {
-      return "**Yash has good Python skills** (80% proficiency) and has used it for:\n* Data analysis and processing\n* Backend development\n* Automation scripts\n* API development\n* Machine learning projects";
-    }
-
-    if (input.includes("tailwind")) {
-      return "**Yash is very skilled with Tailwind CSS** (90% proficiency) and uses it for:\n* Responsive design\n* Modern UI components\n* Rapid prototyping\n* Consistent styling\n* Mobile-first development";
-    }
-
-    if (input.includes("node") || input.includes("nodejs")) {
-      return "Yash has solid Node.js experience (80% proficiency) for backend development and API creation.";
-    }
-
-    if (input.includes("docker")) {
-      return "Yes, Yash has experience with Docker for containerization and deployment of applications.";
-    }
-
-    if (input.includes("git") || input.includes("github")) {
-      return "Yash is experienced with Git and GitHub for version control and collaborative development workflows.";
-    }
-
-    if (input.includes("resume it") || input.includes("resumeit")) {
-      return "**Resume IT** is an AI-powered resume builder that Yash developed. Features include:\n* **Technology Stack:** React.js, Node.js, AI APIs\n* **Key Features:**\n  * Professional resume creation\n  * Intelligent suggestions\n  * Modern formatting\n  * Real-time preview\n* **Purpose:** Helping users create standout resumes efficiently";
-    }
-
-    if (input.includes("wave tune") || input.includes("wavetune")) {
-      return "**Wave Tune** is a hand gesture-controlled music player created by Yash. Details:\n* **Technology Stack:** Python, OpenCV, MediaPipe\n* **Key Features:**\n  * Hand gesture recognition\n  * Music playback control\n  * Webcam integration\n  * Real-time processing\n* **Innovation:** Touchless music control through computer vision";
-    }
-
-    if (input.includes("patriot pop")) {
-      return "**Patriot Pop** is a radio management system built for WGMU Radio at George Mason University. Features:\n* **Technology Stack:** Web technologies\n* **Key Features:**\n  * Playlist management\n  * Scheduling system\n  * Real-time broadcasting controls\n  * User-friendly interface\n* **Impact:** Streamlined radio station operations";
-    }
-
-    if (input.includes("choremate")) {
-      return "**ChoreMATE** is a task management application developed by Yash. Features:\n* **Purpose:** Daily task and chore organization\n* **Key Features:**\n  * Task tracking\n  * User-friendly interface\n  * Progress monitoring\n  * Productivity enhancement\n* **Goal:** Simplifying personal task management";
-    }
-
-    if (
-      input.includes("skill") ||
-      input.includes("technology") ||
-      input.includes("tech") ||
-      input.includes("programming") ||
-      input.includes("languages")
-    ) {
-      return "Yash's technical skills include TypeScript (90%), JavaScript (85%), React.js (85%), Tailwind CSS (90%), Node.js (80%), Python (80%), Zustand (90%), Docker, Git, CI/CD pipelines, RESTful APIs, and many other modern development technologies.";
-    }
-
-    if (input.includes("project")) {
-      return "Yash has developed several notable projects including Resume IT (AI-powered resume builder), Wave Tune (hand gesture-controlled music player), Patriot Pop (radio management system), and ChoreMATE (task management app). Each project showcases different aspects of his full-stack development skills.";
-    }
-
-    if (
-      input.includes("contact") ||
-      input.includes("reach") ||
-      input.includes("email") ||
-      input.includes("hire") ||
-      input.includes("opportunity")
-    ) {
-      return "You can contact Yash directly at yashpwaikar@gmail.com. I can also help you send a message through the contact form if you'd like! He's always open to discussing new opportunities and collaborations.";
-    }
-
-    if (
-      input.includes("location") ||
-      input.includes("where") ||
-      input.includes("based")
-    ) {
-      return "Yash is currently based in the Washington D.C. metro area and is available for both remote and on-site opportunities.";
-    }
-
-    return "**Hi! I'm here to help you learn about Yash Waikar.** I can provide information about:\n\n* **Professional Experience** - His work history and roles\n* **Education & Skills** - Academic background and technical expertise\n* **Projects** - Resume IT, Wave Tune, Patriot Pop, and more\n* **Technologies** - React, TypeScript, Python, Salesforce, etc.\n* **Resume & Contact** - Get his resume or connect with him\n\n**Try asking:** *'Tell me about Yash's React experience'* or *'What is Resume IT?'*";
-  };
-
   const extractWebsiteContext = (): string => {
     const extractTextContent = (selector: string): string => {
       const elements = document.querySelectorAll(selector);
@@ -298,7 +181,6 @@ Based on this current website content, provide helpful information about Yash Wa
     setInputValue("");
     setIsLoading(true);
 
-    // Check for email intent first
     const emailIntent = detectEmailIntent(messageContent);
     if (emailIntent) {
       setEmailForm({ isOpen: true, requestType: emailIntent });
@@ -307,22 +189,21 @@ Based on this current website content, provide helpful information about Yash Wa
     }
 
     try {
-      // Extract current website context
       const websiteContext = extractWebsiteContext();
 
-      console.log("🚀 Attempting AI API call...");
+      const apiKey = process.env.REACT_APP_OPENROUTER_API_KEY;
       const response = await fetch(
         "https://openrouter.ai/api/v1/chat/completions",
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_OPENROUTER_API_KEY}`,
+            Authorization: `Bearer ${apiKey}`,
             "Content-Type": "application/json",
             "HTTP-Referer": "https://yashwaikar.com",
             "X-Title": "Yash Waikar Portfolio",
           },
           body: JSON.stringify({
-            model: "deepseek/deepseek-chat-v3.1:free",
+            model: "openai/gpt-oss-20b:free",
             messages: [
               {
                 role: "system",
@@ -350,12 +231,14 @@ Keep responses concise, friendly, and focused on Yash's professional background.
       );
 
       if (!response.ok) {
+        const errorText = await response.text();
         console.log("❌ AI API failed with status:", response.status);
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(
+          `HTTP error! status: ${response.status}, body: ${errorText}`
+        );
       }
 
       const data = await response.json();
-      console.log("✅ AI API response received");
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         content:
@@ -368,17 +251,15 @@ Keep responses concise, friendly, and focused on Yash's professional background.
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
       console.error("❌ Error sending message:", error);
-      console.log("🔄 Falling back to offline response");
 
-      // Fallback to offline response
-      const offlineResponse = getOfflineResponse(userMessage.content);
-      const fallbackMessage: Message = {
+      const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: offlineResponse,
+        content:
+          "I'm sorry, I'm currently unable to connect to my AI service. Please try again in a moment, or feel free to contact Yash directly at yashpwaikar@gmail.com for any questions about his background and experience.",
         role: "assistant",
         timestamp: new Date(),
       };
-      setMessages((prev) => [...prev, fallbackMessage]);
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -411,8 +292,6 @@ Keep responses concise, friendly, and focused on Yash's professional background.
           }}
         ></motion.div>
 
-        {/* Fixed width container for input - keeps consistent width */}
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -437,8 +316,6 @@ Keep responses concise, friendly, and focused on Yash's professional background.
             </div>
           </HoverBorderGradient>
         </motion.div>
-
-        {/* Response container - separate from input to prevent layout shifts */}
         <div className="max-w-5xl mx-auto w-full">
           {(messages.length > 1 || isLoading) && (
             <motion.div

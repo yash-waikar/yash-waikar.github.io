@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import { Timeline } from "./ui/timeline";
 import { Badge } from "./ui/badge";
 import { GraduationCap, Briefcase } from "lucide-react";
-import { LinkPreview } from "./ui/link-preview";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import Galaxy from "./Galaxy";
+import Prism from "./Prism";
 
 export function Experience() {
   const timelineData = [
@@ -21,10 +22,10 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
               <div className="mb-3">
                 <div className="flex items-center mb-2">
-                  <Briefcase className="mr-2 h-5 w-5 text-gray-600" />
+                  <Briefcase className="mr-2 h-5 w-5 text-white-600" />
                   <h3 className="text-xl font-bold">
                     Junior Software Engineer
                   </h3>
@@ -33,28 +34,14 @@ export function Experience() {
                   Ampcus Inc.
                 </Badge>
               </div>
-              <p className="text-muted-foreground mb-4">
-                Architected and led the frontend for a pharma serialization web
-                app, managing a team of three and ensuring DSCSA-standard
-                scalability.
-                <p>
-                  Shipped key AI and location based features for{" "}
-                  <LinkPreview
-                    url="https://ampcuscomplyx.com"
-                    className="font-bold"
-                  >
-                    ComplyX
-                  </LinkPreview>{" "}
-                  a TPRM/PCI-DSS compliance SaaS platform using Next.js,
-                  TypeScript, React, and Tailwind CSS.
+                <p className="text-muted-foreground mb-4">
+                Led frontend and product development for multiple SaaS
+                applications—from a pharmaceutical serialization app to an AI
+                automation platform—delivering client‑facing and human‑in‑the‑loop
+                workflows. Happy to connect over coffee if you’d like to hear
+                more!
                 </p>
-              </p>
-              <p className="text-muted-foreground mb-4">
-                Developed an AI chatbot with LLM orchestration using the Model
-                Context Protocol (MCP), integrated with Salesforce to automate
-                case generation from supplier queries, reducing manual workload
-                by 30% for enterprise clients including Amazon.
-              </p>
+
               <div className="flex flex-wrap gap-2">
                 {[
                   "Next.js",
@@ -87,7 +74,7 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
               <div className="flex items-center mb-3">
                 <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
                 <h3 className="text-xl font-bold">B.S in Computer Science</h3>
@@ -116,10 +103,10 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
               <div className="mb-3">
                 <div className="flex items-center mb-2">
-                  <Briefcase className="mr-2 h-5 w-5 text-gray-600" />
+                  <Briefcase className="mr-2 h-5 w-5 text-white-600" />
                   <h3 className="text-xl font-bold">
                     Software Engineer Intern
                   </h3>
@@ -128,9 +115,13 @@ export function Experience() {
                   Ampcus Inc.
                 </Badge>
               </div>
+
               <p className="text-muted-foreground mb-4">
-                Refactored old codebases to use client‑side state management using Zustand, optimizing user state handling and overall application performance.
-                Utilized Git version control and Azure DevOps for branch management, bug tracking, and work item management
+                Refactored old codebases to use client‑side state management
+                using Zustand, optimizing user state handling and overall
+                application performance. Utilized Git version control and Azure
+                DevOps for branch management, bug tracking, and work item
+                management
               </p>
 
               <div className="flex flex-wrap gap-2">
@@ -167,7 +158,7 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
               <div className="flex items-center mb-3">
                 <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
                 <h3 className="text-xl font-bold">A.S in Computer Science</h3>
@@ -183,8 +174,8 @@ export function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-20">
-      <div className="container px-4 md:px-6">
+    <section id="experience" className="relative py-20 overflow-hidden">
+      <div className="container px-4 md:px-6 relative z-10">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -201,7 +192,12 @@ export function Experience() {
           </motion.div>
         </div>
 
-        <Timeline data={timelineData} />
+        {/* Floating Card Container */}
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-black backdrop-blur-sm rounded-2xl border border-white/10 dark:border-white/10 p-6 md:p-8 shadow-2xl">
+            <Timeline data={timelineData} />
+          </div>
+        </div>
       </div>
     </section>
   );

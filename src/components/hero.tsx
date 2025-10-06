@@ -9,6 +9,7 @@ import { LimelightNavVertical } from "./ui/limelite-dock";
 import { TextShimmer } from "./ui/shimmer-text";
 import { CometCard } from "./ui/comet-card";
 import { Chatbot } from "./chatbot";
+import Prism from "../components/Prism";
 
 export function Hero() {
   const [currentWord, setCurrentWord] = useState(0);
@@ -117,8 +118,7 @@ export function Hero() {
               </p>
             </div>
           </CometCard>
-         <Chatbot/>
-         
+          <Chatbot />
         </div>
       </div>
     </section>
