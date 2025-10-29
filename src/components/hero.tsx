@@ -26,7 +26,17 @@ export function Hero() {
         clearInterval(intervalRef.current);
       }
     };
+  }, [words.length]);
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
+
+
 
   const navItems = [
     {
@@ -76,14 +86,12 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative mt-16 min-h-[calc(100vh-4rem)] flex items-center overflow-hidden dot-pattern animated-gradient"
+      className="relative mt-16 min-h-[calc(100vh-4rem)] flex items-center overflow-hidden"
+      style={{ 
+        willChange: 'contents',
+        contain: 'layout style paint'
+      }}
     >
-      <StarsBackground
-        starDensity={0.00003}
-        className="absolute inset-0 pointer-events-none z-0"
-      />
-      <ShootingStars className="absolute inset-0 pointer-events-none z-0" />
-
       <div className="fixed left-0 top-1/2 z-50 -translate-y-1/2 hidden lg:block">
         <LimelightNavVertical items={navItems} />
       </div>

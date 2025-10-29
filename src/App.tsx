@@ -1,13 +1,16 @@
 import { ThemeProvider } from "./components/theme-provider";
 import { Hero } from "./components/hero";
 import { Projects } from "./components/project";
-import { Skills } from "./components/skills";
 import { Experience } from "./components/experience";
 import { Footer } from "./components/footer";
 import Prism from "./components/Prism";
 import "./index.css";
 
 function App() {
+  const isMobile = typeof window !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
+  const prismScale = isMobile ? 2.0 : 4.0;
+  const prismFPS = isMobile ? 45 : 60;
+
   return (
     <ThemeProvider defaultTheme="dark">
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
@@ -16,14 +19,14 @@ function App() {
           baseWidth={5.5}
           animationType="rotate"
           glow={1.2}
-          scale={4.0}
+          scale={1.5}
           hueShift={0.05}
           colorFrequency={1.2}
           bloom={1.2}
           timeScale={0.35}
           transparent={true}
           suspendWhenOffscreen={false}
-          maxFPS={45}
+          maxFPS={prismFPS}
           adaptiveQuality={true}
         />
       </div>
@@ -39,3 +42,4 @@ function App() {
 }
 
 export default App;
+

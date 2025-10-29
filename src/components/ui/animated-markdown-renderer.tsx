@@ -1,8 +1,8 @@
-"use client";
+"use client"; 
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { motion, stagger, useAnimate } from "motion/react";
-import { marked } from 'marked';
+import { marked } from "marked";
 import { cn } from "../../lib/utils";
 
 interface AnimatedMarkdownRendererProps {
@@ -12,28 +12,22 @@ interface AnimatedMarkdownRendererProps {
   duration?: number;
 }
 
-export const AnimatedMarkdownRenderer: React.FC<AnimatedMarkdownRendererProps> = ({ 
-  content, 
-  className,
-  filter = true,
-  duration = 0.5
-}) => {
+export const AnimatedMarkdownRenderer: React.FC<
+  AnimatedMarkdownRendererProps
+> = ({ content, className, filter = true, duration = 0.5 }) => {
   const [scope, animate] = useAnimate();
   const [isAnimating, setIsAnimating] = useState(true);
 
-  // Configure marked options for better formatting
   marked.setOptions({
-    breaks: true, // Convert line breaks to <br>
-    gfm: true,    // GitHub Flavored Markdown
+    breaks: true,
+    gfm: true,
   });
 
-  // Convert markdown to HTML
   const getMarkdownText = () => {
     const rawMarkup = marked.parse(content) as string;
     return { __html: rawMarkup };
   };
 
-  // Split content into words for animation
   const wordsArray = content.split(" ");
 
   useEffect(() => {
@@ -49,11 +43,24 @@ export const AnimatedMarkdownRenderer: React.FC<AnimatedMarkdownRendererProps> =
           delay: stagger(0.1),
         }
       ).then(() => {
-        // After animation completes, switch to markdown rendering
         setTimeout(() => setIsAnimating(false), 200);
       });
     }
   }, [scope.current, isAnimating, animate, filter, duration]);
+
+  const newDataRef = React.useRef<any[]>([]);
+  
+  
+  const words = content.split(" ");
+  useEffect(() => {
+    newDataRef.current = words.map((word, index) => ({
+      word,
+      id: index,
+    }));
+    return () => {
+      newDataRef.current = [];
+    };
+  }, [content]);
 
   const renderAnimatedWords = () => {
     return (
@@ -99,11 +106,11 @@ export const AnimatedMarkdownRenderer: React.FC<AnimatedMarkdownRendererProps> =
   }
 
   return (
-    <div 
-      className={`${defaultClassName} ${className || ''}`}
-      dangerouslySetInnerHTML={getMarkdownText()} 
+    <div
+      className={`${defaultClassName} ${className || ""}`}
+      dangerouslySetInnerHTML={getMarkdownText()}
       style={{
-        lineHeight: '1.6',
+        lineHeight: "1.6",
       }}
     />
   );

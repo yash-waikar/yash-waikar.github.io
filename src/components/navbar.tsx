@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Github, Linkedin, Mail } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export function Navbar() {
   return (
@@ -35,5 +35,5 @@ export function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }

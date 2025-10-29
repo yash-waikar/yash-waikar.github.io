@@ -23,11 +23,11 @@
 }
 
 .prism-container canvas {
-  /* Additional canvas optimizations */
+
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  /* Scroll-specific optimizations */
+  clip-path: inset(0);
   contain: strict;
   image-rendering: optimizeSpeed;
   image-rendering: pixelated;
