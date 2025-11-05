@@ -1,37 +1,27 @@
 import { ThemeProvider } from "./components/theme-provider";
 import { Hero } from "./components/hero";
 import { Projects } from "./components/project";
+import { Skills } from "./components/skills";
 import { Experience } from "./components/experience";
 import { Footer } from "./components/footer";
-import Prism from "./components/Prism";
+import { WebGLShader } from "./components/ui/web-gl-shader";
+import { useScrollBlur } from "./hooks/useScrollBlur";
 import "./index.css";
 
 function App() {
-  const isMobile = typeof window !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
-  const prismScale = isMobile ? 2.0 : 4.0;
-  const prismFPS = isMobile ? 45 : 60;
+  const isScrolled = useScrollBlur(50); // Trigger after 50px scroll
 
   return (
     <ThemeProvider defaultTheme="dark">
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        <Prism
-          height={3.5}
-          baseWidth={5.5}
-          animationType="rotate"
-          glow={1.2}
-          scale={1.5}
-          hueShift={0.05}
-          colorFrequency={1.2}
-          bloom={1.2}
-          timeScale={0.35}
-          transparent={true}
-          suspendWhenOffscreen={false}
-          maxFPS={prismFPS}
-          adaptiveQuality={true}
-        />
+        <WebGLShader />
       </div>
-      
-      <main className="min-h-screen relative" style={{ background: 'transparent' }}>
+      <div className={`scroll-blur-line ${isScrolled ? "active" : ""}`} />
+
+      <main
+        className="min-h-screen relative"
+        style={{ background: "transparent" }}
+      >
         <Hero />
         <Experience />
         <Projects />
@@ -42,4 +32,3 @@ function App() {
 }
 
 export default App;
-

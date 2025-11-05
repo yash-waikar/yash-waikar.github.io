@@ -13,7 +13,7 @@ import Prism from "../components/Prism";
 
 export function Hero() {
   const [currentWord, setCurrentWord] = useState(0);
-  const words = ["Software", "Frontend", "Product"];
+  const words = ["Frontend", "Software", "Product"];
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -35,8 +35,6 @@ export function Hero() {
       }
     };
   }, []);
-
-
 
   const navItems = [
     {
@@ -87,9 +85,9 @@ export function Hero() {
     <section
       id="home"
       className="relative mt-16 min-h-[calc(100vh-4rem)] flex items-center overflow-hidden"
-      style={{ 
-        willChange: 'contents',
-        contain: 'layout style paint'
+      style={{
+        willChange: "contents",
+        contain: "layout style paint",
       }}
     >
       <div className="fixed left-0 top-1/2 z-50 -translate-y-1/2 hidden lg:block">
@@ -105,7 +103,7 @@ export function Hero() {
               </div>
 
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl max-w-3xl">
-                I am Yash Waikar.
+                Hi! I am Yash Waikar.
                 <br />
                 <div className="flex justify-center items-baseline flex-wrap gap-x-2">
                   <span>A</span>
@@ -116,8 +114,7 @@ export function Hero() {
                 </div>
               </h1>
               <p className="mt-4 text-muted-foreground max-w-[600px] text-center">
-                Recent Computer Science graduate from George Mason University
-                with a passion for building scalable, user-focused applications.
+                I design and build scalable, user-focused applications.
                 Currently exploring AI automation workflows and building
                 solutions in that space.
               </p>

@@ -6,8 +6,6 @@ import { Timeline } from "./ui/timeline";
 import { Badge } from "./ui/badge";
 import { GraduationCap, Briefcase } from "lucide-react";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
-import Galaxy from "./Galaxy";
-import Prism from "./Prism";
 
 export function Experience() {
   const timelineData = [
@@ -22,7 +20,14 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
+              <Badge
+                variant="outline"
+                className="absolute top-4 right-4 text-xs"
+              >
+                January 2025
+              </Badge>
+
               <div className="mb-3">
                 <div className="flex items-center mb-2">
                   <Briefcase className="mr-2 h-5 w-5 text-white-600" />
@@ -34,13 +39,13 @@ export function Experience() {
                   Ampcus Inc.
                 </Badge>
               </div>
-                <p className="text-muted-foreground mb-4">
+              <p className="text-muted-foreground mb-4">
                 Led frontend and product development for multiple SaaS
                 applications—from a pharmaceutical serialization app to an AI
-                automation platform—delivering client‑facing and human‑in‑the‑loop
-                workflows. Happy to connect over coffee if you’d like to hear
-                more!
-                </p>
+                automation platform—delivering client‑facing and
+                human‑in‑the‑loop workflows. Happy to connect over coffee if
+                you’d like to hear more!
+              </p>
 
               <div className="flex flex-wrap gap-2">
                 {[
@@ -74,7 +79,14 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
+              <Badge
+                variant="outline"
+                className="absolute top-4 right-4 text-xs"
+              >
+                December 2024
+              </Badge>
+
               <div className="flex items-center mb-3">
                 <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
                 <h3 className="text-xl font-bold">B.S in Computer Science</h3>
@@ -103,7 +115,14 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
+              <Badge
+                variant="outline"
+                className="absolute top-4 right-4 text-xs"
+              >
+                September 2024
+              </Badge>
+
               <div className="mb-3">
                 <div className="flex items-center mb-2">
                   <Briefcase className="mr-2 h-5 w-5 text-white-600" />
@@ -145,7 +164,6 @@ export function Experience() {
         </div>
       ),
     },
-    // Education
 
     {
       title: "May 2022",
@@ -158,7 +176,14 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
+              <Badge
+                variant="outline"
+                className="absolute top-4 right-4 text-xs"
+              >
+                May 2022
+              </Badge>
+
               <div className="flex items-center mb-3">
                 <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
                 <h3 className="text-xl font-bold">A.S in Computer Science</h3>
@@ -183,20 +208,18 @@ export function Experience() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-3xl">
               Experience & Education
             </h2>
             <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground text-center">
-              13 months of professional experience in the software industry
+              1+ year of professional experience in the software industry
             </p>
           </motion.div>
         </div>
 
-        {/* Floating Card Container */}
+        {/* Timeline Container */}
         <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-black backdrop-blur-sm rounded-2xl border border-white/10 dark:border-white/10 p-6 md:p-8 shadow-2xl">
-            <Timeline data={timelineData} />
-          </div>
+          <Timeline data={timelineData} />
         </div>
       </div>
     </section>
