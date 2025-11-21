@@ -192,6 +192,21 @@ Based on this current website content, provide helpful information about Yash Wa
       const websiteContext = extractWebsiteContext();
 
       const apiKey = process.env.REACT_APP_OPENROUTER_API_KEY;
+      
+      console.log("API Key exists:", !!apiKey); // Debug log
+      
+      if (!apiKey) {
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          content: "Sorry, the chatbot is not configured properly. Please contact Yash directly at yashpwaikar@gmail.com",
+          role: "assistant",
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, errorMessage]);
+        setIsLoading(false);
+        return;
+      }
+
       const response = await fetch(
         "https://openrouter.ai/api/v1/chat/completions",
         {
