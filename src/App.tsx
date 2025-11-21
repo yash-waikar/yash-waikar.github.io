@@ -15,7 +15,6 @@ function App() {
         <WebGLShader />
       </div>
 
-      {/* Gradual Blur at top when scrolling */}
       <GradualBlur
         position="top"
         strength={3}
@@ -25,7 +24,6 @@ function App() {
         target="page"
       />
 
-      {/* Gradual Blur at bottom when scrolling */}
       <GradualBlur
         position="bottom"
         strength={3}
