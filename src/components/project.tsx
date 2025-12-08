@@ -1,6 +1,9 @@
 "use client";
 
+import { useState } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import {
   Card,
   CardContent,
@@ -11,20 +14,60 @@ import {
 } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { AnimatedButton } from "./ui/animated-button";
 import { ExternalLink } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
-import Prism from "./Prism";
+
+import { EmailForm } from "./ui/email-form";
+import { sendEmail, type EmailData } from "../services/emailService";
 
 export function Projects() {
+  const [emailForm, setEmailForm] = useState<{
+    isOpen: boolean;
+    projectName: string;
+  }>({
+    isOpen: false,
+    projectName: "",
+  });
+  const [isEmailLoading, setIsEmailLoading] = useState(false);
+
+  const handleEmailSubmit = async (data: {
+    name: string;
+    email: string;
+    message?: string;
+  }) => {
+    setIsEmailLoading(true);
+
+    try {
+      const emailData: EmailData = {
+        name: data.name,
+        email: data.email,
+        message: `Project Inquiry: ${emailForm.projectName}\n\n${
+          data.message || ""
+        }`,
+        requestType: "contact",
+      };
+
+      const result = await sendEmail(emailData);
+
+      if (result.success) {
+        setEmailForm({ isOpen: false, projectName: "" });
+        toast.success("Message sent successfully! I'll get back to you soon.");
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      console.error("Email sending failed:", error);
+      toast.error(
+        "Sorry, couldn't send the message. Please email me directly at yashpwaikar@gmail.com"
+      );
+    } finally {
+      setIsEmailLoading(false);
+    }
+  };
+
   const projects = [
-    {
-      title: "Agent Café",
-      description:
-        "Developed Visualizer (MVP), an AI AG-UI tool using React + D3.js and a lightweight backend to make multi-agent workflows visible. It shows real-time agent interactions as dynamic graphs with logs for easier debugging and oversight.",
-      image: "/assets/img/project-img9.png",
-      tags: ["React", "D3.js", "TypeScript", "AG-UI"],
-    },
     {
       title: "Ticket Toast",
       description:
@@ -38,6 +81,7 @@ export function Projects() {
         "Google AI Studio",
         "Vercel",
       ],
+      github: "https://github.com/yash-waikar/tickettoast",
     },
     {
       title: "Resume IT",
@@ -54,6 +98,13 @@ export function Projects() {
       ],
       github: "https://github.com/yash-waikar/resume-it",
       demo: "https://resume-it-xi.vercel.app/",
+    },
+    {
+      title: "Agent Café",
+      description:
+        "Built a personal MVP of an AI agent audit platform using React, D3.js, Node.js, and Prisma. It centralizes multiple agents, visualizes real-time workflows, and logs activity to demonstrate practical solutions to debugging challenges in multi-agent systems.",
+      image: "/assets/img/project-img9.png",
+      tags: ["React", "D3.js", "TypeScript", "AG-UI"],
     },
 
     {
@@ -158,15 +209,30 @@ export function Projects() {
                       </CardDescription>
                     </CardContent>
                     <CardFooter className="mt-auto flex justify-center gap-4 flex-shrink-0">
-                      <Button variant="outline" size="sm" asChild>
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                      {project.github ? (
+                        <Button variant="outline" size="sm" asChild>
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Code
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() =>
+                            setEmailForm({
+                              isOpen: true,
+                              projectName: project.title,
+                            })
+                          }
                         >
-                          Code
-                        </a>
-                      </Button>
+                          Request Demo
+                        </Button>
+                      )}
                       {project.demo && (
                         <Button size="sm" asChild>
                           <a
@@ -187,6 +253,18 @@ export function Projects() {
           ))}
         </div>
       </div>
+
+      {typeof document !== "undefined" &&
+        createPortal(
+          <EmailForm
+            isOpen={emailForm.isOpen}
+            onClose={() => setEmailForm({ isOpen: false, projectName: "" })}
+            requestType="contact"
+            onSubmit={handleEmailSubmit}
+            isLoading={isEmailLoading}
+          />,
+          document.body
+        )}
     </section>
   );
 }

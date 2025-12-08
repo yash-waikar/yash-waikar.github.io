@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Mail, Send, Download } from "lucide-react";
+import { X, Mail, Download, AlertCircle } from "lucide-react";
 import { Button } from "./button";
+import { AnimatedButton } from "./animated-button";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
 
 interface EmailFormProps {
@@ -11,6 +12,30 @@ interface EmailFormProps {
   onSubmit: (data: { name: string; email: string; message?: string }) => void;
   isLoading: boolean;
 }
+
+const RATE_LIMIT_KEY = "email_form_last_submit";
+const RATE_LIMIT_MINUTES = 2;
+
+const checkRateLimit = (): { allowed: boolean; timeLeft?: number } => {
+  const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+  if (!lastSubmit) return { allowed: true };
+
+  const lastSubmitTime = parseInt(lastSubmit, 10);
+  const now = Date.now();
+  const timeDiff = now - lastSubmitTime;
+  const cooldownMs = RATE_LIMIT_MINUTES * 60 * 1000;
+
+  if (timeDiff < cooldownMs) {
+    const timeLeft = Math.ceil((cooldownMs - timeDiff) / 1000 / 60);
+    return { allowed: false, timeLeft };
+  }
+
+  return { allowed: true };
+};
+
+const setRateLimit = () => {
+  localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
+};
 
 export function EmailForm({
   isOpen,
@@ -25,6 +50,20 @@ export function EmailForm({
     message: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [rateLimitError, setRateLimitError] = useState<string>("");
+
+  useEffect(() => {
+    if (isOpen) {
+      const rateCheck = checkRateLimit();
+      if (!rateCheck.allowed) {
+        setRateLimitError(
+          `Please wait ${rateCheck.timeLeft} minute(s) before sending another message.`
+        );
+      } else {
+        setRateLimitError("");
+      }
+    }
+  }, [isOpen]);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -45,14 +84,22 @@ export function EmailForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const rateCheck = checkRateLimit();
+    if (!rateCheck.allowed) {
+      setRateLimitError(
+        `Please wait ${rateCheck.timeLeft} minute(s) before sending another message.`
+      );
+      return;
+    }
+
     if (validateForm()) {
+      setRateLimit();
       onSubmit(formData);
     }
   };
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: "" }));
     }
@@ -62,7 +109,8 @@ export function EmailForm({
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm overflow-y-auto"
+          style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0 }}
           onClick={onClose}
         >
           <motion.div
@@ -70,9 +118,10 @@ export function EmailForm({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", duration: 0.5 }}
+            style={{ margin: "auto" }}
           >
             <div
-              className="w-full max-w-md mx-4"
+              className="w-[90vw] max-w-3xl mx-4"
               onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
               <Card className="shadow-2xl border-border/50">
@@ -98,51 +147,61 @@ export function EmailForm({
                   </button>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) =>
-                          handleInputChange("name", e.target.value)
-                        }
-                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                          errors.name ? "border-red-500" : "border-border"
-                        }`}
-                        placeholder="Your full name"
-                        disabled={isLoading}
-                      />
-                      {errors.name && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.name}
-                        </p>
-                      )}
+                  {rateLimitError && (
+                    <div className="mb-4 p-3 bg-yellow-500/10 border border-yellow-500/50 rounded-md flex items-start gap-2">
+                      <AlertCircle className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-yellow-600 dark:text-yellow-400">
+                        {rateLimitError}
+                      </p>
                     </div>
+                  )}
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.name}
+                          onChange={(e) =>
+                            handleInputChange("name", e.target.value)
+                          }
+                          className={`w-full px-3 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+                            errors.name ? "border-red-500" : "border-border"
+                          }`}
+                          placeholder="Your full name"
+                          disabled={isLoading}
+                        />
+                        {errors.name && (
+                          <p className="text-red-500 text-xs mt-1">
+                            {errors.name}
+                          </p>
+                        )}
+                      </div>
 
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) =>
-                          handleInputChange("email", e.target.value)
-                        }
-                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                          errors.email ? "border-red-500" : "border-border"
-                        }`}
-                        placeholder="your.email@example.com"
-                        disabled={isLoading}
-                      />
-                      {errors.email && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.email}
-                        </p>
-                      )}
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) =>
+                            handleInputChange("email", e.target.value)
+                          }
+                          className={`w-full px-3 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+                            errors.email ? "border-red-500" : "border-border"
+                          }`}
+                          placeholder="your.email@example.com"
+                          disabled={isLoading}
+                        />
+                        {errors.email && (
+                          <p className="text-red-500 text-xs mt-1">
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
                     </div>
 
                     {requestType === "contact" && (
@@ -155,9 +214,9 @@ export function EmailForm({
                           onChange={(e) =>
                             handleInputChange("message", e.target.value)
                           }
-                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                          className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                           placeholder="Tell me about your project, opportunity, or question..."
-                          rows={3}
+                          rows={6}
                           disabled={isLoading}
                         />
                       </div>
@@ -194,25 +253,15 @@ export function EmailForm({
                       >
                         Cancel
                       </Button>
-                      <Button
+                      <AnimatedButton
                         type="submit"
-                        disabled={isLoading}
-                        className="flex-1 flex items-center gap-2"
+                        disabled={isLoading || !!rateLimitError}
+                        className="flex-1"
                       >
-                        {isLoading ? (
-                          <>
-                            <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                            Sending...
-                          </>
-                        ) : (
-                          <>
-                            <Send className="w-4 h-4" />
-                            {requestType === "resume"
-                              ? "Email Resume"
-                              : "Send Message"}
-                          </>
-                        )}
-                      </Button>
+                        {requestType === "resume"
+                          ? "Email Resume"
+                          : "Send Message"}
+                      </AnimatedButton>
                     </div>
                   </form>
                 </CardContent>

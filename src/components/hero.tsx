@@ -1,18 +1,32 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Button } from "./ui/button";
-import { Home, Folder, Code, Briefcase, Github, Linkedin } from "lucide-react";
+import {
+  Home,
+  Folder,
+  Code,
+  Briefcase,
+  Github,
+  Linkedin,
+  Mail,
+} from "lucide-react";
 import { StarsBackground } from "./ui/stars";
 import { ShootingStars } from "./ui/shooting-stars";
 import { LimelightNavVertical } from "./ui/limelite-dock";
 import { TextShimmer } from "./ui/shimmer-text";
 import { CometCard } from "./ui/comet-card";
 import { Chatbot } from "./chatbot";
+import { EmailForm } from "./ui/email-form";
+import { sendEmail, type EmailData } from "../services/emailService";
+import { toast } from "sonner";
 import Prism from "../components/Prism";
 
 export function Hero() {
   const [currentWord, setCurrentWord] = useState(0);
+  const [emailFormOpen, setEmailFormOpen] = useState(false);
+  const [isEmailLoading, setIsEmailLoading] = useState(false);
   const words = ["Frontend", "Software", "Product"];
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -36,6 +50,38 @@ export function Hero() {
     };
   }, []);
 
+  const handleEmailSubmit = async (data: {
+    name: string;
+    email: string;
+    message?: string;
+  }) => {
+    setIsEmailLoading(true);
+
+    try {
+      const emailData: EmailData = {
+        name: data.name,
+        email: data.email,
+        message: data.message || "",
+        requestType: "contact",
+      };
+
+      const result = await sendEmail(emailData);
+
+      if (result.success) {
+        setEmailFormOpen(false);
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      console.error("Email sending failed:", error);
+      toast.error(
+        "Sorry, couldn't send the message. Please email me directly at yashpwaikar@gmail.com"
+      );
+    } finally {
+      setIsEmailLoading(false);
+    }
+  };
+
   const navItems = [
     {
       id: "home",
@@ -49,17 +95,18 @@ export function Hero() {
       label: "Projects",
       onClick: () => (window.location.hash = "#projects"),
     },
-    {
-      id: "skills",
-      icon: <Code className="w-6 h-6" />,
-      label: "Skills",
-      onClick: () => (window.location.hash = "#skills"),
-    },
+
     {
       id: "experience",
       icon: <Briefcase className="w-6 h-6" />,
       label: "Experience",
       onClick: () => (window.location.hash = "#experience"),
+    },
+    {
+      id: "email",
+      icon: <Mail className="w-6 h-6" />,
+      label: "Contact",
+      onClick: () => setEmailFormOpen(true),
     },
     {
       id: "github",
@@ -126,6 +173,18 @@ export function Hero() {
           <Chatbot />
         </div>
       </div>
+
+      {typeof document !== "undefined" &&
+        createPortal(
+          <EmailForm
+            isOpen={emailFormOpen}
+            onClose={() => setEmailFormOpen(false)}
+            requestType="contact"
+            onSubmit={handleEmailSubmit}
+            isLoading={isEmailLoading}
+          />,
+          document.body
+        )}
     </section>
   );
 }

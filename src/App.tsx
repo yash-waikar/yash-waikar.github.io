@@ -1,7 +1,6 @@
 import { ThemeProvider } from "./components/theme-provider";
 import { Hero } from "./components/hero";
 import { Projects } from "./components/project";
-import { Skills } from "./components/skills";
 import { Experience } from "./components/experience";
 import { Footer } from "./components/footer";
 import { WebGLShader } from "./components/ui/web-gl-shader";
@@ -38,8 +37,9 @@ function App() {
         style={{ background: "transparent" }}
       >
         <Hero />
-        <Experience />
         <Projects />
+        <Experience />
+
         <Footer />
       </main>
     </ThemeProvider>

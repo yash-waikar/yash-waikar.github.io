@@ -23,24 +23,22 @@ export function Experience() {
             <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
               <Badge
                 variant="outline"
-                className="absolute top-4 right-4 text-xs"
+                className="absolute top-4 right-4 text-xs whitespace-nowrap"
               >
                 January 2025
               </Badge>
 
-              <div className="mb-3">
+              <div className="mb-3 pr-24 sm:pr-0">
                 <div className="flex items-center mb-2">
                   <Briefcase className="mr-2 h-5 w-5 text-white-600" />
-                  <h3 className="text-xl font-bold">
-                    Junior Software Engineer
-                  </h3>
+                  <h3 className="text-xl font-bold">Software Engineer</h3>
                 </div>
                 <Badge variant="secondary" className="ml-7">
                   Ampcus Inc.
                 </Badge>
               </div>
               <p className="text-muted-foreground mb-4">
-                Led frontend and product development for multiple SaaS
+                Driving frontend and product development for multiple SaaS
                 applications—from a pharmaceutical serialization app to an AI
                 automation platform—delivering client‑facing and
                 human‑in‑the‑loop workflows. Happy to connect over coffee if
@@ -82,12 +80,12 @@ export function Experience() {
             <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
               <Badge
                 variant="outline"
-                className="absolute top-4 right-4 text-xs"
+                className="absolute top-4 right-4 text-xs whitespace-nowrap"
               >
                 December 2024
               </Badge>
 
-              <div className="flex items-center mb-3">
+              <div className="flex items-center mb-3 pr-24 sm:pr-0">
                 <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
                 <h3 className="text-xl font-bold">B.S in Computer Science</h3>
               </div>
@@ -118,12 +116,12 @@ export function Experience() {
             <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
               <Badge
                 variant="outline"
-                className="absolute top-4 right-4 text-xs"
+                className="absolute top-4 right-4 text-xs whitespace-nowrap"
               >
                 September 2024
               </Badge>
 
-              <div className="mb-3">
+              <div className="mb-3 pr-24 sm:pr-0">
                 <div className="flex items-center mb-2">
                   <Briefcase className="mr-2 h-5 w-5 text-white-600" />
                   <h3 className="text-xl font-bold">
@@ -179,12 +177,12 @@ export function Experience() {
             <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
               <Badge
                 variant="outline"
-                className="absolute top-4 right-4 text-xs"
+                className="absolute top-4 right-4 text-xs whitespace-nowrap"
               >
                 May 2022
               </Badge>
 
-              <div className="flex items-center mb-3">
+              <div className="flex items-center mb-3 pr-24 sm:pr-0">
                 <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
                 <h3 className="text-xl font-bold">A.S in Computer Science</h3>
               </div>
