@@ -3,7 +3,7 @@ import { Hero } from "./components/hero";
 import { Projects } from "./components/project";
 import { Experience } from "./components/experience";
 import { Footer } from "./components/footer";
-import { WebGLShader } from "./components/ui/web-gl-shader";
+import { AuroraBackground } from "./components/ui/aurora-background";
 import GradualBlur from "./components/GradualBlur";
 import "./index.css";
 
@@ -11,7 +11,9 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark">
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        <WebGLShader />
+        <AuroraBackground showRadialGradient={false}>
+          <></>
+        </AuroraBackground>
       </div>
 
       <GradualBlur

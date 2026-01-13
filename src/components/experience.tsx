@@ -199,24 +199,24 @@ export function Experience() {
   return (
     <section id="experience" className="relative py-20 overflow-hidden">
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
+        <div className="flex flex-col items-start space-y-4 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-3xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl">
               Experience & Education
             </h2>
-            <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground text-center">
+            <p className="mt-4 max-w-[700px] text-muted-foreground">
               1+ year of professional experience in the software industry
             </p>
           </motion.div>
         </div>
 
         {/* Timeline Container */}
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl">
           <Timeline data={timelineData} />
         </div>
       </div>
