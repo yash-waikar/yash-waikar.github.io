@@ -55,7 +55,7 @@ export function Chatbot() {
   ];
 
   const detectEmailIntent = (
-    userInput: string
+    userInput: string,
   ): "resume" | "contact" | null => {
     const input = userInput.toLowerCase();
 
@@ -139,13 +139,13 @@ export function Chatbot() {
 
     const heroContent = extractTextContent('h1, .hero p, [class*="hero"] p');
     const skillsContent = extractTextContent(
-      '[id="skills"] *, [class*="skill"] *'
+      '[id="skills"] *, [class*="skill"] *',
     );
     const projectsContent = extractTextContent(
-      '[id="projects"] *, [class*="project"] *'
+      '[id="projects"] *, [class*="project"] *',
     );
     const experienceContent = extractTextContent(
-      '[id="experience"] *, [class*="experience"] *'
+      '[id="experience"] *, [class*="experience"] *',
     );
 
     const metaDescription =
@@ -207,7 +207,7 @@ Based on this current website content, provide helpful information about Yash Wa
             "X-Title": "Yash Waikar Portfolio",
           },
           body: JSON.stringify({
-            model: "openai/gpt-oss-20b:free",
+            model: "stepfun/step-3.5-flash:free",
             messages: [
               {
                 role: "system",
@@ -231,14 +231,14 @@ Keep responses concise, friendly, and focused on Yash's professional background.
             max_tokens: 500,
             temperature: 0.7,
           }),
-        }
+        },
       );
 
       if (!response.ok) {
         const errorText = await response.text();
         console.log("❌ AI API failed with status:", response.status);
         throw new Error(
-          `HTTP error! status: ${response.status}, body: ${errorText}`
+          `HTTP error! status: ${response.status}, body: ${errorText}`,
         );
       }
 
