@@ -29,7 +29,7 @@ export function HoverBorderGradient({
 >) {
   const [hovered, setHovered] = useState<boolean>(false);
   const [direction, setDirection] = useState<Direction>("TOP");
-  
+
   const Component = Tag as any;
 
   const rotateDirection = (currentDirection: Direction): Direction => {
@@ -79,21 +79,21 @@ export function HoverBorderGradient({
       onMouseLeave={() => setHovered(false)}
       className={cn(
         "relative flex rounded-full border content-center bg-black/20 hover:bg-black/10 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap h-min justify-center overflow-visible p-px decoration-clone",
-        containerClassName
+        containerClassName,
       )}
       {...props}
     >
       <div
         className={cn(
           "w-full text-white z-10 bg-background rounded-[inherit] overflow-visible",
-          className
+          className,
         )}
       >
         {children}
       </div>
       <motion.div
         className={cn(
-          "flex-none inset-0 overflow-hidden absolute z-0 rounded-[inherit]"
+          "flex-none inset-0 overflow-hidden absolute z-0 rounded-[inherit]",
         )}
         style={{
           filter: "blur(2px)",

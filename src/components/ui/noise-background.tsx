@@ -170,7 +170,7 @@ export const NoiseBackground = ({
         "group relative overflow-hidden bg-transparent",
         backdropBlur &&
           "after:absolute after:inset-0 after:h-full after:w-full after:backdrop-blur-lg after:content-['']",
-        containerClassName
+        containerClassName,
       )}
       style={
         {
