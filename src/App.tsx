@@ -3,17 +3,30 @@ import { Hero } from "./components/hero";
 import { Projects } from "./components/project";
 import { Experience } from "./components/experience";
 import { Footer } from "./components/footer";
-import { AuroraBackground } from "./components/ui/aurora-background";
 import GradualBlur from "./components/GradualBlur";
+import LightRays from "./components/ui/light-rays";
 import "./index.css";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark">
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        <AuroraBackground showRadialGradient={false}>
-          <></>
-        </AuroraBackground>
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: 0, background: "#000000" }}
+      >
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ffffff"
+          raysSpeed={0.4}
+          lightSpread={3}
+          rayLength={4}
+          fadeDistance={0.8}
+          saturation={0.8}
+          followMouse={false}
+          mouseInfluence={0}
+          noiseAmount={0.4}
+          distortion={0}
+        />
       </div>
 
       <GradualBlur

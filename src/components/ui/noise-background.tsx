@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 import {
   motion,
   useAnimationFrame,
@@ -70,8 +70,8 @@ export const NoiseBackground = ({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springX = useSpring(x, { stiffness: 100, damping: 30 });
-  const springY = useSpring(y, { stiffness: 100, damping: 30 });
+  const springX = useSpring(x, { stiffness: 50, damping: 40 });
+  const springY = useSpring(y, { stiffness: 50, damping: 40 });
 
   const topGradientX = useTransform(springX, (val) => val * 0.1 - 50);
 
@@ -167,9 +167,7 @@ export const NoiseBackground = ({
     <div
       ref={containerRef}
       className={cn(
-        "group relative overflow-hidden rounded-2xl bg-neutral-200 p-2 backdrop-blur-sm dark:bg-neutral-800",
-        "shadow-[0px_0.5px_1px_0px_var(--color-neutral-400)_inset,0px_1px_0px_0px_var(--color-neutral-100)]",
-        "dark:shadow-[0px_1px_0px_0px_var(--color-neutral-950)_inset,0px_1px_0px_0px_var(--color-neutral-800)]",
+        "group relative overflow-hidden bg-transparent",
         backdropBlur &&
           "after:absolute after:inset-0 after:h-full after:w-full after:backdrop-blur-lg after:content-['']",
         containerClassName
@@ -201,15 +199,6 @@ export const NoiseBackground = ({
         gradientColor={gradientColors[2] || gradientColors[0]}
         opacity={0.25}
         multiplier={1.2}
-      />
-
-      {/* Top gradient strip */}
-      <motion.div
-        className="absolute inset-x-0 top-0 h-1 rounded-t-2xl opacity-80 blur-sm"
-        style={{
-          background: `linear-gradient(to right, ${gradientColors.join(", ")})`,
-          x: animating ? topGradientX : 0,
-        }}
       />
 
       {/* Static Noise Pattern */}
