@@ -60,7 +60,7 @@ export function Projects() {
     } catch (error) {
       console.error("Email sending failed:", error);
       toast.error(
-        "Sorry, couldn't send the message. Please email me directly at yashpwaikar@gmail.com"
+        "Sorry, couldn't send the message. Please email me directly at yashpwaikar@gmail.com",
       );
     } finally {
       setIsEmailLoading(false);
@@ -102,9 +102,16 @@ export function Projects() {
     {
       title: "Agent Café",
       description:
-        "Built a personal MVP of an AI agent audit platform using React, D3.js, Node.js, and Prisma. It centralizes multiple agents, visualizes real-time workflows, and logs activity to demonstrate practical solutions to debugging challenges in multi-agent systems.",
+        "Built a personal MVP of an AI agent audit platform using React, D3.js, Node.js, and Prisma. It centralizes multiple agents (powered by Ollama) that draft appeal letters, visualizes real-time workflows, and logs activity to demonstrate practical solutions to debugging challenges in multi-agent systems.",
       image: "/assets/img/project-img9.png",
-      tags: ["React", "D3.js", "TypeScript", "AG-UI"],
+      tags: [
+        "Google Document AI",
+        "Ollama",
+        "React",
+        "D3.js",
+        "TypeScript",
+        "AG-UI",
+      ],
     },
 
     {
@@ -263,7 +270,7 @@ export function Projects() {
             onSubmit={handleEmailSubmit}
             isLoading={isEmailLoading}
           />,
-          document.body
+          document.body,
         )}
     </section>
   );
