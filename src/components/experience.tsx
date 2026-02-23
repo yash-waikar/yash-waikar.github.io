@@ -22,7 +22,7 @@ export function Experience() {
             <div className="relative p-6 overflow-hidden">
               {/* Ampcus logo subtle background */}
               <img
-                src="/assets/img/Ampcus Inc Logo.jpeg"
+                src="/assets/img/company1 Logo.jpeg"
                 alt=""
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-4 -bottom-4 h-36 w-36 object-contain opacity-[0.07] select-none"
@@ -129,7 +129,7 @@ export function Experience() {
             <div className="relative p-6 overflow-hidden">
               {/* Ampcus logo subtle background */}
               <img
-                src="/assets/img/Ampcus Inc Logo.jpeg"
+                src="/assets/img/company1 Logo.jpeg"
                 alt=""
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-4 -bottom-4 h-36 w-36 object-contain opacity-[0.07] select-none"
