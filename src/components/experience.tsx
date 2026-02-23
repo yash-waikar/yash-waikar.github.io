@@ -19,7 +19,14 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
+            <div className="relative p-6 overflow-hidden">
+              {/* Ampcus logo subtle background */}
+              <img
+                src="/assets/img/Ampcus Inc Logo.jpeg"
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-4 -bottom-4 h-36 w-36 object-contain opacity-[0.07] select-none"
+              />
               <Badge
                 variant="outline"
                 className="absolute top-4 right-4 text-xs whitespace-nowrap"
@@ -37,7 +44,7 @@ export function Experience() {
                 </Badge>
               </div>
               <p className="text-muted-foreground mb-4">
-                Driving frontend and product development for multiple SaaS
+                Driving AI and frontend development for multiple SaaS
                 applications—from a pharmaceutical serialization app to an AI
                 automation platform—delivering client‑facing and
                 human‑in‑the‑loop workflows. Happy to connect over coffee if
@@ -75,8 +82,15 @@ export function Experience() {
             as="div"
             bluePurple={true}
             disableAnimation={true}
+            accentColor="hsl(138, 60%, 38%)"
           >
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
+            <div className="relative p-6 overflow-hidden">
+              <img
+                src="/assets/img/George Mason Logo.png"
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-6 -bottom-4 h-40 w-40 object-contain opacity-[0.06] select-none"
+              />
               <Badge
                 variant="outline"
                 className="absolute top-4 right-4 text-xs whitespace-nowrap"
@@ -112,7 +126,14 @@ export function Experience() {
             bluePurple={true}
             disableAnimation={true}
           >
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
+            <div className="relative p-6 overflow-hidden">
+              {/* Ampcus logo subtle background */}
+              <img
+                src="/assets/img/Ampcus Inc Logo.jpeg"
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-4 -bottom-4 h-36 w-36 object-contain opacity-[0.07] select-none"
+              />
               <Badge
                 variant="outline"
                 className="absolute top-4 right-4 text-xs whitespace-nowrap"
@@ -172,8 +193,9 @@ export function Experience() {
             as="div"
             bluePurple={true}
             disableAnimation={true}
+            accentColor="hsl(211, 85%, 48%)"
           >
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 p-6 rounded-lg relative">
+            <div className="relative p-6">
               <Badge
                 variant="outline"
                 className="absolute top-4 right-4 text-xs whitespace-nowrap"

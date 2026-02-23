@@ -15,6 +15,7 @@ export function HoverBorderGradient({
   clockwise = true,
   bluePurple = false,
   disableAnimation = false,
+  accentColor,
   ...props
 }: React.PropsWithChildren<
   {
@@ -25,6 +26,7 @@ export function HoverBorderGradient({
     clockwise?: boolean;
     bluePurple?: boolean;
     disableAnimation?: boolean;
+    accentColor?: string;
   } & React.HTMLAttributes<HTMLElement>
 >) {
   const [hovered, setHovered] = useState<boolean>(false);
@@ -41,27 +43,36 @@ export function HoverBorderGradient({
     return directions[nextIndex];
   };
 
-  const movingMap: Record<Direction, string> = bluePurple
+  const movingMap: Record<Direction, string> = accentColor
     ? {
-        TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(249, 79.10%, 53.10%) 0%, rgba(139, 92, 246, 0) 100%)",
-        LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, hsl(211, 97.00%, 38.60%) 0%, rgba(139, 92, 246, 0) 100%)",
-        BOTTOM:
-          "radial-gradient(20.7% 50% at 50% 100%, hsl(19, 77.00%, 44.30%) 0%, rgba(139, 92, 246, 0) 100%)",
-        RIGHT:
-          "radial-gradient(16.2% 41.199999999999996% at 100% 50%, hsl(134, 82.30%, 39.80%) 0%, rgba(139, 92, 246, 0) 100%)",
+        TOP: `radial-gradient(20.7% 50% at 50% 0%, ${accentColor} 0%, transparent 100%)`,
+        LEFT: `radial-gradient(16.6% 43.1% at 0% 50%, ${accentColor} 0%, transparent 100%)`,
+        BOTTOM: `radial-gradient(20.7% 50% at 50% 100%, ${accentColor} 0%, transparent 100%)`,
+        RIGHT: `radial-gradient(16.2% 41.2% at 100% 50%, ${accentColor} 0%, transparent 100%)`,
       }
-    : {
-        TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
-        LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
-        BOTTOM:
-          "radial-gradient(20.7% 50% at 50% 100%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
-        RIGHT:
-          "radial-gradient(16.2% 41.199999999999996% at 100% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
-      };
+    : bluePurple
+      ? {
+          TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(249, 79.10%, 53.10%) 0%, rgba(139, 92, 246, 0) 100%)",
+          LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, hsl(211, 97.00%, 38.60%) 0%, rgba(139, 92, 246, 0) 100%)",
+          BOTTOM:
+            "radial-gradient(20.7% 50% at 50% 100%, hsl(19, 77.00%, 44.30%) 0%, rgba(139, 92, 246, 0) 100%)",
+          RIGHT:
+            "radial-gradient(16.2% 41.199999999999996% at 100% 50%, hsl(134, 82.30%, 39.80%) 0%, rgba(139, 92, 246, 0) 100%)",
+        }
+      : {
+          TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+          LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+          BOTTOM:
+            "radial-gradient(20.7% 50% at 50% 100%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+          RIGHT:
+            "radial-gradient(16.2% 41.199999999999996% at 100% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+        };
 
-  const highlight = bluePurple
-    ? "radial-gradient(75% 181.15942028985506% at 50% 50%, #8B5CF6 0%, rgba(139, 92, 246, 0) 100%)"
-    : "radial-gradient(75% 181.15942028985506% at 50% 50%, #3275F8 0%, rgba(255, 255, 255, 0) 100%)";
+  const highlight = accentColor
+    ? `radial-gradient(75% 181.15942028985506% at 50% 50%, ${accentColor} 0%, transparent 100%)`
+    : bluePurple
+      ? "radial-gradient(75% 181.15942028985506% at 50% 50%, #8B5CF6 0%, rgba(139, 92, 246, 0) 100%)"
+      : "radial-gradient(75% 181.15942028985506% at 50% 50%, #3275F8 0%, rgba(255, 255, 255, 0) 100%)";
 
   useEffect(() => {
     if (!hovered && !disableAnimation) {

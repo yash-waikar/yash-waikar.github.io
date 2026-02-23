@@ -1,39 +1,125 @@
-"use client";
+import { useState } from "react";
+import { Menu, X, Github, Linkedin } from "lucide-react";
 
-import { Github, Linkedin, Mail } from "lucide-react";
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+];
 
 export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b">
-      <div className="container flex h-16 items-center justify-end">
-        <div className="flex items-center gap-4">
-          <a
-            href="https://www.linkedin.com/in/yash-waikar-509866202/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <Linkedin className="h-5 w-5" />
-            <span className="sr-only">LinkedIn</span>
-          </a>
+    <nav className="fixed top-20 left-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl -translate-x-1/2">
+      {/* Desktop Navbar */}
+      <div className="hidden md:flex items-center justify-between rounded-full border border-white/[0.08] bg-neutral-950/70 px-4 py-2 shadow-lg backdrop-blur-xl">
+        {/* Logo */}
+        <a href="#home" className="flex items-center gap-2 text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10">
+            <span className="text-xs font-bold text-white leading-none">
+              YW
+            </span>
+          </div>
+        </a>
+
+        {/* Nav Links */}
+        <div className="flex items-center gap-1">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="relative rounded-full px-4 py-1.5 text-sm text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        {/* Social Links */}
+        <div className="flex items-center gap-1">
           <a
             href="https://github.com/yash-waikar"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-primary transition-colors"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+            aria-label="GitHub"
           >
-            <Github className="h-5 w-5" />
-            <span className="sr-only">GitHub</span>
+            <Github size={16} />
           </a>
           <a
-            href="mailto:yashpwaikar@gmail.com"
-            className="text-muted-foreground hover:text-primary transition-colors"
+            href="https://www.linkedin.com/in/yash-waikar-509866202/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+            aria-label="LinkedIn"
           >
-            <Mail className="h-5 w-5" />
-            <span className="sr-only">Email</span>
+            <Linkedin size={16} />
           </a>
         </div>
       </div>
-    </header>
+
+      {/* Mobile Navbar */}
+      <div className="flex md:hidden flex-col rounded-2xl border border-white/[0.08] bg-neutral-950/70 shadow-lg backdrop-blur-xl">
+        <div className="flex items-center justify-between px-4 py-3">
+          {/* Logo */}
+          <a href="#home" className="flex items-center gap-2 text-white">
+            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-white/10">
+              <span className="text-xs font-bold text-white leading-none">
+                YW
+              </span>
+            </div>
+            <span className="text-sm font-semibold tracking-tight">
+              Yash Waikar
+            </span>
+          </a>
+
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileOpen && (
+          <div className="flex flex-col gap-1 border-t border-white/[0.06] px-4 py-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-lg px-3 py-2 text-sm text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="mt-1 flex gap-2">
+              <a
+                href="https://github.com/yash-waikar"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="flex flex-1 items-center justify-center gap-2 rounded-full border border-white/[0.08] px-4 py-2 text-sm text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+              >
+                <Github size={15} /> GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/yash-waikar-509866202/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="flex flex-1 items-center justify-center gap-2 rounded-full border border-white/[0.08] px-4 py-2 text-sm text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+              >
+                <Linkedin size={15} /> LinkedIn
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 }

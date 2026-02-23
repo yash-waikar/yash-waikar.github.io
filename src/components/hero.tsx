@@ -21,7 +21,6 @@ import { Chatbot } from "./chatbot";
 import { EmailForm } from "./ui/email-form";
 import { sendEmail, type EmailData } from "../services/emailService";
 import { toast } from "sonner";
-import Prism from "../components/Prism";
 
 export function Hero() {
   const [currentWord, setCurrentWord] = useState(0);
@@ -75,7 +74,7 @@ export function Hero() {
     } catch (error) {
       console.error("Email sending failed:", error);
       toast.error(
-        "Sorry, couldn't send the message. Please email me directly at yashpwaikar@gmail.com"
+        "Sorry, couldn't send the message. Please email me directly at yashpwaikar@gmail.com",
       );
     } finally {
       setIsEmailLoading(false);
@@ -123,7 +122,7 @@ export function Hero() {
         window.open(
           "https://www.linkedin.com/in/yash-waikar-509866202/",
           "_blank",
-          "noopener"
+          "noopener",
         ),
     },
   ];
@@ -172,7 +171,7 @@ export function Hero() {
             onSubmit={handleEmailSubmit}
             isLoading={isEmailLoading}
           />,
-          document.body
+          document.body,
         )}
     </section>
   );
