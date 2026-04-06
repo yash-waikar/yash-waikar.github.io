@@ -137,22 +137,26 @@ function App() {
             mouseInfluence={0}
           />
         </div>
-        <GradualBlur
-          position="left"
-          strength={3}
-          height="80px"
-          animated="scroll"
-          zIndex={50}
-          target="page"
-        />
-        <GradualBlur
-          position="right"
-          strength={3}
-          height="80px"
-          animated="scroll"
-          zIndex={50}
-          target="page"
-        />
+        <div className="hidden md:block">
+          <GradualBlur
+            position="left"
+            strength={3}
+            height="80px"
+            animated="scroll"
+            zIndex={50}
+            target="page"
+          />
+        </div>
+        <div className="hidden md:block">
+          <GradualBlur
+            position="right"
+            strength={3}
+            height="80px"
+            animated="scroll"
+            zIndex={50}
+            target="page"
+          />
+        </div>
 
         <Navbar activeSection={activeSection} onNavClick={scrollToSection} />
 
