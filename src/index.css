@@ -65,18 +65,16 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeSpeed;
   }
 
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
   }
 
   section {
-    will-change: auto;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    contain: layout style;
   }
 
   @media (prefers-reduced-motion: reduce) {

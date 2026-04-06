@@ -15,51 +15,48 @@ interface TimelineEntry {
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
 
-  useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 10%", "end 50%"],
-  });
-
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
-
+  // For horizontal timeline, we simply arrange items horizontally.
   return (
-    <div className="w-full font-sans" ref={containerRef}>
-      <div ref={ref} className="relative pb-10">
-        {data.map((item, index) => (
-          <div key={index} className="flex pt-8 md:pt-20 relative">
-            <div className="sticky flex items-center top-20 self-start absolute left-0 md:left-0 z-40">
-              <div className="h-10 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
+    <div
+      className="w-full font-sans flex items-center h-full relative"
+      ref={containerRef}
+    >
+      <div
+        ref={ref}
+        className="relative flex items-center w-full min-w-max h-full px-10 gap-24 md:gap-32"
+      >
+        {/* Background Horizontal Line */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[2px] bg-neutral-200 dark:bg-neutral-800" />
+
+        {data.map((item, index) => {
+          const isTop = index % 2 === 0;
+          return (
+            <div
+              key={index}
+              className="relative flex flex-col items-center justify-center w-[85vw] sm:w-[500px] md:w-[600px] shrink-0 h-[600px]"
+            >
+              {/* Vertical Connector Line */}
+              <div
+                className={`absolute left-1/2 w-[2px] bg-neutral-300 dark:bg-neutral-600 -translate-x-1/2 ${isTop ? "bottom-1/2 h-8" : "top-1/2 h-8"}`}
+              />
+
+              {/* Dot on the timeline */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
+                <div className="h-6 w-6 rounded-full flex items-center justify-center bg-white dark:bg-black">
+                  <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700" />
+                </div>
+              </div>
+
+              {/* Card Container Top or Bottom */}
+              <div
+                className={`absolute ${isTop ? "bottom-[calc(50%+2rem)]" : "top-[calc(50%+2rem)]"} w-full flex justify-center`}
+              >
+                <div className="w-full">{item.content}</div>
               </div>
             </div>
-
-            <div className="relative w-full pl-16 md:pl-20">{item.content}</div>
-          </div>
-        ))}
-        <div
-          style={{
-            height: height + "px",
-          }}
-          className="absolute left-5 md:left-5 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
-        >
-          <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-white-500 via-gray-500 to-transparent from-[0%] via-[10%] rounded-full"
-          />
-        </div>
+          );
+        })}
       </div>
     </div>
   );

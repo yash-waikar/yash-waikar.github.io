@@ -129,10 +129,8 @@ export function Hero() {
 
   return (
     <section
-      id="home"
       className="relative mt-16 min-h-[calc(100vh-4rem)] flex items-center overflow-hidden"
       style={{
-        willChange: "contents",
         contain: "layout style paint",
       }}
     >

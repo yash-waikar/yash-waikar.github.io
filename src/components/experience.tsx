@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Timeline } from "./ui/timeline";
 import { Badge } from "./ui/badge";
 import { GraduationCap, Briefcase } from "lucide-react";
-import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import BorderGlow from "./BorderGlow";
 
 export function Experience() {
   const timelineData = [
@@ -12,12 +12,10 @@ export function Experience() {
       title: "January 2025",
       content: (
         <div className="space-y-4">
-          <HoverBorderGradient
-            containerClassName="rounded-lg w-full"
-            className="w-full"
-            as="div"
-            bluePurple={true}
-            disableAnimation={true}
+          <BorderGlow
+            className="w-full rounded-lg"
+            backgroundColor="#000000"
+            glowColor="280 80 80"
           >
             <div className="relative p-6 overflow-hidden">
               {/* Ampcus logo subtle background */}
@@ -68,7 +66,7 @@ export function Experience() {
                 ))}
               </div>
             </div>
-          </HoverBorderGradient>
+          </BorderGlow>
         </div>
       ),
     },
@@ -76,13 +74,10 @@ export function Experience() {
       title: "December 2024",
       content: (
         <div className="space-y-4">
-          <HoverBorderGradient
-            containerClassName="rounded-lg w-full"
-            className="w-full"
-            as="div"
-            bluePurple={true}
-            disableAnimation={true}
-            accentColor="hsl(138, 60%, 38%)"
+          <BorderGlow
+            className="w-full rounded-lg"
+            backgroundColor="#000000"
+            glowColor="138 60 38"
           >
             <div className="relative p-6 overflow-hidden">
               <img
@@ -111,7 +106,7 @@ export function Experience() {
                 Object-Oriented Programming, Web App Development
               </p>
             </div>
-          </HoverBorderGradient>
+          </BorderGlow>
         </div>
       ),
     },
@@ -119,12 +114,10 @@ export function Experience() {
       title: "September 2024",
       content: (
         <div className="space-y-4">
-          <HoverBorderGradient
-            containerClassName="rounded-lg w-full"
-            className="w-full"
-            as="div"
-            bluePurple={true}
-            disableAnimation={true}
+          <BorderGlow
+            className="w-full rounded-lg"
+            backgroundColor="#000000"
+            glowColor="280 80 80"
           >
             <div className="relative p-6 overflow-hidden">
               {/* Ampcus logo subtle background */}
@@ -178,7 +171,7 @@ export function Experience() {
                 ))}
               </div>
             </div>
-          </HoverBorderGradient>
+          </BorderGlow>
         </div>
       ),
     },
@@ -187,13 +180,10 @@ export function Experience() {
       title: "May 2022",
       content: (
         <div className="space-y-4">
-          <HoverBorderGradient
-            containerClassName="rounded-lg w-full"
-            className="w-full"
-            as="div"
-            bluePurple={true}
-            disableAnimation={true}
-            accentColor="hsl(211, 85%, 48%)"
+          <BorderGlow
+            className="w-full rounded-lg"
+            backgroundColor="#000000"
+            glowColor="211 85 48"
           >
             <div className="relative p-6">
               <Badge
@@ -211,16 +201,16 @@ export function Experience() {
                 NOVA Community College
               </p>
             </div>
-          </HoverBorderGradient>
+          </BorderGlow>
         </div>
       ),
     },
   ];
 
   return (
-    <section id="experience" className="relative py-20 overflow-hidden">
-      <div className="container px-4 md:px-6 relative z-10">
-        <div className="flex flex-col items-start space-y-4 mb-8">
+    <section className="relative h-auto md:h-screen w-full md:w-max flex flex-col justify-start md:justify-center py-20 md:py-0 pr-4 md:pr-32 pl-4 md:pl-[25vw] md:items-center overflow-hidden">
+      <div className="px-4 md:px-6 relative z-10 w-full md:w-max flex flex-col md:flex-row md:gap-24 lg:gap-32 md:h-screen md:items-center">
+        <div className="flex flex-col items-start space-y-4 mb-20 md:mb-0 shrink-0 md:w-[400px] md:sticky md:left-24 md:z-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -237,7 +227,7 @@ export function Experience() {
         </div>
 
         {/* Timeline Container */}
-        <div className="max-w-7xl">
+        <div className="flex w-full md:w-max pb-12 md:pb-0 md:h-[650px] items-center relative">
           <Timeline data={timelineData} />
         </div>
       </div>

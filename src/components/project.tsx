@@ -145,18 +145,10 @@ export function Projects() {
 
   return (
     <section
-      id="projects"
-      className="relative py-20 overflow-hidden"
-      style={{
-        willChange: "transform",
-        transform: "translate3d(0, 0, 0)",
-        contain: "layout style paint",
-        contentVisibility: "auto",
-        transformStyle: "preserve-3d",
-      }}
+      className="relative h-auto md:h-screen w-full md:w-max flex flex-col justify-start md:justify-center py-20 md:py-0 pr-4 md:pr-12"
     >
-      <div className="container px-4 md:px-6 relative z-10">
-        <div className="flex flex-col items-start space-y-4 mb-12">
+      <div className="px-4 md:px-6 relative z-10 w-full md:w-max flex flex-col md:flex-row md:h-screen md:items-center">
+        <div className="flex flex-col items-start space-y-4 mb-12 shrink-0 md:mb-0 md:mr-12 md:w-[350px]">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Projects
           </h2>
@@ -164,14 +156,14 @@ export function Projects() {
             some side quests I have worked on.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-col md:flex-row gap-24 pb-12 md:pb-0 md:h-[550px] items-stretch">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="h-full"
-              style={{ contain: "layout style paint" }}
+              className="w-[85vw] sm:w-[420px] md:w-[450px] shrink-0 h-full"
             >
               <motion.div
+                style={{ height: "100%" }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0 }}
@@ -179,13 +171,10 @@ export function Projects() {
               >
                 <HoverBorderGradient
                   as="div"
-                  containerClassName="rounded-xl p-0.5 w-full max-w-sm mx-auto h-full"
-                  className="bg-transparent p-0 w-full h-full"
+                  containerClassName="rounded-xl p-0.5 w-full max-w-none h-full bg-transparent"
+                  className="p-0 w-full h-full"
                 >
-                  <Card
-                    className="flex h-full flex-col overflow-hidden border-0 bg-background transition-colors relative w-full min-h-[500px]"
-                    style={{ contain: "layout style paint" }}
-                  >
+                  <Card className="flex h-full flex-col overflow-hidden border-0 bg-transparent transition-colors relative w-full">
                     <GlowingEffect
                       blur={80}
                       spread={250}

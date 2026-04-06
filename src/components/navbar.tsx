@@ -1,17 +1,34 @@
 import { useState } from "react";
 import { Menu, X, Github, Linkedin } from "lucide-react";
+import { cn } from "../lib/utils";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
+  { label: "Home", href: "#home", id: "home" },
+  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Experience", href: "#experience", id: "experience" },
 ];
 
-export function Navbar() {
+interface NavbarProps {
+  activeSection?: string;
+  onNavClick?: (id: string) => void;
+}
+
+export function Navbar({ activeSection = "home", onNavClick }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+  ) => {
+    if (onNavClick) {
+      e.preventDefault();
+      onNavClick(id);
+      setMobileOpen(false);
+    }
+  };
+
   return (
-    <nav className="fixed top-20 left-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl -translate-x-1/2">
+    <nav className="fixed top-6 left-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl -translate-x-1/2">
       {/* Desktop Navbar */}
       <div className="hidden md:flex items-center justify-between rounded-full border border-white/[0.08] bg-neutral-950/70 px-4 py-2 shadow-lg backdrop-blur-xl">
         {/* Logo */}
@@ -29,7 +46,13 @@ export function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="relative rounded-full px-4 py-1.5 text-sm text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+              onClick={(e) => handleNavClick(e, link.id)}
+              className={cn(
+                "relative rounded-full px-4 py-1.5 text-sm transition-colors hover:text-white hover:bg-white/[0.06]",
+                activeSection === link.id
+                  ? "text-white bg-white/[0.08]"
+                  : "text-neutral-400",
+              )}
             >
               {link.label}
             </a>
@@ -91,8 +114,13 @@ export function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="rounded-lg px-3 py-2 text-sm text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
+                onClick={(e) => handleNavClick(e, link.id)}
+                className={cn(
+                  "rounded-lg px-3 py-2 text-sm transition-colors hover:text-white hover:bg-white/[0.06]",
+                  activeSection === link.id
+                    ? "text-white bg-white/[0.08]"
+                    : "text-neutral-400",
+                )}
               >
                 {link.label}
               </a>
