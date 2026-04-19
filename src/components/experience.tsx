@@ -208,7 +208,7 @@ export function Experience() {
   ];
 
   return (
-    <section className="relative h-auto md:h-screen w-full md:w-max flex flex-col justify-start md:justify-center pt-8 pb-16 md:py-0 pr-4 md:pr-32 pl-4 md:pl-[25vw] md:items-center overflow-hidden">
+    <section className="relative h-auto md:h-screen w-full flex flex-col justify-start md:justify-center pt-8 pb-16 md:py-0 px-4 md:pr-32 md:pl-[25vw] md:items-center overflow-hidden">
       <div className="px-4 md:px-6 relative z-10 w-full md:w-max flex flex-col md:flex-row md:gap-24 lg:gap-32 md:h-screen md:items-center">
         <div className="flex flex-col items-start space-y-4 mb-8 md:mb-0 shrink-0 md:w-[400px] md:sticky md:left-24 md:z-20">
           <motion.div

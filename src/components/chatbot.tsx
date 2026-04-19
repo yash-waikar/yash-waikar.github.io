@@ -196,50 +196,65 @@ Based on this current website content, provide helpful information about Yash Wa
     try {
       const websiteContext = extractWebsiteContext();
 
-      const response = await fetch(
-        "https://openrouter.ai/api/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-            "HTTP-Referer": "https://yashwaikar.com",
-            "X-Title": "Yash Waikar Portfolio",
-          },
-          body: JSON.stringify({
-            model: "stepfun/step-3.5-flash:free",
-            messages: [
-              {
-                role: "system",
-                content: `You are Yash Waikar's AI assistant on his portfolio website. You should be helpful, friendly, and knowledgeable about Yash's background. 
+      const MODELS = [
+        "openai/gpt-oss-20b:free",
+        "meta-llama/llama-3.3-70b-instruct:free",
+        "meta-llama/llama-3.2-3b-instruct:free",
+      ];
+
+      let response: Response | null = null;
+      let lastError: Error | null = null;
+
+      for (const model of MODELS) {
+        try {
+          response = await fetch(
+            "https://openrouter.ai/api/v1/chat/completions",
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${apiKey}`,
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://yashwaikar.com",
+                "X-Title": "Yash Waikar Portfolio",
+              },
+              body: JSON.stringify({
+                model,
+                messages: [
+                  {
+                    role: "system",
+                    content: `You are Yash Waikar's AI assistant on his portfolio website. You should be helpful, friendly, and knowledgeable about Yash's background. 
 
 Use this current website content to answer questions accurately:
 
 ${websiteContext}
 
 Keep responses concise, friendly, and focused on Yash's professional background. If asked about something not covered in the website content, politely redirect to contacting Yash directly at yashpwaikar@gmail.com.`,
-              },
-              ...messages.slice(-5).map((msg) => ({
-                role: msg.role,
-                content: msg.content,
-              })),
-              {
-                role: "user",
-                content: userMessage.content,
-              },
-            ],
-            max_tokens: 500,
-            temperature: 0.7,
-          }),
-        },
-      );
+                  },
+                  ...messages.slice(-5).map((msg) => ({
+                    role: msg.role,
+                    content: msg.content,
+                  })),
+                  {
+                    role: "user",
+                    content: userMessage.content,
+                  },
+                ],
+                max_tokens: 500,
+                temperature: 0.7,
+              }),
+            },
+          );
+          if (response.ok) break; // success — stop trying
+          lastError = new Error(`HTTP ${response.status}`);
+          response = null;
+        } catch (err) {
+          lastError = err as Error;
+          response = null;
+        }
+      }
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.log("❌ AI API failed with status:", response.status);
-        throw new Error(
-          `HTTP error! status: ${response.status}, body: ${errorText}`,
-        );
+      if (!response) {
+        throw lastError ?? new Error("All models unavailable");
       }
 
       const data = await response.json();
