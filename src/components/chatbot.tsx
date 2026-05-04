@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Bot, X } from "lucide-react";
+import { Bot, X, Copy, Check } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
@@ -17,6 +17,28 @@ interface Message {
   timestamp: Date;
 }
 
+function TypingDots() {
+  return (
+    <div className="flex items-center space-x-3">
+      <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+        <Bot className="h-4 w-4" />
+      </div>
+      <div className="flex space-x-1.5">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className="w-2 h-2 bg-muted-foreground/60 rounded-full inline-block"
+            style={{
+              animation: "typingPulse 1.2s ease-in-out infinite",
+              animationDelay: `${i * 0.2}s`,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Chatbot() {
   const initialMessage: Message = {
     id: "1",
@@ -28,6 +50,7 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([initialMessage]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [emailForm, setEmailForm] = useState<{
     isOpen: boolean;
     requestType: "resume" | "contact";
@@ -36,7 +59,26 @@ export function Chatbot() {
     requestType: "contact",
   });
   const [isEmailLoading, setIsEmailLoading] = useState(false);
+  const responseCardRef = useRef<HTMLDivElement>(null);
+
   const apiKey = process.env.REACT_APP_OPENROUTER_API_KEY;
+
+  const lastUserMessage = [...messages].reverse().find((m) => m.role === "user");
+  const lastAssistantMessage = [...messages].reverse().find((m) => m.role === "assistant");
+  const showCard = messages.length > 1 || isLoading;
+
+  // Scroll response card into view when it first appears
+  useEffect(() => {
+    if (showCard && responseCardRef.current) {
+      setTimeout(() => {
+        responseCardRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+        });
+      }, 150);
+    }
+  }, [showCard]);
+
   if (!apiKey) {
     console.log("Chatbot disabled: API key not configured");
     return null;
@@ -222,7 +264,7 @@ Based on this current website content, provide helpful information about Yash Wa
                 messages: [
                   {
                     role: "system",
-                    content: `You are Yash Waikar's AI assistant on his portfolio website. You should be helpful, friendly, and knowledgeable about Yash's background. 
+                    content: `You are Yash Waikar's AI assistant on his portfolio website. You should be helpful, friendly, and knowledgeable about Yash's background.
 
 Use this current website content to answer questions accurately:
 
@@ -244,7 +286,7 @@ Keep responses concise, friendly, and focused on Yash's professional background.
               }),
             },
           );
-          if (response.ok) break; // success — stop trying
+          if (response.ok) break;
           lastError = new Error(`HTTP ${response.status}`);
           response = null;
         } catch (err) {
@@ -293,6 +335,13 @@ Keep responses concise, friendly, and focused on Yash's professional background.
     sendMessage(inputValue);
   };
 
+  const handleCopy = (content: string) => {
+    navigator.clipboard.writeText(content).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
   return (
     <section className="py-12">
       <div className="container px-4 md:px-6">
@@ -335,51 +384,37 @@ Keep responses concise, friendly, and focused on Yash's professional background.
             </div>
           </HoverBorderGradient>
         </motion.div>
-        <div className="max-w-5xl mx-auto w-full">
-          {(messages.length > 1 || isLoading) && (
+
+        <div className="max-w-5xl mx-auto w-full" ref={responseCardRef}>
+          {showCard && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="shadow-lg border-border/50">
+              <Card className="shadow-lg border-border/50 mt-4">
                 <CardContent className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex-1">{/* Content will be here */}</div>
-                    {messages.length > 1 && !isLoading && (
-                      <button
-                        onClick={() => setMessages([initialMessage])}
-                        className="ml-2 p-1 rounded-md hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-colors"
-                        title="Clear response"
-                      >
-                        <X className="h-4 w-4" />
-                      </button>
-                    )}
-                  </div>
-                  {isLoading ? (
-                    <div className="flex items-center space-x-3">
-                      <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-                        <Bot className="h-4 w-4" />
+                  {/* User's question */}
+                  {lastUserMessage && !isLoading && (
+                    <div className="flex items-start gap-3 mb-4 pb-4 border-b border-border/40">
+                      <div className="h-7 w-7 rounded-full bg-violet-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-[10px] font-bold text-violet-400">
+                          You
+                        </span>
                       </div>
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"></div>
-                        <div
-                          className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"
-                          style={{ animationDelay: "0.1s" }}
-                        ></div>
-                        <div
-                          className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"
-                          style={{ animationDelay: "0.2s" }}
-                        ></div>
-                      </div>
+                      <p className="text-sm text-muted-foreground/80 pt-1">
+                        {lastUserMessage.content}
+                      </p>
                     </div>
-                  ) : (
-                    messages
-                      .filter((message) => message.role === "assistant")
-                      .slice(-1)
-                      .map((message) => (
+                  )}
+
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      {isLoading ? (
+                        <TypingDots />
+                      ) : lastAssistantMessage && lastAssistantMessage.id !== "1" ? (
                         <motion.div
-                          key={message.id}
+                          key={lastAssistantMessage.id}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.3 }}
@@ -394,13 +429,40 @@ Keep responses concise, friendly, and focused on Yash's professional background.
                           </div>
                           <div className="flex-1">
                             <AnimatedMarkdownRenderer
-                              content={message.content}
+                              content={lastAssistantMessage.content}
                               className="text-base leading-relaxed"
                             />
                           </div>
                         </motion.div>
-                      ))
-                  )}
+                      ) : null}
+                    </div>
+
+                    {/* Top-right actions */}
+                    <div className="flex items-center gap-1 ml-2 flex-shrink-0">
+                      {!isLoading && lastAssistantMessage && lastAssistantMessage.id !== "1" && (
+                        <button
+                          onClick={() => handleCopy(lastAssistantMessage.content)}
+                          className="p-1 rounded-md hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-colors"
+                          title="Copy response"
+                        >
+                          {copied ? (
+                            <Check className="h-3.5 w-3.5 text-green-500" />
+                          ) : (
+                            <Copy className="h-3.5 w-3.5" />
+                          )}
+                        </button>
+                      )}
+                      {messages.length > 1 && !isLoading && (
+                        <button
+                          onClick={() => setMessages([initialMessage])}
+                          className="p-1 rounded-md hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-colors"
+                          title="Clear response"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>

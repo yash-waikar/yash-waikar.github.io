@@ -41,6 +41,7 @@ export function PlaceholdersAndVanishInput({
       }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [placeholders]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -130,7 +131,7 @@ export function PlaceholdersAndVanishInput({
         if (ctx) {
           ctx.clearRect(pos, 0, 800, 800);
           newDataRef.current.forEach((t) => {
-            const { x: n, y: i, r: s, color: color } = t;
+            const { x: n, y: i, r: s, color } = t;
             if (n > pos) {
               ctx.beginPath();
               ctx.rect(n, i, s, s);

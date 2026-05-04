@@ -14,6 +14,7 @@ import "./index.css";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrollProgress, setScrollProgress] = useState(0);
   const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -25,8 +26,15 @@ function App() {
   useEffect(() => {
     let velocity = 0;
     let rafId: number | null = null;
-    const FRICTION = 0.88;      // velocity multiplied each frame (lower = stops faster)
-    const MIN_VELOCITY = 0.5;  // below this we stop the loop
+    const FRICTION = 0.88;
+    const MIN_VELOCITY = 0.5;
+
+    function updateProgress() {
+      if (!mainRef.current) return;
+      const { scrollLeft, scrollWidth, clientWidth } = mainRef.current;
+      const max = scrollWidth - clientWidth;
+      setScrollProgress(max > 0 ? scrollLeft / max : 0);
+    }
 
     function animate() {
       if (!mainRef.current) return;
@@ -37,6 +45,7 @@ function App() {
       }
       mainRef.current.scrollLeft += velocity;
       velocity *= FRICTION;
+      updateProgress();
       rafId = requestAnimationFrame(animate);
     }
 
@@ -45,22 +54,26 @@ function App() {
       if (e.shiftKey) return;
       e.preventDefault();
 
-      // Add wheel delta to velocity (handles both trackpads and mouse wheels)
       velocity += e.deltaY * 0.6;
 
-      // Kick off animation loop if not already running
       if (rafId === null) {
         rafId = requestAnimationFrame(animate);
       }
     };
 
+    const handleScroll = () => updateProgress();
+
     const mainElement = mainRef.current;
     if (mainElement) {
       mainElement.addEventListener("wheel", handleWheel, { passive: false });
+      mainElement.addEventListener("scroll", handleScroll, { passive: true });
     }
 
     return () => {
-      if (mainElement) mainElement.removeEventListener("wheel", handleWheel);
+      if (mainElement) {
+        mainElement.removeEventListener("wheel", handleWheel);
+        mainElement.removeEventListener("scroll", handleScroll);
+      }
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
@@ -77,7 +90,7 @@ function App() {
       },
       {
         root: mainRef.current,
-        threshold: 0.5, // Section is considered active when 50% in view
+        threshold: 0.5,
       },
     );
 
@@ -95,14 +108,12 @@ function App() {
     const element = document.getElementById(id);
     if (!element || !mainRef.current) return;
 
-    // For desktop (horizontal scroll)
     if (window.innerWidth >= 768) {
       mainRef.current.scrollTo({
         left: element.offsetLeft - mainRef.current.offsetLeft,
         behavior: "smooth",
       });
     } else {
-      // For mobile (vertical scroll)
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -116,6 +127,14 @@ function App() {
         animate={{ opacity: isLoading ? 0 : 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
+        {/* Horizontal scroll progress bar — desktop only */}
+        <div className="hidden md:block fixed top-0 left-0 right-0 z-[100] h-[2px] bg-white/[0.05]">
+          <motion.div
+            className="h-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-violet-500"
+            style={{ scaleX: scrollProgress, transformOrigin: "left" }}
+          />
+        </div>
+
         <div
           className="fixed inset-0"
           style={{ zIndex: -1, background: "#000000" }}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { motion } from "motion/react";
 import { cn } from "../../lib/utils";
@@ -34,14 +34,14 @@ export function HoverBorderGradient({
 
   const Component = Tag as any;
 
-  const rotateDirection = (currentDirection: Direction): Direction => {
+  const rotateDirection = useCallback((currentDirection: Direction): Direction => {
     const directions: Direction[] = ["TOP", "LEFT", "BOTTOM", "RIGHT"];
     const currentIndex = directions.indexOf(currentDirection);
     const nextIndex = clockwise
       ? (currentIndex - 1 + directions.length) % directions.length
       : (currentIndex + 1) % directions.length;
     return directions[nextIndex];
-  };
+  }, [clockwise]);
 
   const movingMap: Record<Direction, string> = accentColor
     ? {
@@ -81,7 +81,7 @@ export function HoverBorderGradient({
       }, duration * 1000);
       return () => clearInterval(interval);
     }
-  }, [hovered, disableAnimation]);
+  }, [hovered, disableAnimation, duration, rotateDirection]);
   return (
     <Component
       onMouseEnter={(event: React.MouseEvent<HTMLDivElement>) => {

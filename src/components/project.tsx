@@ -14,8 +14,7 @@ import {
 } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { AnimatedButton } from "./ui/animated-button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 
@@ -68,6 +67,14 @@ export function Projects() {
   };
 
   const projects = [
+    {
+      title: "BridgeAI",
+      description:
+        "AI-powered client-vendor collaboration platform that replaces scattered email threads with a shared workspace. Uses a RAG pipeline with pgvector and Claude to enable semantic Q&A over uploaded contracts and SOWs.",
+      image: "/assets/img/Poppins (6).png",
+      tags: ["Next.js", "Supabase", "Claude API", "pgvector", "RAG"],
+      demo: null,
+    },
     {
       title: "Ticket Toast",
       description:
@@ -132,21 +139,10 @@ export function Projects() {
       github: "https://github.com/yashwaikar/AI-Pitch-Deck-Analyzer",
       demo: null,
     },
-
-    {
-      title: "InThrift",
-      description:
-        "Cross-platform thrift store app for Indian ethnic wear, built with React Native, Expo Router, and Lucide React Native. Features photo uploads, search, filters, user profiles, and a vibrant UI.",
-      image: "/assets/img/project-img5.png",
-      tags: ["React Native", "Expo", "Expo Router", "UI/UX"],
-      demo: null,
-    },
   ];
 
   return (
-    <section
-      className="relative h-auto md:h-screen w-full md:w-max flex flex-col justify-start md:justify-center py-20 md:py-0 pr-4 md:pr-12"
-    >
+    <section className="relative h-auto md:h-screen w-full md:w-max flex flex-col justify-start md:justify-center py-20 md:py-0 pr-4 md:pr-12">
       <div className="px-4 md:px-6 relative z-10 w-full md:w-max flex flex-col md:flex-row md:h-screen md:items-center">
         <div className="flex flex-col items-start space-y-4 mb-12 shrink-0 md:mb-0 md:mr-12 md:w-[350px]">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -166,7 +162,7 @@ export function Projects() {
                 style={{ height: "100%" }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.08 }}
                 viewport={{ once: true, margin: "100px" }}
               >
                 <HoverBorderGradient
@@ -212,6 +208,7 @@ export function Projects() {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
+                            <Github className="mr-1.5 h-3.5 w-3.5" />
                             Code
                           </a>
                         </Button>

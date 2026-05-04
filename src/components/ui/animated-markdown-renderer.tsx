@@ -46,14 +46,13 @@ export const AnimatedMarkdownRenderer: React.FC<
         setTimeout(() => setIsAnimating(false), 200);
       });
     }
-  }, [scope.current, isAnimating, animate, filter, duration]);
+  }, [isAnimating, animate, filter, duration]);
 
   const newDataRef = React.useRef<any[]>([]);
   
   
-  const words = content.split(" ");
   useEffect(() => {
-    newDataRef.current = words.map((word, index) => ({
+    newDataRef.current = content.split(" ").map((word, index) => ({
       word,
       id: index,
     }));

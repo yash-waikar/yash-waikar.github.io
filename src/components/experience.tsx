@@ -221,7 +221,7 @@ export function Experience() {
               Experience & Education
             </h2>
             <p className="mt-4 max-w-[700px] text-muted-foreground">
-              1+ year of professional experience in the software industry
+              2+ years of professional experience in the software industry
             </p>
           </motion.div>
         </div>
