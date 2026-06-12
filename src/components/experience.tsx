@@ -9,6 +9,69 @@ import BorderGlow from "./BorderGlow";
 export function Experience() {
   const timelineData = [
     {
+      title: "April 2026",
+      content: (
+        <div className="space-y-4">
+          <BorderGlow
+            className="w-full rounded-lg"
+            backgroundColor="#000000"
+            glowColor="280 80 80"
+          >
+            <div className="relative p-6 overflow-hidden">
+              <img
+                src="/assets/img/company1 Logo.jpeg"
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-4 -bottom-4 h-36 w-36 object-contain opacity-[0.07] select-none"
+              />
+              <Badge
+                variant="outline"
+                className="absolute top-4 right-4 text-xs whitespace-nowrap"
+              >
+                April 2026
+              </Badge>
+
+              <div className="mb-3 pr-24 sm:pr-0">
+                <div className="flex items-center mb-2">
+                  <Briefcase className="mr-2 h-5 w-5 text-white-600" />
+                  <h3 className="text-xl font-bold">
+                    AI Training & Facilitation Specialist
+                  </h3>
+                </div>
+                <Badge variant="secondary" className="ml-7">
+                  Ampcus Inc.
+                </Badge>
+              </div>
+              <p className="text-muted-foreground mb-4">
+                Selected for an Agentic AI Pilot Program with Amazon and
+                Salesforce, enabling 9+ small business clients through 1‑on‑1
+                consulting and instructor‑led workshops. Design agent
+                architectures on AWS Bedrock AgentCore and Salesforce
+                Agentforce — including RAG pipelines, action groups, and HITL
+                checkpoints.
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "AWS Bedrock",
+                  "AgentCore",
+                  "Salesforce Agentforce",
+                  "RAG",
+                  "Agentic AI",
+                  "HITL",
+                  "Responsible AI",
+                ].map((skill) => (
+                  <Badge key={skill} variant="outline">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </BorderGlow>
+        </div>
+      ),
+    },
+    {
       title: "January 2025",
       content: (
         <div className="space-y-4">
