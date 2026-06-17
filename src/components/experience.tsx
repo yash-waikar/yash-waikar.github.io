@@ -38,9 +38,24 @@ export function Experience() {
                     AI Training & Facilitation Specialist
                   </h3>
                 </div>
-                <Badge variant="secondary" className="ml-7">
-                  Ampcus Inc.
-                </Badge>
+                <div className="ml-7 flex items-center gap-3">
+                  <Badge variant="secondary">Ampcus Inc.</Badge>
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/assets/img/amazon-logo.svg"
+                      alt="Amazon"
+                      className="h-4 w-auto object-contain select-none opacity-60 brightness-0 invert"
+                    />
+                    <span className="text-[10px] text-muted-foreground opacity-60">
+                      ×
+                    </span>
+                    <img
+                      src="/assets/img/salesforce-logo.svg"
+                      alt="Salesforce"
+                      className="h-5 w-auto object-contain select-none opacity-70"
+                    />
+                  </div>
+                </div>
               </div>
               <p className="text-muted-foreground mb-4">
                 Selected for an Agentic AI Pilot Program with Amazon and
