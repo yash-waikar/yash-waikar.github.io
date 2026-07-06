@@ -76,7 +76,28 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    zoom: 0.8;
+  }
+
+  @media (min-width: 768px) and (max-width: 1600px) {
+    html {
+      font-size: 87.5%;
+    }
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  main::-webkit-scrollbar {
+    display: none;
+  }
+  main {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   section {

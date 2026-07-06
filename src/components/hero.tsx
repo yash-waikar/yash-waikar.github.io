@@ -134,7 +134,7 @@ export function Hero() {
         contain: "layout style paint",
       }}
     >
-      <div className="container px-4 md:px-6 relative z-10">
+      <div className="container px-4 md:pl-24 lg:pl-32 md:pr-6 relative z-10">
         <div className="flex flex-col items-start">
           <div className="max-w-4xl">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
