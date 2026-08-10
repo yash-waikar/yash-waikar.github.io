@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Github, Linkedin } from "lucide-react";
 import { cn } from "../lib/utils";
+import GlassSurface from "./GlassSurface";
 
 const navLinks = [
   { label: "Home", href: "#home", id: "home" },
@@ -30,64 +31,79 @@ export function Navbar({ activeSection = "home", onNavClick }: NavbarProps) {
   return (
     <nav className="fixed top-6 left-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl -translate-x-1/2">
       {/* Desktop Navbar */}
-      <div className="hidden md:flex items-center justify-between rounded-full border border-white/[0.08] bg-neutral-950/70 px-4 py-2 shadow-lg backdrop-blur-xl">
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 text-white">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 transition-colors hover:bg-white/20">
-            <span className="text-xs font-bold text-white leading-none">
-              YW
-            </span>
-          </div>
-        </a>
+      <GlassSurface
+        width="100%"
+        height={56}
+        borderRadius={999}
+        className="hidden md:flex"
+        displace={0.5}
+        distortionScale={-180}
+        redOffset={0}
+        greenOffset={10}
+        blueOffset={20}
+        brightness={50}
+        opacity={0.93}
+        mixBlendMode="screen"
+      >
+        <div className="flex w-full items-center justify-between px-4">
+          {/* Logo */}
+          <a href="#home" className="flex items-center gap-2 text-foreground">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground/10 transition-colors hover:bg-foreground/20">
+              <span className="text-xs font-bold leading-none">YW</span>
+            </div>
+          </a>
 
-        {/* Nav Links */}
-        <div className="flex items-center gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.id)}
-              className={cn(
-                "relative rounded-full px-4 py-1.5 text-sm transition-colors hover:text-white hover:bg-white/[0.06]",
-                activeSection === link.id
-                  ? "text-white bg-white/[0.08]"
-                  : "text-neutral-400",
-              )}
-            >
-              {link.label}
-              {/* Active dot indicator */}
-              <span
+          {/* Nav Links */}
+          <div className="flex items-center gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.id)}
                 className={cn(
-                  "absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] w-[3px] rounded-full bg-violet-400 transition-all duration-300",
-                  activeSection === link.id ? "opacity-100 scale-100" : "opacity-0 scale-0",
+                  "relative rounded-full px-4 py-1.5 text-sm transition-colors hover:text-foreground hover:bg-foreground/[0.06]",
+                  activeSection === link.id
+                    ? "text-foreground bg-foreground/[0.08]"
+                    : "text-muted-foreground",
                 )}
-              />
-            </a>
-          ))}
-        </div>
+              >
+                {link.label}
+                {/* Active dot indicator */}
+                <span
+                  className={cn(
+                    "absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] w-[3px] rounded-full bg-violet-400 transition-all duration-300",
+                    activeSection === link.id
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-0",
+                  )}
+                />
+              </a>
+            ))}
+          </div>
 
-        {/* Social Links */}
-        <div className="flex items-center gap-1">
-          <a
-            href="https://github.com/yash-waikar"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
-            aria-label="GitHub"
-          >
-            <Github size={16} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/yash-waikar-509866202/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:text-white hover:bg-white/[0.06]"
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={16} />
-          </a>
+          {/* Social Links */}
+          <div className="flex items-center gap-1">
+            <a
+              href="https://github.com/yash-waikar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-foreground/[0.06]"
+              aria-label="GitHub"
+            >
+              <Github size={16} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/yash-waikar-509866202/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-foreground/[0.06]"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={16} />
+            </a>
+          </div>
         </div>
-      </div>
+      </GlassSurface>
 
       {/* Mobile Navbar */}
       <div className="flex md:hidden flex-col rounded-2xl border border-white/[0.08] bg-neutral-950/70 shadow-lg backdrop-blur-xl overflow-hidden">

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "motion/react";
+import { motion, useMotionValue } from "motion/react";
 import { ThemeProvider } from "./components/theme-provider";
 import { Navbar } from "./components/navbar";
 import { Hero } from "./components/hero";
@@ -8,13 +8,15 @@ import { Experience } from "./components/experience";
 import { Footer } from "./components/footer";
 import { LoadingScreen } from "./components/LoadingScreen";
 import GradualBlur from "./components/GradualBlur";
-import SoftAurora from "./components/SoftAurora";
+import Strands from "./components/Strands";
 import "./index.css";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const activeSectionRef = useRef("home");
+  activeSectionRef.current = activeSection;
+  const scrollProgress = useMotionValue(0);
   const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -26,14 +28,15 @@ function App() {
   useEffect(() => {
     let velocity = 0;
     let rafId: number | null = null;
-    const FRICTION = 0.88;
-    const MIN_VELOCITY = 0.5;
+    const FRICTION = 0.9;
+    const MIN_VELOCITY = 0.2;
+    const WHEEL_MULT = 0.55;
 
     function updateProgress() {
       if (!mainRef.current) return;
       const { scrollLeft, scrollWidth, clientWidth } = mainRef.current;
       const max = scrollWidth - clientWidth;
-      setScrollProgress(max > 0 ? scrollLeft / max : 0);
+      scrollProgress.set(max > 0 ? scrollLeft / max : 0);
     }
 
     function animate() {
@@ -54,7 +57,7 @@ function App() {
       if (e.shiftKey) return;
       e.preventDefault();
 
-      velocity += e.deltaY * 0.6;
+      velocity += e.deltaY * WHEEL_MULT;
 
       if (rafId === null) {
         rafId = requestAnimationFrame(animate);
@@ -76,6 +79,7 @@ function App() {
       }
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Use Intersection Observer to track active section
@@ -118,8 +122,35 @@ function App() {
     }
   };
 
+  // Arrow-key navigation between sections — desktop only
+  useEffect(() => {
+    const sections = ["home", "projects", "experience"];
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (window.innerWidth < 768) return;
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      // Don't hijack arrows while typing in inputs
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+
+      const current = sections.indexOf(activeSectionRef.current);
+      const next =
+        e.key === "ArrowRight"
+          ? Math.min(current + 1, sections.length - 1)
+          : Math.max(current - 1, 0);
+      if (next !== current) {
+        e.preventDefault();
+        scrollToSection(sections[next]);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <ThemeProvider defaultTheme="dark">
+    <ThemeProvider defaultTheme="light">
       <LoadingScreen isLoading={isLoading} />
 
       <motion.div
@@ -128,7 +159,7 @@ function App() {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         {/* Horizontal scroll progress bar — desktop only */}
-        <div className="hidden md:block fixed top-0 left-0 right-0 z-[100] h-[2px] bg-white/[0.05]">
+        <div className="hidden md:block fixed top-0 left-0 right-0 z-[100] h-[2px] bg-foreground/[0.06]">
           <motion.div
             className="h-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-violet-500"
             style={{ scaleX: scrollProgress, transformOrigin: "left" }}
@@ -137,30 +168,45 @@ function App() {
 
         <div
           className="fixed inset-0"
-          style={{ zIndex: -1, background: "#000000" }}
+          style={{ zIndex: -1, background: "#ffffff" }}
         >
-          <SoftAurora
-            speed={0.6}
-            scale={1.5}
-            brightness={0.8}
-            color1="#f7f7f7"
-            color2="#e100ff"
-            noiseFrequency={2.5}
-            noiseAmplitude={1}
-            bandHeight={0.5}
-            bandSpread={1}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1}
-            enableMouseInteraction
-            mouseInfluence={0}
-          />
+          <div
+            className="absolute inset-0"
+            style={{
+              transform: "translateX(15%)",
+              filter: "blur(4px)",
+              WebkitFilter: "blur(4px)",
+              willChange: "transform",
+            }}
+          >
+            <Strands
+              colors={["#F97316", "#7C3AED", "#06B6D4"]}
+              count={3}
+              speed={0.2}
+              amplitude={1}
+              waviness={1}
+              thickness={0.7}
+              glow={2.6}
+              taper={3}
+              spread={1}
+              intensity={0.6}
+              saturation={2}
+              opacity={1}
+              scale={1.5}
+              glass={false}
+              refraction={1}
+              dispersion={1}
+              glassSize={1}
+              hueShift={0}
+            />
+          </div>
         </div>
         <div className="hidden md:block">
           <GradualBlur
             position="left"
-            strength={3}
+            strength={2}
             height="80px"
+            divCount={3}
             animated="scroll"
             zIndex={50}
             target="page"
@@ -169,8 +215,9 @@ function App() {
         <div className="hidden md:block">
           <GradualBlur
             position="right"
-            strength={3}
+            strength={2}
             height="80px"
+            divCount={3}
             animated="scroll"
             zIndex={50}
             target="page"

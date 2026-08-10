@@ -11,6 +11,7 @@ import {
   Github,
   Linkedin,
   Mail,
+  ChevronRight,
 } from "lucide-react";
 import { StarsBackground } from "./ui/stars";
 import { ShootingStars } from "./ui/shooting-stars";
@@ -147,18 +148,32 @@ export function Hero() {
                 <span>Engineer.</span>
               </div>
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-[600px]">
+            <p className="mt-6 text-lg text-foreground/80 max-w-[600px]">
               I design and build scalable, user-focused applications. Currently
               exploring AI automation workflows and building solutions in that
               space.
             </p>
-            <p className="mt-3 text-lg text-muted-foreground max-w-[600px]">
+            <p className="mt-3 text-lg text-foreground/80 max-w-[600px]">
               In my free time, you can find me singing and composing music.
             </p>
           </div>
           <Chatbot />
         </div>
       </div>
+
+      {/* Horizontal-scroll affordance — desktop only */}
+      <button
+        type="button"
+        onClick={() => (window.location.hash = "#projects")}
+        aria-label="Scroll to projects"
+        className="hidden md:flex absolute bottom-10 right-12 z-10 items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground group"
+      >
+        <span className="tracking-wide">scroll</span>
+        <span className="flex animate-scroll-hint">
+          <ChevronRight className="h-4 w-4 -mr-2.5" />
+          <ChevronRight className="h-4 w-4 opacity-50" />
+        </span>
+      </button>
 
       {typeof document !== "undefined" &&
         createPortal(

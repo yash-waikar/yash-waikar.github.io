@@ -14,7 +14,7 @@ export function Experience() {
         <div className="space-y-4">
           <BorderGlow
             className="w-full rounded-lg"
-            backgroundColor="#000000"
+            backgroundColor="#ffffff"
             glowColor="280 80 80"
           >
             <div className="relative p-6 overflow-hidden">
@@ -44,7 +44,7 @@ export function Experience() {
                     <img
                       src="/assets/img/amazon-logo.svg"
                       alt="Amazon"
-                      className="h-4 w-auto object-contain select-none opacity-60 brightness-0 invert"
+                      className="h-4 w-auto object-contain select-none opacity-70"
                     />
                     <span className="text-[10px] text-muted-foreground opacity-60">
                       ×
@@ -92,7 +92,7 @@ export function Experience() {
         <div className="space-y-4">
           <BorderGlow
             className="w-full rounded-lg"
-            backgroundColor="#000000"
+            backgroundColor="#ffffff"
             glowColor="280 80 80"
           >
             <div className="relative p-6 overflow-hidden">
@@ -154,7 +154,7 @@ export function Experience() {
         <div className="space-y-4">
           <BorderGlow
             className="w-full rounded-lg"
-            backgroundColor="#000000"
+            backgroundColor="#ffffff"
             glowColor="138 60 38"
           >
             <div className="relative p-6 overflow-hidden">
@@ -194,7 +194,7 @@ export function Experience() {
         <div className="space-y-4">
           <BorderGlow
             className="w-full rounded-lg"
-            backgroundColor="#000000"
+            backgroundColor="#ffffff"
             glowColor="280 80 80"
           >
             <div className="relative p-6 overflow-hidden">
@@ -260,7 +260,7 @@ export function Experience() {
         <div className="space-y-4">
           <BorderGlow
             className="w-full rounded-lg"
-            backgroundColor="#000000"
+            backgroundColor="#ffffff"
             glowColor="211 85 48"
           >
             <div className="relative p-6">

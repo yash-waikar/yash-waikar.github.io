@@ -4,19 +4,10 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ExternalLink, Github } from "lucide-react";
-import { GlowingEffect } from "./ui/glowing-effect";
-import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { GlassProjectCard } from "./ui/glass-project-card";
 
 import { EmailForm } from "./ui/email-form";
 import { sendEmail, type EmailData } from "../services/emailService";
@@ -152,11 +143,11 @@ export function Projects() {
             some side quests I have worked on.
           </p>
         </div>
-        <div className="flex flex-col md:flex-row gap-24 pb-12 md:pb-0 md:h-[550px] items-stretch">
+        <div className="flex flex-col md:flex-row gap-10 pb-12 md:pb-0 items-center">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="w-[85vw] sm:w-[420px] md:w-[450px] shrink-0 h-full"
+              className="w-[85vw] h-[540px] sm:w-[360px] md:w-[360px] md:h-[540px] shrink-0"
             >
               <motion.div
                 style={{ height: "100%" }}
@@ -165,82 +156,68 @@ export function Projects() {
                 transition={{ duration: 0.3, delay: index * 0.08 }}
                 viewport={{ once: true, margin: "100px" }}
               >
-                <HoverBorderGradient
-                  as="div"
-                  containerClassName="rounded-xl p-0.5 w-full max-w-none h-full bg-transparent"
-                  className="p-0 w-full h-full"
+                <GlassProjectCard
+                  index={index}
+                  image={project.image}
+                  title={project.title}
                 >
-                  <Card className="flex h-full flex-col overflow-hidden border-0 bg-transparent transition-colors relative w-full">
-                    <GlowingEffect
-                      blur={80}
-                      spread={250}
-                      glow
-                      disabled={false}
-                      className="z-0"
-                    />
-                    <div className="h-40 w-full overflow-hidden bg-muted">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="h-full w-full object-cover transition-transform hover:scale-105 duration-500"
-                      />
-                    </div>
-                    <CardHeader className="text-center">
-                      <CardTitle>{project.title}</CardTitle>
-                      <div className="flex flex-wrap justify-center gap-2 pt-2">
-                        {project.tags.map((tag: string, i: number) => (
-                          <Badge key={i} variant="secondary">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardHeader>
-                    <CardContent className="flex-1 flex flex-col">
-                      <CardDescription className="text-sm text-muted-foreground text-center flex-1">
-                        {project.description}
-                      </CardDescription>
-                    </CardContent>
-                    <CardFooter className="mt-auto flex justify-center gap-4 flex-shrink-0">
-                      {project.github ? (
-                        <Button variant="outline" size="sm" asChild>
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Github className="mr-1.5 h-3.5 w-3.5" />
-                            Code
-                          </a>
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() =>
-                            setEmailForm({
-                              isOpen: true,
-                              projectName: project.title,
-                            })
-                          }
+                  <h3 className="text-lg font-semibold tracking-tight">
+                    {project.title}
+                  </h3>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {project.tags.map((tag: string, i: number) => (
+                      <Badge
+                        key={i}
+                        variant="secondary"
+                        className="text-[10px]"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
+                  <div className="mt-6 flex flex-shrink-0 gap-2">
+                    {project.github ? (
+                      <Button variant="outline" size="sm" asChild>
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          Request Demo
-                        </Button>
-                      )}
-                      {project.demo && (
-                        <Button size="sm" asChild>
-                          <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Demo
-                          </a>
-                        </Button>
-                      )}
-                    </CardFooter>
-                  </Card>
-                </HoverBorderGradient>
+                          <Github className="mr-1.5 h-3.5 w-3.5" />
+                          Code
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() =>
+                          setEmailForm({
+                            isOpen: true,
+                            projectName: project.title,
+                          })
+                        }
+                      >
+                        Request Demo
+                      </Button>
+                    )}
+                    {project.demo && (
+                      <Button size="sm" asChild>
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                          Demo
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </GlassProjectCard>
               </motion.div>
             </div>
           ))}
