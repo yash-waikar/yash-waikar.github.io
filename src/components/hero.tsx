@@ -1,54 +1,18 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "./ui/button";
-import {
-  Home,
-  Folder,
-  Code,
-  Briefcase,
-  Github,
-  Linkedin,
-  Mail,
-  ChevronRight,
-} from "lucide-react";
-import { StarsBackground } from "./ui/stars";
-import { ShootingStars } from "./ui/shooting-stars";
-import { LimelightNavVertical } from "./ui/limelite-dock";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { TextShimmer } from "./ui/shimmer-text";
-import { CometCard } from "./ui/comet-card";
-import { Chatbot } from "./chatbot";
+import { OpenToWorkNote } from "./ui/open-to-work-note";
 import { EmailForm } from "./ui/email-form";
 import { sendEmail, type EmailData } from "../services/emailService";
 import { toast } from "sonner";
 
 export function Hero() {
-  const [currentWord, setCurrentWord] = useState(0);
   const [emailFormOpen, setEmailFormOpen] = useState(false);
   const [isEmailLoading, setIsEmailLoading] = useState(false);
-  const words = ["Software"];
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 4000);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [words.length]);
-
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
 
   const handleEmailSubmit = async (data: {
     name: string;
@@ -82,98 +46,66 @@ export function Hero() {
     }
   };
 
-  const navItems = [
-    {
-      id: "home",
-      icon: <Home className="w-6 h-6" />,
-      label: "Home",
-      onClick: () => (window.location.hash = "#home"),
-    },
-    {
-      id: "projects",
-      icon: <Folder className="w-6 h-6" />,
-      label: "Projects",
-      onClick: () => (window.location.hash = "#projects"),
-    },
-
-    {
-      id: "experience",
-      icon: <Briefcase className="w-6 h-6" />,
-      label: "Experience",
-      onClick: () => (window.location.hash = "#experience"),
-    },
-    {
-      id: "email",
-      icon: <Mail className="w-6 h-6" />,
-      label: "Contact",
-      onClick: () => setEmailFormOpen(true),
-    },
-    {
-      id: "github",
-      icon: <Github className="w-6 h-6" />,
-      label: "GitHub",
-      onClick: () =>
-        window.open("https://github.com/yash-waikar", "_blank", "noopener"),
-    },
-    {
-      id: "linkedin",
-      icon: <Linkedin className="w-6 h-6" />,
-      label: "LinkedIn",
-      onClick: () =>
-        window.open(
-          "https://www.linkedin.com/in/yash-waikar-509866202/",
-          "_blank",
-          "noopener",
-        ),
-    },
-  ];
-
   return (
-    <section
-      className="relative mt-16 min-h-[calc(100vh-4rem)] flex items-center overflow-hidden"
-      style={{
-        contain: "layout style paint",
-      }}
-    >
-      <div className="container px-4 md:pl-24 lg:pl-32 md:pr-6 relative z-10">
-        <div className="flex flex-col items-start">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-              Yash Waikar.
-              <br />
-              <div className="flex items-baseline flex-wrap gap-x-2">
-                <span className="relative inline-flex">
-                  <TextShimmer>Software</TextShimmer>
-                </span>
-                <span>Engineer.</span>
-              </div>
-            </h1>
-            <p className="mt-6 text-lg text-foreground/80 max-w-[600px]">
-              I design and build scalable, user-focused applications. Currently
-              exploring AI automation workflows and building solutions in that
-              space.
-            </p>
-            <p className="mt-3 text-lg text-foreground/80 max-w-[600px]">
-              In my free time, you can find me singing and composing music.
-            </p>
-          </div>
-          <Chatbot />
+    <section className="container relative flex min-h-screen flex-col justify-center px-4 py-24 md:px-6">
+      <div className="relative z-10 mx-auto max-w-3xl">
+        <h1 className="text-center text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+          Yash Waikar.
+          <br />
+          <span className="flex w-full flex-wrap items-baseline justify-center gap-x-2 sm:flex-nowrap sm:whitespace-nowrap">
+            <span className="relative inline-flex">
+              <TextShimmer>Software</TextShimmer>
+            </span>
+            <span>Engineer.</span>
+          </span>
+        </h1>
+
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <Button size="lg" onClick={() => setEmailFormOpen(true)}>
+            <Mail className="mr-1.5 h-4 w-4" />
+            Get in touch
+          </Button>
+          <Button size="lg" variant="outline" asChild>
+            <a
+              href="https://github.com/yash-waikar"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="mr-1.5 h-4 w-4" />
+              GitHub
+            </a>
+          </Button>
+          <OpenToWorkNote onClick={() => setEmailFormOpen(true)} />
+        </div>
+
+        <div className="mt-8 flex items-center gap-4">
+          <a
+            href="https://github.com/yash-waikar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="GitHub"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/yash-waikar-509866202/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="h-5 w-5" />
+          </a>
+          <a
+            href="mailto:yashpwaikar@gmail.com"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="Email"
+          >
+            <Mail className="h-5 w-5" />
+          </a>
         </div>
       </div>
-
-      {/* Horizontal-scroll affordance — desktop only */}
-      <button
-        type="button"
-        onClick={() => (window.location.hash = "#projects")}
-        aria-label="Scroll to projects"
-        className="hidden md:flex absolute bottom-10 right-12 z-10 items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground group"
-      >
-        <span className="tracking-wide">scroll</span>
-        <span className="flex animate-scroll-hint">
-          <ChevronRight className="h-4 w-4 -mr-2.5" />
-          <ChevronRight className="h-4 w-4 opacity-50" />
-        </span>
-      </button>
 
       {typeof document !== "undefined" &&
         createPortal(

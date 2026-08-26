@@ -1,311 +1,209 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { Timeline } from "./ui/timeline";
 import { Badge } from "./ui/badge";
-import { GraduationCap, Briefcase } from "lucide-react";
-import BorderGlow from "./BorderGlow";
+import { Card } from "./ui/card";
+import { GraduationCap, Briefcase, ChevronDown } from "lucide-react";
+import { cn } from "../lib/utils";
 
-export function Experience() {
-  const timelineData = [
-    {
-      title: "April 2026",
-      content: (
-        <div className="space-y-4">
-          <BorderGlow
-            className="w-full rounded-lg"
-            backgroundColor="#ffffff"
-            glowColor="280 80 80"
-          >
-            <div className="relative p-6 overflow-hidden">
-              <img
-                src="/assets/img/company1 Logo.jpeg"
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-4 -bottom-4 h-36 w-36 object-contain opacity-[0.07] select-none"
-              />
-              <Badge
-                variant="outline"
-                className="absolute top-4 right-4 text-xs whitespace-nowrap"
-              >
-                April 2026
-              </Badge>
+type ExperienceEntry = {
+  date: string;
+  icon: "briefcase" | "grad";
+  title: string;
+  org?: string;
+  logo?: string;
+  extraLogo?: { src: string; alt: string };
+  subtitle?: string;
+  description?: string;
+  tags?: string[];
+};
 
-              <div className="mb-3 pr-24 sm:pr-0">
-                <div className="flex items-center mb-2">
-                  <Briefcase className="mr-2 h-5 w-5 text-white-600" />
-                  <h3 className="text-xl font-bold">
-                    AI Training & Facilitation Specialist
-                  </h3>
-                </div>
-                <div className="ml-7 flex items-center gap-3">
-                  <Badge variant="secondary">Ampcus Inc.</Badge>
-                  <div className="flex items-center gap-2">
-                    <img
-                      src="/assets/img/amazon-logo.svg"
-                      alt="Amazon"
-                      className="h-4 w-auto object-contain select-none opacity-70"
-                    />
-                    <span className="text-[10px] text-muted-foreground opacity-60">
-                      ×
-                    </span>
-                    <img
-                      src="/assets/img/salesforce-logo.svg"
-                      alt="Salesforce"
-                      className="h-5 w-auto object-contain select-none opacity-70"
-                    />
-                  </div>
-                </div>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                Selected for an Agentic AI Pilot Program with Amazon and
-                Salesforce, enabling 9+ small business clients through 1‑on‑1
-                consulting and instructor‑led workshops. Design agent
-                architectures on AWS Bedrock AgentCore and Salesforce
-                Agentforce — including RAG pipelines, action groups, and HITL
-                checkpoints.
-              </p>
+const entries: ExperienceEntry[] = [
+  {
+    date: "April 2026",
+    icon: "briefcase",
+    title: "AI Training & Facilitation Specialist",
+    org: "Ampcus Inc.",
+    logo: "/assets/img/company1 Logo.jpeg",
+    extraLogo: { src: "/assets/img/amazon-logo.svg", alt: "Amazon" },
+    description:
+      "Selected for an Agentic AI Pilot Program with Amazon and Salesforce, enabling 9+ small business clients through 1‑on‑1 consulting and instructor‑led workshops. Design agent architectures on AWS Bedrock AgentCore and Salesforce Agentforce — including RAG pipelines, action groups, and HITL checkpoints.",
+    tags: [
+      "AWS Bedrock",
+      "AgentCore",
+      "Salesforce Agentforce",
+      "RAG",
+      "Agentic AI",
+      "HITL",
+      "Responsible AI",
+    ],
+  },
+  {
+    date: "January 2025",
+    icon: "briefcase",
+    title: "Software Engineer",
+    org: "Ampcus Inc.",
+    logo: "/assets/img/company1 Logo.jpeg",
+    description:
+      "Driving AI and frontend development for multiple SaaS applications—from a pharmaceutical serialization app to an AI automation platform—delivering client‑facing and human‑in‑the‑loop workflows. Happy to connect over coffee if you'd like to hear more!",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Zustand",
+      "React Query",
+      "Node.js",
+      "Salesforce",
+    ],
+  },
+  {
+    date: "December 2024",
+    icon: "grad",
+    title: "B.S in Computer Science",
+    subtitle: "George Mason University",
+    logo: "/assets/img/George Mason Logo.png",
+    description:
+      "Relevant Coursework: Algorithms, Operating Systems, Data Structures, Formal Methods, Computer Systems, Database Concepts, Object-Oriented Programming, Web App Development",
+  },
+  {
+    date: "September 2024",
+    icon: "briefcase",
+    title: "Software Engineer Intern",
+    org: "Ampcus Inc.",
+    logo: "/assets/img/company1 Logo.jpeg",
+    description:
+      "Refactored old codebases to use client‑side state management using Zustand, optimizing user state handling and overall application performance. Utilized Git version control and Azure DevOps for branch management, bug tracking, and work item management",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Zustand",
+      "React Query",
+      "Node.js",
+      "Salesforce",
+    ],
+  },
+  {
+    date: "May 2022",
+    icon: "grad",
+    title: "A.S in Computer Science",
+    subtitle: "NOVA Community College",
+  },
+];
 
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "AWS Bedrock",
-                  "AgentCore",
-                  "Salesforce Agentforce",
-                  "RAG",
-                  "Agentic AI",
-                  "HITL",
-                  "Responsible AI",
-                ].map((skill) => (
-                  <Badge key={skill} variant="outline">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </BorderGlow>
-        </div>
-      ),
-    },
-    {
-      title: "January 2025",
-      content: (
-        <div className="space-y-4">
-          <BorderGlow
-            className="w-full rounded-lg"
-            backgroundColor="#ffffff"
-            glowColor="280 80 80"
-          >
-            <div className="relative p-6 overflow-hidden">
-              {/* Ampcus logo subtle background */}
-              <img
-                src="/assets/img/company1 Logo.jpeg"
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-4 -bottom-4 h-36 w-36 object-contain opacity-[0.07] select-none"
-              />
-              <Badge
-                variant="outline"
-                className="absolute top-4 right-4 text-xs whitespace-nowrap"
-              >
-                January 2025
-              </Badge>
-
-              <div className="mb-3 pr-24 sm:pr-0">
-                <div className="flex items-center mb-2">
-                  <Briefcase className="mr-2 h-5 w-5 text-white-600" />
-                  <h3 className="text-xl font-bold">Software Engineer</h3>
-                </div>
-                <Badge variant="secondary" className="ml-7">
-                  Ampcus Inc.
-                </Badge>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                Driving AI and frontend development for multiple SaaS
-                applications—from a pharmaceutical serialization app to an AI
-                automation platform—delivering client‑facing and
-                human‑in‑the‑loop workflows. Happy to connect over coffee if
-                you’d like to hear more!
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "Next.js",
-                  "TypeScript",
-                  "React",
-                  "Tailwind CSS",
-                  "Zustand",
-                  "React Query",
-                  "Node.js",
-                  "Salesforce",
-                ].map((skill) => (
-                  <Badge key={skill} variant="outline">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </BorderGlow>
-        </div>
-      ),
-    },
-    {
-      title: "December 2024",
-      content: (
-        <div className="space-y-4">
-          <BorderGlow
-            className="w-full rounded-lg"
-            backgroundColor="#ffffff"
-            glowColor="138 60 38"
-          >
-            <div className="relative p-6 overflow-hidden">
-              <img
-                src="/assets/img/George Mason Logo.png"
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-6 -bottom-4 h-40 w-40 object-contain opacity-[0.06] select-none"
-              />
-              <Badge
-                variant="outline"
-                className="absolute top-4 right-4 text-xs whitespace-nowrap"
-              >
-                December 2024
-              </Badge>
-
-              <div className="flex items-center mb-3 pr-24 sm:pr-0">
-                <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
-                <h3 className="text-xl font-bold">B.S in Computer Science</h3>
-              </div>
-              <p className="text-lg font-semibold text-muted-foreground mb-2">
-                George Mason University
-              </p>
-              <p className="text-muted-foreground">
-                Relevant Coursework: Algorithms, Operating Systems, Data
-                Structures, Formal Methods, Computer Systems, Database Concepts,
-                Object-Oriented Programming, Web App Development
-              </p>
-            </div>
-          </BorderGlow>
-        </div>
-      ),
-    },
-    {
-      title: "September 2024",
-      content: (
-        <div className="space-y-4">
-          <BorderGlow
-            className="w-full rounded-lg"
-            backgroundColor="#ffffff"
-            glowColor="280 80 80"
-          >
-            <div className="relative p-6 overflow-hidden">
-              {/* Ampcus logo subtle background */}
-              <img
-                src="/assets/img/company1 Logo.jpeg"
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-4 -bottom-4 h-36 w-36 object-contain opacity-[0.07] select-none"
-              />
-              <Badge
-                variant="outline"
-                className="absolute top-4 right-4 text-xs whitespace-nowrap"
-              >
-                September 2024
-              </Badge>
-
-              <div className="mb-3 pr-24 sm:pr-0">
-                <div className="flex items-center mb-2">
-                  <Briefcase className="mr-2 h-5 w-5 text-white-600" />
-                  <h3 className="text-xl font-bold">
-                    Software Engineer Intern
-                  </h3>
-                </div>
-                <Badge variant="secondary" className="ml-7">
-                  Ampcus Inc.
-                </Badge>
-              </div>
-
-              <p className="text-muted-foreground mb-4">
-                Refactored old codebases to use client‑side state management
-                using Zustand, optimizing user state handling and overall
-                application performance. Utilized Git version control and Azure
-                DevOps for branch management, bug tracking, and work item
-                management
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "Next.js",
-                  "TypeScript",
-                  "React",
-                  "Tailwind CSS",
-                  "Zustand",
-                  "React Query",
-                  "Node.js",
-                  "Salesforce",
-                ].map((skill) => (
-                  <Badge key={skill} variant="outline">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </BorderGlow>
-        </div>
-      ),
-    },
-
-    {
-      title: "May 2022",
-      content: (
-        <div className="space-y-4">
-          <BorderGlow
-            className="w-full rounded-lg"
-            backgroundColor="#ffffff"
-            glowColor="211 85 48"
-          >
-            <div className="relative p-6">
-              <Badge
-                variant="outline"
-                className="absolute top-4 right-4 text-xs whitespace-nowrap"
-              >
-                May 2022
-              </Badge>
-
-              <div className="flex items-center mb-3 pr-24 sm:pr-0">
-                <GraduationCap className="mr-2 h-5 w-5 text-white-200" />
-                <h3 className="text-xl font-bold">A.S in Computer Science</h3>
-              </div>
-              <p className="text-lg font-semibold text-muted-foreground">
-                NOVA Community College
-              </p>
-            </div>
-          </BorderGlow>
-        </div>
-      ),
-    },
-  ];
+function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
+  const [open, setOpen] = useState(false);
+  const hasDetails = Boolean(entry.description || entry.tags?.length);
+  const Icon = entry.icon === "grad" ? GraduationCap : Briefcase;
 
   return (
-    <section className="relative h-auto md:h-screen w-full flex flex-col justify-start md:justify-center pt-8 pb-16 md:py-0 px-4 md:pr-32 md:pl-[25vw] md:items-center overflow-hidden">
-      <div className="px-4 md:px-6 relative z-10 w-full md:w-max flex flex-col md:flex-row md:gap-24 lg:gap-32 md:h-screen md:items-center">
-        <div className="flex flex-col items-start space-y-4 mb-8 md:mb-0 shrink-0 md:w-[400px] md:sticky md:left-24 md:z-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl">
-              Experience & Education
-            </h2>
-            <p className="mt-4 max-w-[700px] text-muted-foreground">
-              2+ years of professional experience in the software industry
-            </p>
-          </motion.div>
+    <Card className="w-full p-0">
+      <button
+        type="button"
+        onClick={() => hasDetails && setOpen((prev) => !prev)}
+        className={cn(
+          "flex w-full items-start justify-between gap-3 p-6 text-left",
+          hasDetails && "cursor-pointer",
+        )}
+        aria-expanded={open}
+      >
+        <div className="flex items-start gap-3 min-w-0">
+          {entry.logo && (
+            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md border border-border bg-muted">
+              <img
+                src={entry.logo}
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          )}
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <Icon className="h-4 w-4 shrink-0 text-muted-foreground" />
+              <h3 className="text-lg font-semibold truncate">{entry.title}</h3>
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              {entry.org && <Badge variant="secondary">{entry.org}</Badge>}
+              {entry.subtitle && (
+                <span className="text-sm font-medium text-muted-foreground">
+                  {entry.subtitle}
+                </span>
+              )}
+              {entry.extraLogo && (
+                <img
+                  src={entry.extraLogo.src}
+                  alt={entry.extraLogo.alt}
+                  className="h-4 w-auto object-contain opacity-70"
+                />
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Timeline Container */}
-        <div className="flex w-full md:w-max pb-4 md:pb-0 md:h-[650px] items-start md:items-center relative">
+        <div className="flex shrink-0 items-center gap-2">
+          <Badge variant="outline" className="text-xs whitespace-nowrap">
+            {entry.date}
+          </Badge>
+          {hasDetails && (
+            <ChevronDown
+              className={cn(
+                "h-4 w-4 text-muted-foreground transition-transform duration-300",
+                open && "rotate-180",
+              )}
+            />
+          )}
+        </div>
+      </button>
+
+      {hasDetails && (
+        <div
+          className="grid transition-all duration-300 ease-in-out"
+          style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+        >
+          <div className="overflow-hidden">
+            <div className="px-6 pb-6">
+              {entry.description && (
+                <p className="text-muted-foreground">{entry.description}</p>
+              )}
+              {entry.tags && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {entry.tags.map((skill) => (
+                    <Badge key={skill} variant="outline">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </Card>
+  );
+}
+
+export function Experience() {
+  const timelineData = entries.map((entry) => ({
+    content: <ExperienceCard key={entry.title} entry={entry} />,
+  }));
+
+  return (
+    <section className="py-24 md:py-32">
+      <div className="container px-4 md:px-6">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+            Experience & Education
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            2+ years of professional experience in the software industry
+          </p>
+        </div>
+
+        <div className="mx-auto w-full">
           <Timeline data={timelineData} />
         </div>
       </div>

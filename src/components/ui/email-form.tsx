@@ -167,8 +167,8 @@ export function EmailForm({
                           onChange={(e) =>
                             handleInputChange("name", e.target.value)
                           }
-                          className={`w-full px-3 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                            errors.name ? "border-red-500" : "border-border"
+                          className={`glass w-full px-3 py-2 rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+                            errors.name ? "border-red-500" : ""
                           }`}
                           placeholder="Your full name"
                           disabled={isLoading}
@@ -190,8 +190,8 @@ export function EmailForm({
                           onChange={(e) =>
                             handleInputChange("email", e.target.value)
                           }
-                          className={`w-full px-3 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                            errors.email ? "border-red-500" : "border-border"
+                          className={`glass w-full px-3 py-2 rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+                            errors.email ? "border-red-500" : ""
                           }`}
                           placeholder="your.email@example.com"
                           disabled={isLoading}
@@ -214,7 +214,7 @@ export function EmailForm({
                           onChange={(e) =>
                             handleInputChange("message", e.target.value)
                           }
-                          className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                          className="glass w-full px-3 py-2 rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                           placeholder="Tell me about your project, opportunity, or question..."
                           rows={6}
                           disabled={isLoading}
