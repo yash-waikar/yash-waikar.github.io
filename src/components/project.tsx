@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
@@ -68,8 +68,6 @@ type Project = {
   status?: "live" | "building" | "discontinued";
   github?: string;
   demo?: string | null;
-  /** "R G B" triplet used for the hover border/glow accent. */
-  glowRgb?: string;
 };
 
 function ProjectCard({
@@ -86,14 +84,7 @@ function ProjectCard({
   const PrimaryIcon = primaryIcon;
 
   return (
-    <article
-      className="glass-panel project-card-glow group flex h-full flex-col overflow-hidden rounded-xl ring-1 ring-foreground/10 ring-offset-4 ring-offset-background transition-colors duration-300 hover:bg-foreground/[0.08]"
-      style={
-        project.glowRgb
-          ? ({ "--glow-rgb": project.glowRgb } as CSSProperties)
-          : undefined
-      }
-    >
+    <article className="glass-panel project-card-glow group flex h-full flex-col overflow-hidden rounded-xl ring-1 ring-foreground/10 ring-offset-4 ring-offset-background transition-colors duration-300 hover:bg-foreground/[0.08]">
       <div className="relative flex h-44 w-full items-center justify-center overflow-hidden">
         <img
           src={project.image}
@@ -237,7 +228,6 @@ export function Projects() {
       imageType: "screenshot" as const,
       tags: ["Next.js", "Supabase", "Claude API", "pgvector", "RAG"],
       demo: "https://bridgeai-khaki.vercel.app/",
-      glowRgb: "139 92 246",
     },
     {
       title: "Ticket Toast",
@@ -254,7 +244,6 @@ export function Projects() {
         "Vercel",
       ],
       github: "https://github.com/yash-waikar/tickettoast",
-      glowRgb: "245 158 11",
     },
     {
       title: "Resume IT",
@@ -272,7 +261,6 @@ export function Projects() {
       ],
       github: "https://github.com/yash-waikar/resume-it",
       demo: "https://resume-it-xi.vercel.app/",
-      glowRgb: "59 130 246",
     },
     {
       title: "Agent Café",
@@ -287,7 +275,6 @@ export function Projects() {
         "TypeScript",
         "AG-UI",
       ],
-      glowRgb: "16 185 129",
     },
 
     {
@@ -298,7 +285,6 @@ export function Projects() {
       tags: ["Python", "Mediapipe", "OpenCV", "Librosa", "JavaScript"],
       github: "",
       demo: null,
-      glowRgb: "236 72 153",
     },
     {
       title: "Pitch Desk AI",
@@ -308,7 +294,6 @@ export function Projects() {
       tags: ["OpenAI API", "React", "Node.js", "ATS", "Vercel"],
       github: "https://github.com/yashwaikar/AI-Pitch-Deck-Analyzer",
       demo: null,
-      glowRgb: "34 211 238",
     },
   ];
 

@@ -152,9 +152,9 @@
       inset 0 1px 0 0 hsl(var(--foreground) / 0.08);
   }
 
-  /* Per-card hover accent — set --glow-rgb (an "R G B" triplet) inline. */
+  /* Hover accent for project cards — burnt orange. */
   .project-card-glow {
-    --glow-rgb: 139 92 246;
+    --glow-rgb: 204 85 0;
     transition:
       border-color 0.4s ease,
       box-shadow 0.4s ease;
