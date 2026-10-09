@@ -8,8 +8,8 @@ type Publication = {
   authors: string[];
   venue: string;
   status: string;
-  date: string;
-  summary: string;
+  date?: string;
+  summary?: string;
   keywords?: string[];
   url: string;
 };
@@ -18,13 +18,11 @@ const SELF = "Yash Waikar";
 
 const publications: Publication[] = [
   {
-    title: "__TITLE__",
+    title:
+      "Governing the Handoff: Responsibility Attribution in Enterprise Multi-Agent AI Systems",
     authors: ["Yash Waikar"],
     venue: "SSRN",
     status: "Preprint",
-    date: "__DATE__",
-    summary: "__SUMMARY__",
-    keywords: [],
     url: "https://ssrn.com/abstract=7579040",
   },
 ];
@@ -38,8 +36,12 @@ function PublicationCard({ publication }: { publication: Publication }) {
           {publication.status}
         </span>
         <span>{publication.venue}</span>
-        <span aria-hidden="true">·</span>
-        <span>{publication.date}</span>
+        {publication.date && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>{publication.date}</span>
+          </>
+        )}
       </div>
 
       <h3 className="max-w-3xl font-mono text-xl font-bold leading-snug tracking-tight md:text-2xl">
@@ -57,9 +59,11 @@ function PublicationCard({ publication }: { publication: Publication }) {
         ))}
       </p>
 
-      <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
-        {publication.summary}
-      </p>
+      {publication.summary && (
+        <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          {publication.summary}
+        </p>
+      )}
 
       {publication.keywords && publication.keywords.length > 0 && (
         <div className="flex flex-wrap gap-2">
