@@ -23,6 +23,7 @@ const publications: Publication[] = [
     authors: ["Yash Waikar"],
     venue: "SSRN",
     status: "Preprint",
+    date: "October 9, 2026",
     url: "https://ssrn.com/abstract=7579040",
   },
 ];
