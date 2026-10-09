@@ -6,6 +6,7 @@ import { Navbar } from "./components/navbar";
 import { Hero } from "./components/hero";
 import { About } from "./components/about";
 import { Projects } from "./components/project";
+import { Publications } from "./components/publications";
 import { Experience } from "./components/experience";
 import { Footer } from "./components/footer";
 import { LoadingScreen } from "./components/LoadingScreen";
@@ -74,6 +75,9 @@ function App() {
 
             <div id="projects">
               <Projects />
+            </div>
+            <div id="publications">
+              <Publications />
             </div>
             <div id="experience">
               <Experience />
