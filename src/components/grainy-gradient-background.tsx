@@ -1,11 +1,31 @@
 "use client";
 
+import { motion, useScroll, useTransform } from "motion/react";
+
 export function GrainyGradientBackground() {
+  const { scrollYProgress } = useScroll();
+  // The light gradient is two viewports tall and drifts up as you scroll, so
+  // the red recedes off the top and the page settles into periwinkle -> snow.
+  const lightY = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+
   return (
-    <div className="relative h-full w-full overflow-hidden bg-[#0a0f1f]">
-      {/* Color blobs — navy, orange, and mauve, matching a grainy mesh-gradient look */}
+    <div className="relative h-full w-full overflow-hidden bg-[#FAFBFD] dark:bg-[#0a0f1f]">
+      {/* Light: Inferno (#AA0003) -> Periwinkle (#BFB4DC) -> Bright Snow (#FAFBFD) */}
+      <motion.div
+        className="absolute inset-x-0 top-0 h-[200%] dark:hidden"
+        style={{
+          y: lightY,
+          background: `
+            radial-gradient(75% 26% at 80% 0%, rgba(170,0,3,1) 0%, rgba(170,0,3,0.7) 45%, rgba(170,0,3,0) 100%),
+            radial-gradient(90% 20% at 38% 30%, rgba(191,180,220,0.95) 0%, rgba(191,180,220,0) 100%),
+            linear-gradient(180deg, #AA0003 0%, #BFB4DC 38%, #FAFBFD 80%, #FAFBFD 100%)
+          `,
+        }}
+      />
+
+      {/* Dark: color blobs — navy, orange, and mauve, matching a grainy mesh-gradient look */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 hidden dark:block"
         style={{
           background: `
             radial-gradient(55% 45% at 12% 15%, rgba(30,44,74,0.95) 0%, rgba(30,44,74,0.5) 45%, transparent 75%),
@@ -18,7 +38,7 @@ export function GrainyGradientBackground() {
 
       {/* Film-grain overlay */}
       <svg
-        className="absolute inset-0 h-full w-full opacity-[0.45] mix-blend-overlay"
+        className="absolute inset-0 h-full w-full opacity-[0.3] mix-blend-overlay dark:opacity-[0.45]"
         aria-hidden="true"
       >
         <filter id="grain-noise">
