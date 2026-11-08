@@ -45,7 +45,7 @@ export function Navbar({ activeSection = "home", onNavClick }: NavbarProps) {
   return (
     <header className="fixed top-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl -translate-x-1/2 sm:top-6">
       {/* Desktop pill */}
-      <div className="glass-panel hidden h-12 rounded-full bg-white/60 dark:bg-foreground/[0.06] md:flex">
+      <div className="glass-panel hidden h-12 rounded-full md:flex">
         <div className="flex w-full items-center justify-between px-3">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2 text-foreground">
@@ -109,7 +109,7 @@ export function Navbar({ activeSection = "home", onNavClick }: NavbarProps) {
       </div>
 
       {/* Mobile pill */}
-      <div className="glass-panel flex flex-col overflow-hidden rounded-2xl bg-white/60 dark:bg-foreground/[0.06] md:hidden">
+      <div className="glass-panel flex flex-col overflow-hidden rounded-2xl md:hidden">
         <div className="flex items-center justify-between px-4 py-2">
           <a href="#home" className="flex items-center gap-2 text-foreground">
             <div className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground/10">

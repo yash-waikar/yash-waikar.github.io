@@ -46,14 +46,14 @@ function App() {
   };
 
   return (
-    <ThemeProvider defaultTheme="light">
+    <ThemeProvider defaultTheme="dark">
       <TooltipProvider>
         {/* Persistent background — visible from first paint, continues
             unbroken from the loading intro into the revealed site. */}
         <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
           <ScrollZoomBackground />
         </div>
-        <div className="fixed inset-0 -z-10 dark:bg-background/55 pointer-events-none" />
+        <div className="fixed inset-0 -z-10 bg-background/55 pointer-events-none" />
         <BottomScrollBlur />
 
         <LoadingScreen
