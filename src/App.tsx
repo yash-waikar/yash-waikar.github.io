@@ -18,7 +18,7 @@ const SECTIONS = ["home", "about", "projects", "experience"];
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
-  const [isLoading, setIsLoading] = useState(true);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,21 +56,18 @@ function App() {
         <div className="fixed inset-0 -z-10 bg-background/55 pointer-events-none" />
         <BottomScrollBlur />
 
-        <LoadingScreen
-          isLoading={isLoading}
-          onFinish={() => setIsLoading(false)}
-        />
+        <LoadingScreen onReveal={() => setRevealed(true)} />
 
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: isLoading ? 0 : 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          animate={{ opacity: revealed ? 1 : 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <Navbar activeSection={activeSection} onNavClick={scrollToSection} />
 
           <main className="w-full pt-24">
             <div id="home">
-              <Hero />
+              <Hero revealed={revealed} />
             </div>
 
             <div id="projects">
