@@ -246,23 +246,6 @@ export function Projects() {
       github: "https://github.com/yash-waikar/tickettoast",
     },
     {
-      title: "Resume IT",
-      description:
-        "Build resumes with AI-generated content and ATS scoring, built in.",
-      image: "/assets/img/resume-it-screenshot.png",
-      imageType: "screenshot" as const,
-      tags: [
-        "Next.js",
-        "JavaScript",
-        "TailwindCSS",
-        "Gemini AI",
-        "Google AI Studio",
-        "Vercel",
-      ],
-      github: "https://github.com/yash-waikar/resume-it",
-      demo: "https://resume-it-xi.vercel.app/",
-    },
-    {
       title: "Agent Café",
       description:
         "Visualizes multiple AI agents drafting letters in real time, so you can see them think.",
@@ -275,25 +258,6 @@ export function Projects() {
         "TypeScript",
         "AG-UI",
       ],
-    },
-
-    {
-      title: "Wave Tune",
-      description:
-        "Wave your hands to control music — pitch, volume, and tempo, live.",
-      image: "/assets/img/wave-tune.png",
-      tags: ["Python", "Mediapipe", "OpenCV", "Librosa", "JavaScript"],
-      github: "",
-      demo: null,
-    },
-    {
-      title: "Pitch Desk AI",
-      description:
-        "AI that reads your pitch deck and scores it like an investor would.",
-      image: "/assets/img/project-img2.png",
-      tags: ["OpenAI API", "React", "Node.js", "ATS", "Vercel"],
-      github: "https://github.com/yashwaikar/AI-Pitch-Deck-Analyzer",
-      demo: null,
     },
   ];
 
