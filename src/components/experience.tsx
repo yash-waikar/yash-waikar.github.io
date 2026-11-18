@@ -21,25 +21,6 @@ type ExperienceEntry = {
 
 const entries: ExperienceEntry[] = [
   {
-    date: "April 2026",
-    icon: "briefcase",
-    title: "AI Training & Facilitation Specialist",
-    org: "Ampcus Inc.",
-    logo: "/assets/img/company1 Logo.jpeg",
-    extraLogo: { src: "/assets/img/amazon-logo.svg", alt: "Amazon" },
-    description:
-      "Selected for an Agentic AI Pilot Program with Amazon and Salesforce, enabling 9+ small business clients through 1‑on‑1 consulting and instructor‑led workshops. Design agent architectures on AWS Bedrock AgentCore and Salesforce Agentforce — including RAG pipelines, action groups, and HITL checkpoints.",
-    tags: [
-      "AWS Bedrock",
-      "AgentCore",
-      "Salesforce Agentforce",
-      "RAG",
-      "Agentic AI",
-      "HITL",
-      "Responsible AI",
-    ],
-  },
-  {
     date: "January 2025",
     icon: "briefcase",
     title: "Software Engineer",
@@ -56,6 +37,25 @@ const entries: ExperienceEntry[] = [
       "React Query",
       "Node.js",
       "Salesforce",
+    ],
+  },
+  {
+    date: "April 2026",
+    icon: "briefcase",
+    title: "AI Training & Facilitation Specialist",
+    org: "Ampcus Inc.",
+    logo: "/assets/img/company1 Logo.jpeg",
+    extraLogo: { src: "/assets/img/amazon-logo.svg", alt: "Amazon" },
+    description:
+      "Selected for an Agentic AI Pilot Program with Amazon and Salesforce, enabling 9+ small business clients through 1‑on‑1 consulting and instructor‑led workshops. Design agent architectures on AWS Bedrock AgentCore and Salesforce Agentforce — including RAG pipelines, action groups, and HITL checkpoints.",
+    tags: [
+      "AWS Bedrock",
+      "AgentCore",
+      "Salesforce Agentforce",
+      "RAG",
+      "Agentic AI",
+      "HITL",
+      "Responsible AI",
     ],
   },
   {
